@@ -2,25 +2,26 @@
 
 <div class="loginBox">
     <form>
-
-      <h1 style="color: white">
-        Web Logo placeholder.
-      </h1>
-      <p style="position: relative;margin-top:20px;margin-bottom:0% ">Username or Email Address</p>
+        <a [routerLink]="'/cover'">
+      <img src="../../../assets/images/Main_Logo.png" style="width: 90%; padding-bottom:30px">
+        </a>
+      <p style="position: relative;margin-top:20px;margin-bottom:0% ; padding-left: 6px;">Username or Email Address</p>
       <div class="textbox">
-        <input type="text" placeholder="Username" name="" value="">
+        <input type="text" placeholder="Username" name="" value="" style="padding-left: 5px">
 
       </div>
-      <p style="margin-bottom:0%; margin-top:25px">Password</p>
+      <p style="margin-bottom:0%; margin-top:40px; padding-left: 6px;">Password</p>
       <div class="textbox">
-        <input type="password" placeholder="Password" name="" value="">
+        <input type="password" placeholder="Password" name="" value="" style="padding-left: 5px">
       </div>
 
-      <input class="loginBtn btn btn-primary" type="button" value="LOGIN"> 
+      <a [routerLink]="'/main/home'">
+      <input class="loginBtn btn btn-primary" type="button" value="LOGIN" > 
+    </a>
 
 
       <div style="text-align: center;margin-top:10px">
-      <a>
+      <a [routerLink]="'/authentication/forget-password'">
         Forgot your password?
       </a>
     </div>
