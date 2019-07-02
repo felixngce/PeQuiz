@@ -10,6 +10,10 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
+.cover-background{
+  background: url('assets/images/students-bg-img.jpg')center center / cover no-repeat; 
+}
+
 .containerEx{
   display: inline;
   text-align: center;
@@ -82,7 +86,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 7%;
+    padding-top: 7%;
     width: 20%;
   }
 
@@ -194,5 +198,25 @@
   .signUpBtn{
     margin-top: 12%;
     border-radius: 5px;
+  }
 
+  .hiddenCoverContent{
+    padding-top: 25%;
+    padding-bottom: 10%;
+    font-size: 20px;
+    text-align: center;
+
+  }
+
+  .hiddenCoverContent hr{
+    border: none;
+    width: 10%;
+    height: 3px;
+    color: red;
+    background-color: red;
+
+  }
+
+  .hiddenCoverContent p{
+    font-family: lato;
   }
