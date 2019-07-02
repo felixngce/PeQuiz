@@ -29,27 +29,32 @@
 
   .scrollbar
   {
-    background: #F5F5F5;
+    
     overflow-y: scroll;
   }
 
-  #style-2::-webkit-scrollbar-track
+  #cover-scroll::-webkit-scrollbar-track
   {
     --webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     border-radius: 10px;
-    background-color: #F5F5F5;
+    background-color: rgba(0, 0, 0, 0.5);
+    
   }
   
-  #style-2::-webkit-scrollbar
+  #cover-scroll::-webkit-scrollbar
   {
-    background-color: #F5F5F5;
+    background-color: transparent;
+    width: 8px;
   }
   
-  #style-2::-webkit-scrollbar-thumb
+  #cover-scroll::-webkit-scrollbar-thumb
   {
     border-radius: 10px;
     --webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #D62929;
+    background-color: #b5651d;
+
+    /* background-color: #703f14; */
+    width: 20px;
   }
 
   
@@ -114,11 +119,16 @@
     z-index: 2;
   }
 
+  .divider{
+    width: 50%;
+    height:auto;
+    display:inline-block;
+}
   .coverBtns{
     margin: 0;
     z-index: 2;
     font-size: 12px;
-    width: 15%;  
+    width: 180px;  
   }
 
   .coverLoginBtn{
@@ -178,5 +188,11 @@
     margin-top: 12%;
     border-radius: 5px;
     background-color: #703f14;
+
+  }
+
+  .signUpBtn{
+    margin-top: 12%;
+    border-radius: 5px;
 
   }
