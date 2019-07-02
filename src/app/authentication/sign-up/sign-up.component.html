@@ -3,7 +3,7 @@
 <div class="loginBox">
     <form>
         <a [routerLink]="'/cover'">
-      <img src="../../../assets/images/Main_Logo.png" style="width: 90%; padding-bottom:30px">
+      <img src="../../../assets/images/Main_Logo.png" style="width: 90%; padding-bottom:5%;padding-top: 40%">
         </a>
       <p style="position: relative;margin-top:20px;margin-bottom:0%; padding-left: 6px; ">Email Address</p>
       <div class="textbox">
@@ -30,9 +30,11 @@
       <input class="loginBtn btn btn-primary" type="button" value="SIGN-UP" > 
 
       <div style="text-align: center;margin-top:10px">
-          <a [routerLink]="'/authentication/login'">
-            Already Have An Account?
-          </a>
+        <span style="color: white">Already Have An Account? </span>
+        <a [routerLink]="'/authentication/login'">
+          <span>Click here</span>  
+        </a>
+          
         </div>
 
     </form>
