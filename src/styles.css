@@ -14,6 +14,10 @@
   background: url('assets/images/students-bg-img.jpg')center center / cover no-repeat; 
 }
 
+.main-background{
+  background: url('assets/images/home_background_attempt1.png')center center / cover no-repeat; 
+}
+
 .containerEx{
   display: inline;
   text-align: center;
@@ -224,4 +228,13 @@
   .navbar-text-items{
     padding:16px 11px 14px 11px;
     font-family: 'Montserrat', sans-serif;
+    
+  }
+
+  .navbar-text-items a{
+    color: green;
+  }
+
+  .navbar-text-items p{
+    color: white;
   }
