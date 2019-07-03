@@ -220,3 +220,8 @@
   .hiddenCoverContent p{
     font-family: lato;
   }
+
+  .navbar-text-items{
+    padding:16px 11px 14px 11px;
+    font-family: 'Montserrat', sans-serif;
+  }

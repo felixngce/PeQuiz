@@ -11,7 +11,7 @@ export class CoverComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.router.navigate(['/cover']);
+    // this.router.navigate(['/cover']);
   }
 
 }
