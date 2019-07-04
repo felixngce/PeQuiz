@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './authentication/login/login.component';
 import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { CoverComponent } from './cover/cover.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './main/navbar/navbar.component';
 import { CoverContentComponent } from './cover-content/cover-content.component';
 import {AuthenticationComponent} from './authentication/authentication.component';
 import {ForgetPasswordComponent} from './authentication/forget-password/forget-password.component';

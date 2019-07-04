@@ -238,3 +238,25 @@
   .navbar-text-items p{
     color: white;
   }
+
+  .home-container{
+    margin: 0 auto;
+    width: 85%;
+  }
+
+  /* .home-profile-modal{
+  } */
+
+  .home-profile-modal img{
+    width: 20%;
+    float: left;
+  }
+
+  .home-profile-modal h5{
+    padding-right: 25%;
+    padding-top:5%;
+  }
+
+  .modal-color{
+    background-color: green;
+  }

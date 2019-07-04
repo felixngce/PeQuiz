@@ -1,40 +1,25 @@
-
 <div id="cover-scroll" class="scrollbar">
-        <div class="main-background ">
-                <app-navbar></app-navbar>
+  <div class="main-background ">
 
-          <div class="headerMsg">
-            <img src="../../assets/images/Main_Logo.png">
-            <p>OPEN A NEW DOOR TO LEARNING</p>
-          </div>
-          <div class="subHeadMsg">
-            <p>While Leaving The Boring Parts Behind</p>
-          </div>
-          <div style="text-align: center; margin-top: 5%; z-index: 100;">
-            <div style="display: inline-block; padding-right: 5%">
-              <a [routerLink]="'/authentication/login'">
-                <button id="loginBtn" type="button" class="btn btn-primary coverBtns coverLoginBtn">
-                  Login
-                </button>
-              </a>
-            </div>
-      
-            <div style="display: inline-block; padding-left: 5%">
-              <a routerLink="/authentication/sign-up">
-                <button type="button" class="btn btn-primary coverBtns">
-                  Sign up
-                </button>
-              </a>
-            </div>
-          </div>
-      
-          <div class="hiddenCoverContent">
-              <h1>WHAT IS PEQUIZ?</h1>
-              <hr>
-              <p style="padding-top: 3%;">PeQuiz is a quiz website that stimulates learning in a fun manner.</p>
-              <p>The website goes outside the classroom environment</p>
-              <p>by challenging your friends and for everyone to learn.</p>
-            
-          </div>
-      
+    <app-navbar></app-navbar>
+    <div class="home-container container">
+      <div class="row">
+        <div class="col-md-3">
+          <app-profile-column></app-profile-column>
         </div>
+        <div class="col-md-6">
+          <app-my-quiz-column></app-my-quiz-column>
+
+          <app-friends-quiz-column></app-friends-quiz-column>
+        </div>
+        <div class="col-md-3">
+          <app-online-friends-column></app-online-friends-column>
+        </div>
+      </div>
+    </div>
+
+
+ 
+
+  </div>
+</div>
