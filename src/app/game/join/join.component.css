@@ -19,6 +19,10 @@
         background-color: #864cbf
     }
 }
+
+body, html {
+    height: 100%;
+  }
 body{
     height: auto;
   }
@@ -28,6 +32,7 @@ body{
     animation: bgcolor 10s infinite;
     -webkit-animation-direction: alternate;
     animation-direction: alternate;
+    height: 100vh;
 }
 #title{
     font-family: 'Raleway', sans-serif;
