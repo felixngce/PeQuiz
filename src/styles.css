@@ -15,7 +15,12 @@
 }
 
 .main-background{
-  background: url('assets/images/home_background_attempt1.png')center center / cover no-repeat; 
+  background: url('assets/images/home_background_attempt1.png');
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .containerEx{
@@ -36,7 +41,6 @@
 
   .scrollbar
   {
-    
     overflow-y: scroll;
   }
 
