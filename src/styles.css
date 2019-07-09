@@ -19,6 +19,7 @@
 
 }
 
+
 .cover-background{
   background: url('assets/images/students-bg-img.jpg')center center / cover no-repeat; 
 }
@@ -251,7 +252,7 @@
     color: white;
   }
 
-  .home-container{
+  .main-container1{
     margin: 0 auto;
     width: 85%;
   }
