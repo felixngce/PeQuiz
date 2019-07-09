@@ -19,6 +19,7 @@ import { GameComponent } from './game/game.component';
 import { JoinComponent } from './game/join/join.component';
 import { PlayComponent } from './game/play/play.component';
 import { HomeProfileColumnComponent } from './main/home/home-profile-column/home-profile-column.component';
+import { AccountDetailsColumnComponent } from './main/profile-page/account-details-column/account-details-column.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { HomeProfileColumnComponent } from './main/home/home-profile-column/home
     JoinComponent,
     PlayComponent,
     HomeProfileColumnComponent,
+    AccountDetailsColumnComponent,
   ],
   imports: [
     BrowserModule,
