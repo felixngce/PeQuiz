@@ -11,13 +11,14 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { ForgetPasswordComponent } from './authentication/forget-password/forget-password.component';
 import { ProfilePageComponent } from './main/profile-page/profile-page.component';
 import { MainComponent } from './main/main.component';
-import { ProfileColumnComponent } from './main/home/profile-column/profile-column.component';
+import { ProfileColumnComponent } from './main/profile-page/profile-column/profile-column.component';
 import { MyQuizColumnComponent } from './main/home/my-quiz-column/my-quiz-column.component';
 import { FriendsQuizColumnComponent } from './main/home/friends-quiz-column/friends-quiz-column.component';
 import { OnlineFriendsColumnComponent } from './main/home/online-friends-column/online-friends-column.component';
 import { GameComponent } from './game/game.component';
 import { JoinComponent } from './game/join/join.component';
 import { PlayComponent } from './game/play/play.component';
+import { HomeProfileColumnComponent } from './main/home/home-profile-column/home-profile-column.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PlayComponent } from './game/play/play.component';
     GameComponent,
     JoinComponent,
     PlayComponent,
+    HomeProfileColumnComponent,
   ],
   imports: [
     BrowserModule,
