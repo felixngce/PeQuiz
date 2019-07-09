@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+
+
 .front-page-1 {
     display: table;
     overflow: hidden;
@@ -8,6 +10,13 @@
     width: 100%;
     position: relative;
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+@import url('https://fonts.googleapis.com/css?family=DM+Serif+Display&display=swap');
+
+.DM_Serif{
+  font-family: 'DM Serif Display', serif;
+
 }
 
 .cover-background{
