@@ -20,6 +20,10 @@ import { JoinComponent } from './game/join/join.component';
 import { PlayComponent } from './game/play/play.component';
 import { HomeProfileColumnComponent } from './main/home/home-profile-column/home-profile-column.component';
 import { AccountDetailsColumnComponent } from './main/profile-page/account-details-column/account-details-column.component';
+import { QuizDescriptionComponent } from './main/quiz-description/quiz-description.component';
+import { QuizDescriptionColumnComponent } from './main/quiz-description/quiz-description-column/quiz-description-column.component';
+import { CreateQuizComponent } from './main/create-quiz/create-quiz.component';
+import { CreateQuizColumnComponent } from './main/create-quiz/create-quiz-column/create-quiz-column.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,10 @@ import { AccountDetailsColumnComponent } from './main/profile-page/account-detai
     PlayComponent,
     HomeProfileColumnComponent,
     AccountDetailsColumnComponent,
+    QuizDescriptionComponent,
+    QuizDescriptionColumnComponent,
+    CreateQuizComponent,
+    CreateQuizColumnComponent,
   ],
   imports: [
     BrowserModule,

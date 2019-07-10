@@ -8,9 +8,14 @@ import { CoverContentComponent } from './cover-content/cover-content.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { ForgetPasswordComponent } from './authentication/forget-password/forget-password.component';
 
+
+
 import { MainComponent } from './main/main.component';
 import { HomeComponent } from './main/home/home.component';
+import {CreateQuizComponent} from './main/create-quiz/create-quiz.component'
 import { ProfilePageComponent } from './main/profile-page/profile-page.component';
+import {QuizDescriptionComponent} from './main/quiz-description/quiz-description.component';
+
 import { GameComponent } from './game/game.component';
 import { JoinComponent } from './game/join/join.component';
 
@@ -43,6 +48,8 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'profile-page', component: ProfilePageComponent },
+      { path: 'create-quiz', component: CreateQuizComponent},
+      {path: 'quiz-description', component: QuizDescriptionComponent},
     ]
 
   },
@@ -62,4 +69,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents = [CoverComponent, AuthenticationComponent, LoginComponent, SignUpComponent, ForgetPasswordComponent, MainComponent, HomeComponent,
-  ProfilePageComponent, GameComponent, JoinComponent]
+  ProfilePageComponent,CreateQuizComponent,QuizDescriptionComponent, GameComponent, JoinComponent]
