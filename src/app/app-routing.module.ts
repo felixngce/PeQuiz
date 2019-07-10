@@ -12,12 +12,15 @@ import { ForgetPasswordComponent } from './authentication/forget-password/forget
 
 import { MainComponent } from './main/main.component';
 import { HomeComponent } from './main/home/home.component';
-import {CreateQuizComponent} from './main/create-quiz/create-quiz.component'
+import { QuizComponent } from './main/quiz/quiz.component';
+import { CreateQuizComponent } from './main/quiz/create-quiz/create-quiz.component'
 import { ProfilePageComponent } from './main/profile-page/profile-page.component';
-import {QuizDescriptionComponent} from './main/quiz-description/quiz-description.component';
+import { QuizDescriptionComponent } from './main/quiz/quiz-description/quiz-description.component';
+import {QuizDetailsComponent} from './main/quiz/quiz-details/quiz-details.component'
 
 import { GameComponent } from './game/game.component';
 import { JoinComponent } from './game/join/join.component';
+import { from } from 'rxjs';
 
 const routes: Routes = [
 
@@ -47,12 +50,26 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       { path: 'home', component: HomeComponent },
-      { path: 'profile-page', component: ProfilePageComponent },
-      { path: 'create-quiz', component: CreateQuizComponent},
-      {path: 'quiz-description', component: QuizDescriptionComponent},
+      { path: 'profile', component: ProfilePageComponent },
+      {
+        path: 'quiz',
+        component: QuizComponent,
+
+        children: [
+          { path: 'create', component: CreateQuizComponent },
+          { path: 'description', component: QuizDescriptionComponent },
+          {path: 'details', component: QuizDetailsComponent}
+
+
+
+        ],
+      }
+
     ]
 
   },
+
+
   {
     path: 'game',
     component: GameComponent,
@@ -69,4 +86,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents = [CoverComponent, AuthenticationComponent, LoginComponent, SignUpComponent, ForgetPasswordComponent, MainComponent, HomeComponent,
-  ProfilePageComponent,CreateQuizComponent,QuizDescriptionComponent, GameComponent, JoinComponent]
+  ProfilePageComponent, CreateQuizComponent, QuizDescriptionComponent, GameComponent, JoinComponent]

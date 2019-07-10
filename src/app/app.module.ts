@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './main/navbar/navbar.component';
@@ -20,10 +19,12 @@ import { JoinComponent } from './game/join/join.component';
 import { PlayComponent } from './game/play/play.component';
 import { HomeProfileColumnComponent } from './main/home/home-profile-column/home-profile-column.component';
 import { AccountDetailsColumnComponent } from './main/profile-page/account-details-column/account-details-column.component';
-import { QuizDescriptionComponent } from './main/quiz-description/quiz-description.component';
-import { QuizDescriptionColumnComponent } from './main/quiz-description/quiz-description-column/quiz-description-column.component';
-import { CreateQuizComponent } from './main/create-quiz/create-quiz.component';
-import { CreateQuizColumnComponent } from './main/create-quiz/create-quiz-column/create-quiz-column.component';
+import { QuizDescriptionComponent } from './main/quiz/quiz-description/quiz-description.component';
+import { QuizDescriptionColumnComponent } from './main/quiz/quiz-description/quiz-description-column/quiz-description-column.component';
+import { CreateQuizComponent } from './main/quiz/create-quiz/create-quiz.component';
+import { CreateQuizColumnComponent } from './main/quiz/create-quiz/create-quiz-column/create-quiz-column.component';
+import { QuizComponent } from './main/quiz/quiz.component';
+import { QuizDetailsComponent } from './main/quiz/quiz-details/quiz-details.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,8 @@ import { CreateQuizColumnComponent } from './main/create-quiz/create-quiz-column
     QuizDescriptionColumnComponent,
     CreateQuizComponent,
     CreateQuizColumnComponent,
+    QuizComponent,
+    QuizDetailsComponent,
   ],
   imports: [
     BrowserModule,
