@@ -25,6 +25,7 @@ import { CreateQuizComponent } from './main/quiz/create-quiz/create-quiz.compone
 import { CreateQuizColumnComponent } from './main/quiz/create-quiz/create-quiz-column/create-quiz-column.component';
 import { QuizComponent } from './main/quiz/quiz.component';
 import { QuizDetailsComponent } from './main/quiz/quiz-details/quiz-details.component';
+import { QuizDetailsColumnComponent } from './main/quiz/quiz-details/quiz-details-column/quiz-details-column.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { QuizDetailsComponent } from './main/quiz/quiz-details/quiz-details.comp
     CreateQuizColumnComponent,
     QuizComponent,
     QuizDetailsComponent,
+    QuizDetailsColumnComponent,
   ],
   imports: [
     BrowserModule,
