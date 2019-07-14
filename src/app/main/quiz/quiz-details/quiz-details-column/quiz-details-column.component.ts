@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizDetailsColumnComponent implements OnInit {
 
+  answerValue : false;
+
+  
+  log(x) 
+  {console.log(x);
+  }
+
+
   constructor() { }
 
   ngOnInit() {
+    
+
   }
 
 }

@@ -9,11 +9,14 @@ import { Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
 
+
+
   constructor(private router: Router) { }
 
   ngOnInit() {
     
       // this.router.navigate(['/main/home']);
+      
     
   
   }
