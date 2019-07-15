@@ -13,7 +13,7 @@ export class UserPostService {
  return this.http.get<any[]>('./api/posts');
  }
 
- insertUserData (username: string,email: string, password: string
+ registerUser (username: string,email: string, password: string
   // total_quizzes_created: number, last_password_change: Date, online_status: boolean, friends_list: string, created_quizzes: string
   ) {
     console.log(username);

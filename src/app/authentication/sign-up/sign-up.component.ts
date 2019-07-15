@@ -12,14 +12,14 @@ import { UserPostService } from '../../services/user/user-post.service';
 })
 export class SignUpComponent implements OnInit {
 
-  myForm: FormGroup;
+  signUpForm: FormGroup;
 
 
   constructor(private userPostService: UserPostService, private fb : FormBuilder) { }
 
   ngOnInit() {
 
-    this.myForm = this.fb.group({
+    this.signUpForm = this.fb.group({
       username: '',
       email_address: '',
       password:''
@@ -28,8 +28,8 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(){
     
-    this.userPostService.insertUserData(this.myForm.value.username,
-   this.myForm.value.email_address, this.myForm.value.password).subscribe(results => {
+    this.userPostService.registerUser(this.signUpForm.value.username,
+   this.signUpForm.value.email_address, this.signUpForm.value.password).subscribe(results => {
     location.reload();
     });
     

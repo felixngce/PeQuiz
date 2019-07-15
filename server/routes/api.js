@@ -21,7 +21,7 @@ router.get('/posts', (req, res) => {
     });
    });
    
-
+//Connect to MongoDB
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
 var db;
@@ -30,7 +30,9 @@ useNewUrlParser: true }, (err, database) => {
  if (err) return console.log(err);
  db = database.db('PeQuizDB');
 });
-// insert new user
+
+
+// register new user
 router.route('/users/').post(function (req, res) {
  db.collection('User').insertOne(req.body, (err, results) => {
  if (err) return console.log(err);
