@@ -18,7 +18,11 @@ export class UserPostService {
   ) {
     console.log(username);
   return this.http.post<any[]>('./api/users/', {'username': username, 'email': email, 'password': password
-  //  'total_quizzes_created': total_quizzes_created,'last_password_change': last_password_change, 'online_status': online_status, 'friends_list': friends_list, 'created_quizzes': created_quizzes
+  //  'last_password_change': last_password_change, 'online_status': online_status, 'friends_list': friends_list, 'created_quizzes': created_quizzes
   });
-  } 
+  }
+  
+  uploadPfp(){
+
+  }
 }

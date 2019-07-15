@@ -17,16 +17,21 @@ export class SignUpComponent implements OnInit {
 
   constructor(private userPostService: UserPostService, private fb : FormBuilder) { }
 
+  password_salt: 'salt_example';
+  pfp_placeholder: 'http://localhost:3000/assets/images/pfp_placeholder.png';
+
   ngOnInit() {
 
     this.signUpForm = this.fb.group({
       username: '',
       email_address: '',
+
       password:''
+
       });
   }
 
-  onSubmit(){
+  onSignUp(){
     
     this.userPostService.registerUser(this.signUpForm.value.username,
    this.signUpForm.value.email_address, this.signUpForm.value.password).subscribe(results => {
