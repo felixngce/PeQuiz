@@ -7,22 +7,39 @@ const API = 'https://jsonplaceholder.typicode.com';
 router.get('/', (req, res) => {
 res.send('api works');
 });
+
+// Get all posts
+router.get('/posts', (req, res) => {
+    // Get posts from the mock api
+    // This should ideally be replaced with a service that connects to MongoDB
+    axios.get(`${API}/posts`)
+    .then(posts => {
+    res.status(200).json(posts.data);
+    })
+    .catch(error => {
+    res.status(500).send(error)
+    });
+   });
+   
+
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
 var db;
-// MongoClient.connect('mongodb+srv://Pelix-Ng:tB776773@fweb-ol14e.mongodb.net', {
-// useNewUrlParser: true }, (err, database) => {
-//  if (err) return console.log(err);
-//  db = database.db('testone');
-// });
-// // insert new quote
-// router.route('/quotes').post(function (req, res) {
-//  db.collection('quotes').insertOne(req.body, (err, results) => {
-//  if (err) return console.log(err);
-//  console.log('saved to database');
-//  res.send(results);
-//  });
-// });
+MongoClient.connect('mongodb+srv://Pelix-Ng:tB776773@pequizcluster-ndlzr.mongodb.net/test?retryWrites=true&w=majority', {
+useNewUrlParser: true }, (err, database) => {
+ if (err) return console.log(err);
+ db = database.db('PeQuizDB');
+});
+// insert new user
+router.route('/users/').post(function (req, res) {
+ db.collection('User').insertOne(req.body, (err, results) => {
+ if (err) return console.log(err);
+ console.log('saved to database');
+ res.send(results);
+ });
+});
+
+
 
 
 module.exports = router;

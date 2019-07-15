@@ -7,6 +7,8 @@ import { HomeComponent } from './main/home/home.component';
 import { CoverComponent } from './cover/cover.component';
 import { CoverContentComponent } from './cover-content/cover-content.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { SignUpComponent } from './authentication/sign-up/sign-up.component';
 import { ForgetPasswordComponent } from './authentication/forget-password/forget-password.component';
 import { ProfilePageComponent } from './main/profile-page/profile-page.component';
 import { MainComponent } from './main/main.component';
@@ -27,13 +29,24 @@ import { QuizComponent } from './main/quiz/quiz.component';
 import { QuizDetailsComponent } from './main/quiz/quiz-details/quiz-details.component';
 import { QuizDetailsColumnComponent } from './main/quiz/quiz-details/quiz-details-column/quiz-details-column.component';
 
+import {FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
+
+import { HttpClientModule } from '@angular/common/http';
+
+
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
     NavbarComponent,
     HomeComponent,
+    LoginComponent,
     CoverComponent,
+    SignUpComponent,
     CoverContentComponent,
     AuthenticationComponent,
     ForgetPasswordComponent,
@@ -55,10 +68,14 @@ import { QuizDetailsColumnComponent } from './main/quiz/quiz-details/quiz-detail
     QuizComponent,
     QuizDetailsComponent,
     QuizDetailsColumnComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

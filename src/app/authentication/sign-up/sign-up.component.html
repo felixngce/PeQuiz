@@ -1,25 +1,25 @@
 <div id="cover-scroll" class="container1 darken-pseudo scrollbar cover-background">
 
   <div class="loginBox">
-    <form>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
       <a [routerLink]="'/cover'">
         <img src="../../../assets/images/Main_Logo.png" style="width: 90%; padding-bottom:5%;padding-top: 40%">
       </a>
       <p style="position: relative;margin-top:20px;margin-bottom:0%; padding-left: 6px; ">Email Address</p>
       <div class="textbox">
-        <input type="text" placeholder="Email Address" name="" value="" style="padding-left: 5px">
+        <input formControlName="email_address" type="text" placeholder="Email Address" name="" value="" style="padding-left: 5px">
 
       </div>
 
       <p style="position: relative;margin-top:20px;margin-bottom:0%; padding-left: 6px; ">Username</p>
       <div class="textbox">
-        <input type="text" placeholder="Username" name="" value="" style="padding-left: 5px">
+        <input type="text"  formControlName="username" placeholder="Username" name="" value="" style="padding-left: 5px">
 
       </div>
 
       <p style="margin-bottom:0%; margin-top:20px;padding-left: 6px;">Password</p>
       <div class="textbox">
-        <input type="password" placeholder="Password" name="" value="" style="padding-left: 5px">
+        <input type="password"  formControlName="password" placeholder="Password" name="" value="" style="padding-left: 5px">
       </div>
 
       <p style="margin-bottom:0%; margin-top:20px;padding-left: 6px;">Re-Type Password</p>
@@ -27,7 +27,9 @@
         <input type="password" placeholder="Re-Type Password" name="" value="" style="padding-left: 5px">
       </div>
 
-      <input class="signUpBtn btn btn-primary" type="button" value="Sign up">
+      <button style="width: 100%" class="signUpBtn btn btn-primary" type="button submit" value="Sign up">
+        Submit
+      </button>
 
     </form>
 

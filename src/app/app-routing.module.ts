@@ -22,6 +22,9 @@ import { GameComponent } from './game/game.component';
 import { JoinComponent } from './game/join/join.component';
 import { from } from 'rxjs';
 
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 const routes: Routes = [
 
   {
@@ -81,7 +84,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+    FormsModule,
+    ReactiveFormsModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
