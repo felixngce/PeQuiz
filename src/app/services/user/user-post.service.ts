@@ -10,7 +10,7 @@ export class UserPostService {
  constructor(private http:HttpClient) { }
 
  getAllPosts() {
- return this.http.get<any[]>('./api/posts');
+ return this.http.get<any[]>('./api/users');
  }
 
  registerUser (username: string,email: string, password: string

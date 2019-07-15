@@ -8,18 +8,7 @@ router.get('/', (req, res) => {
 res.send('api works');
 });
 
-// Get all posts
-router.get('/posts', (req, res) => {
-    // Get posts from the mock api
-    // This should ideally be replaced with a service that connects to MongoDB
-    axios.get(`${API}/posts`)
-    .then(posts => {
-    res.status(200).json(posts.data);
-    })
-    .catch(error => {
-    res.status(500).send(error)
-    });
-   });
+
    
 //Connect to MongoDB
 const MongoClient = require('mongodb').MongoClient;
@@ -30,6 +19,13 @@ useNewUrlParser: true }, (err, database) => {
  if (err) return console.log(err);
  db = database.db('PeQuizDB');
 });
+
+// Get all posts
+router.route('/users/').get(function(req, res) {
+    db.collection('User').find().toArray( (err, results) =>
+   {res.send(results)});
+   });
+   
 
 
 // register new user
