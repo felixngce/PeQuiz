@@ -13,13 +13,7 @@ export class UserPostService {
  return this.http.get<any[]>('./api/users');
  }
 
- registerUser (username: string,email: string, password: string
-  // total_quizzes_created: number, last_password_change: Date, online_status: boolean, friends_list: string, created_quizzes: string
-  ) {  
-  return this.http.post<any[]>('./api/users/', {'username': username, 'email': email, 'password': password
-  //  'last_password_change': last_password_change, 'online_status': online_status, 'friends_list': friends_list, 'created_quizzes': created_quizzes
-  });
-  }
+
   
   uploadPfp(){
 

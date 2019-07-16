@@ -28,6 +28,10 @@ import { CreateQuizColumnComponent } from './main/quiz/create-quiz/create-quiz-c
 import { QuizComponent } from './main/quiz/quiz.component';
 import { QuizDetailsComponent } from './main/quiz/quiz-details/quiz-details.component';
 import { QuizDetailsColumnComponent } from './main/quiz/quiz-details/quiz-details-column/quiz-details-column.component';
+import { AuthService } from './services/auth.service';
+import {UserPostService} from './services/user/user-post.service'
+import {UserGetService} from './services/user/user-get.service'
+
 
 import {FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 
@@ -77,7 +81,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

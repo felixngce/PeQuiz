@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { UserPostService } from '../../services/user/user-post.service';
+import {AuthService } from '../../services/auth.service'
 
 
 @Component({
@@ -15,17 +16,14 @@ export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
 
 
-  constructor(private userPostService: UserPostService, private fb : FormBuilder) { }
+  constructor(private userPostService: UserPostService,private authService: AuthService, private fb : FormBuilder) { }
 
-  password_salt: 'salt_example';
-  pfp_placeholder: 'http://localhost:3000/assets/images/pfp_placeholder.png';
 
   ngOnInit() {
 
     this.signUpForm = this.fb.group({
       username: '',
       email_address: '',
-
       password:''
 
       });
@@ -33,7 +31,7 @@ export class SignUpComponent implements OnInit {
 
   onSignUp(){
     
-    this.userPostService.registerUser(this.signUpForm.value.username,
+    this.authService.registerUser(this.signUpForm.value.username,
    this.signUpForm.value.email_address, this.signUpForm.value.password).subscribe(results => {
     location.reload();
     });
