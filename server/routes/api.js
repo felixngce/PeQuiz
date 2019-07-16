@@ -1,8 +1,20 @@
 const express = require('express');
 const router = express.Router();
+var fs = require('fs');
+
+var AES = require("crypto-js/aes");
+var SHA256 = require("crypto-js/sha256");
+
 // declare axios for making http requests
 const axios = require('axios');
 const API = 'https://jsonplaceholder.typicode.com';
+
+const bcrypt = require('bcryptjs');
+const BCRYPT_SALT_ROUNDS = 12;
+
+
+
+
 // get API listing
 router.get('/', (req, res) => {
     res.send('api works');
@@ -48,20 +60,23 @@ router.route('/users/').post(function (req, res) {
 
         pfpPlaceHolder = (Buffer.from(contents).toString('base64'));
 
-        console.log(pfpPlaceHolder);
         var reqMsg = req.body;
         reqMsg["profile_picture"] = pfpPlaceHolder;
-        db.collection('User').insertOne(reqMsg, (err, results) => {
-            if (err) return console.log(err);
-            console.log('saved to database');
-            res.send(results);
+        console.log(reqMsg["password"])
+
+        bcrypt.hash(reqMsg["password"], BCRYPT_SALT_ROUNDS, function(err, hash) {
+            console.log(reqMsg["password"])
+            reqMsg["password"] = hash;
+            db.collection('User').insertOne(reqMsg, (err, results) => {
+                if (err) return console.log(err);
+                console.log('saved to database');
+                res.send(results);
         });
+    });
     });
 });
 
 
-var fs = require('fs');
-var pfpPlaceHolder;
 
 
 
