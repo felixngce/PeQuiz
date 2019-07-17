@@ -1,50 +1,62 @@
-<div  class="home-profile-modal" tabindex="-1" role="dialog">
+<div class="home-profile-modal" tabindex="-1" role="dialog" *ngIf="isDataLoaded">
   <div class="modal-dialog" role="document" style="max-width: 1000px;margin:3.4% 0;">
     <div class="modal-content">
       <div class="modal-header">
-          <table style="width: 100%">
-            <tr>
-              <th style="margin-left: 40%"><img style="margin-left: 40%" src="../../../../assets/images/pfp_placeholder.png"></th>
-            </tr>
-            <th>
-                <a  style="margin-left: 46.5%;color: blue;">
-                    Change
-                </a>
-            </th>
-          </table>
-          
-          
-       
+        <table style="width: 100%">
+          <tr>
+            <th style="margin-left: 40%"><img style="margin-left: 40%"
+                src="../../../../assets/images/pfp_placeholder.png"></th>
+          </tr>
+          <th>
+            <a style="margin-left: 46.5%;color: blue;">
+              Change
+            </a>
+          </th>
+        </table>
+
+
+
 
       </div>
       <div class="modal-body">
         <div style="margin-bottom: 4%;">
-          <p>Username: <span>Testing123</span>  
-          
-          </p>
-          
+          <p>Username: <span>{{user_data[0].username}}</span> <button style="float: right;" class="btn btn-primary"
+              data-toggle="modal" data-target="#usernameChangeModal">Edit
+            </button>
 
-          
+          </p>
+
+
+
         </div>
         <hr>
         <div style="margin-bottom: 4%;">
-          <p>Email: <span>Testing123@gmail.com</span> <button style="float: right;" class="btn btn-primary" data-toggle="modal" data-target="#emailChangeModal">Edit
+          <p>Email: <span>{{user_data[0].email}}</span> <button style="float: right;" class="btn btn-primary"
+              data-toggle="modal" data-target="#emailChangeModal">Edit
             </button> </p>
-          
+
         </div>
         <hr>
         <div style="margin-bottom: 4%;">
-            <p>Quiz Privacy: <span>Friends Only</span> <button style="float: right;" class="btn btn-primary" data-toggle="modal" data-target="#privacyChangeModal">Edit
-              </button> </p>
-            
+          <p>Quiz Privacy: <span>{{user_data[0].quiz_privacy}}</span> <button style="float: right;"
+              class="btn btn-primary" data-toggle="modal" data-target="#privacyChangeModal">Edit
+            </button> </p>
+
+        </div>
+        <hr>
+        <div style="margin-bottom: 4%;">
+          <p>Password: <span>*******</span> <button style="float: right;" class="btn btn-primary" data-toggle="modal"
+              data-target="#passwordChangeModal">Edit
+            </button> </p>
+
+        </div>
+        <hr>
+        <div style="margin-bottom: 4%;">
+            <button style="float: right;" class="btn btn-primary" data-toggle="modal"
+                data-target="#deleteAccModal">Delete Account
+              </button>
+  
           </div>
-          <hr>
-          <div style="margin-bottom: 4%;">
-              <p>Password: <span>*******</span> <button style="float: right;" class="btn btn-primary"  data-toggle="modal" data-target="#passwordChangeModal">Edit
-                </button> </p>
-              
-            </div>
-            <hr>
       </div>
     </div>
   </div>
@@ -52,84 +64,134 @@
 
 
 
-<div class="modal fade" id="emailChangeModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content" style="background-color:lightblue;">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Changing Email:</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <input style="border:20px;" class="form-control mr-sm-2"
-                        type="email" placeholder="New Email" aria-label="Email">
+<div class="modal fade" id="usernameChangeModal" tabindex="-1" role="dialog" aria-labelledby="usernameModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="background-color:lightblue;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Changing Username:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input style="border:20px;" class="form-control mr-sm-2" type="name" placeholder="New Username"
+            aria-label="NewUsername">
 
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
+</div>
 
 
-  <div class="modal fade" id="privacyChangeModal" tabindex="-1" role="dialog" aria-labelledby="privacyChangeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" style="background-color:lightblue;">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Changing Quiz Privacy Setting:</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <input type="radio" name="privacySetting" value="Public" checked> Public<br>
-              <input type="radio" name="privacySetting" value="Friends"> Friends Only<br>
-              <input type="radio" name="privacySetting" value="Private"> Private
-            </form>
-            
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
+
+<div class="modal fade" id="emailChangeModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="background-color:lightblue;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Changing Email:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input style="border:20px;" class="form-control mr-sm-2" type="email" placeholder="New Email"
+            aria-label="Email">
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
+  </div>
+</div>
 
 
-    <div class="modal fade" id="passwordChangeModal" tabindex="-1" role="dialog" aria-labelledby="passwordChangeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content" style="background-color:lightblue;">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Changing Password:</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <input style="border:20px;" class="form-control mr-sm-2"
-                            type="password" placeholder="Old Password" aria-label="oldPassword">
-                            <br>
-                            <input style="border:20px;" class="form-control mr-sm-2"
-                            type="password" placeholder="New Password" aria-label="newPassword">
-                            <br>
-                            <input style="border:20px;" class="form-control mr-sm-2"
-                            type="password" placeholder="Re-type Password" aria-label="re-TypePassword">
-                            
-    
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
+<div class="modal fade" id="privacyChangeModal" tabindex="-1" role="dialog" aria-labelledby="privacyChangeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="background-color:lightblue;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Changing Quiz Privacy Setting:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+        <form>
+          <input type="radio" name="privacySetting" value="Public" checked> Public<br>
+          <input type="radio" name="privacySetting" value="Friends"> Friends Only<br>
+          <input type="radio" name="privacySetting" value="Private"> Private
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="passwordChangeModal" tabindex="-1" role="dialog" aria-labelledby="passwordChangeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="background-color:lightblue;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Changing Password:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input style="border:20px;" class="form-control mr-sm-2" type="password" placeholder="Old Password"
+            aria-label="oldPassword">
+          <br>
+          <input style="border:20px;" class="form-control mr-sm-2" type="password" placeholder="New Password"
+            aria-label="newPassword">
+          <br>
+          <input style="border:20px;" class="form-control mr-sm-2" type="password" placeholder="Re-type Password"
+            aria-label="re-TypePassword">
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="deleteAccModal" tabindex="-1" role="dialog" aria-labelledby="deleteAccLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="background-color:lightblue;">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this account?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">I am sure</button>
+      </div>
+    </div>
+  </div>
+</div>

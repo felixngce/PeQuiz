@@ -34,6 +34,7 @@ import {UserGetService} from './services/user/user-get.service'
 
 
 import {FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { DatePipe } from '@angular/common'
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -81,7 +82,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService,
+              DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

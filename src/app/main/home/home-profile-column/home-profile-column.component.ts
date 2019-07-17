@@ -44,11 +44,6 @@ export class HomeProfileColumnComponent implements OnInit {
     this.userGetService.getUserById(this.user_id).subscribe(data => {
         this.user_data = data;
         console.log(this.user_data);
-        console.log(this.user_data[0].username)
-        console.log(this.user_data.username)
-        console.log(this.user_id);
-        console.log(this.user_data[0].quiz_created)
-        console.log(this.user_data[0].quiz_created.length)
         this.no_Quiz_Created = this.user_data[0].quiz_created.length
         console.log(this.no_Quiz_Created);
         this.isDataLoaded = true;

@@ -1,35 +1,38 @@
-<div class="home-profile-modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5>
-            Account Details:
-          </h5>
-  
-        </div>
-        <div class="modal-body">
-          <div>
-            <p>Quizzes created: <span style="float: right;padding-right: 7%">1</span> </p>
-            
-            <hr>
-          </div>
-          <div>
-              <p>Number of Friends: <span style="float: right;padding-right: 7%">2</span> </p>
-              <hr>
-            </div>  
-            <div>
-            <p>Password Changed: <span style="float: right;padding-right: 7%">10/07/19</span> </p>
-            <hr>
-          </div>
-          <div>
-              <p>Created: <span style="float: right;padding-right: 7%">10/07/19</span> </p>
-              <hr>
-            </div>
-          </div>  
-          
+<div class="home-profile-modal" tabindex="-1" role="dialog" *ngIf="isDataLoaded">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>
+          Account Details:
+        </h5>
+
+      </div>
+      <div class="modal-body">
+        <div>
+          <p>Quizzes created: <span style="float: right;padding-right: 7%">{{user_data[0].quiz_created.length}}</span>
+          </p>
+
+          <hr>
         </div>
         <div>
-            
+          <p>Number of Friends: <span style="float: right;padding-right: 7%">{{user_data[0].friends.length}}</span> </p>
+          <hr>
+        </div>
+        <div>
+          <p style="font-size: 13px;">Password Change: <span style="float: right;padding-right: 7%">10-07-19
+              08:02</span> </p>
+          <hr>
+        </div>
+
+        <div>
+          <p>Created: <span style="float: right;padding-right: 7%">{{latest_date}}</span> </p>
+          <hr>
+        </div>
       </div>
+
+    </div>
+    <div>
+
     </div>
   </div>
+</div>

@@ -4,6 +4,9 @@ var fs = require('fs');
 
 
 
+
+
+
 // declare axios for making http requests
 const axios = require('axios');
 const API = 'https://jsonplaceholder.typicode.com';
@@ -55,10 +58,12 @@ router.route('/users/').get(function (req, res) {
 
 //Find user by id
 router.route('/users/:id').get(function (req,res) {
-    console.log("hehexd") 
     console.log(req.params)
 
-    db.collection('User').find(ObjectId(req.params['id'])).toArray((err, results) => { res.send(results) });
+    db.collection('User').find(ObjectId(req.params['id'])).toArray((err, results) => { 
+        console.log("These are the results!")
+        console.log(results[0].username)
+        res.send(results) });
 })
 
 // register new user
@@ -67,10 +72,16 @@ router.route('/users/').post(function (req, res) {
     fs.readFile('src/assets/images/pfp_placeholder.png', 'utf8', function (err, contents) {
 
         pfpPlaceHolder = (Buffer.from(contents).toString('base64'));
+        var time = new Date().getTime();
+        var date = new Date(time);
+
+        console.log(date.toString())
 
         var reqMsg = req.body;
         reqMsg["profile_picture"] = pfpPlaceHolder;
-        reqMsg["quiz_privacy"] = "friends_only";
+        reqMsg["quiz_privacy"] = "Friends only";
+        reqMsg["date_created"] = date.toString();
+        reqMsg["last_pw_change"] = null;
         reqMsg["quiz_created"] = [];
         reqMsg["friends"] = [];
 

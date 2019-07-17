@@ -33,7 +33,7 @@ export class SignUpComponent implements OnInit {
     
     this.authService.registerUser(this.signUpForm.value.username,
    this.signUpForm.value.email_address, this.signUpForm.value.password).subscribe(results => {
-    location.reload();
+    
     });
     
     }
