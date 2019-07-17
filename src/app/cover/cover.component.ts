@@ -13,7 +13,7 @@ export class CoverComponent implements OnInit {
 
   ngOnInit() {
     if (this.authService.isLoggedIn()){
-      this.router.navigate(["/main/home"]);
+      this.router.navigate(["/main/home",this.authService.getSecureToken()]);
     
     }
     else{

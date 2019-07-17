@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private fb: FormBuilder, private router: Router) { }
 
+  
+
   ngOnInit() {
 
     this.loginForm = this.fb.group({
@@ -32,12 +34,14 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
+    
     this.authService.authUser(this.loginForm.value.username_or_email,
       this.loginForm.value.password).subscribe(data => {
         this.results = data;
         if (this.results[0].auth) {
           this.authService.setSecureToken(this.results[1].obj_id);
-          this.router.navigateByUrl('/main/home');
+          var user_id = this.results[1].obj_id;
+          this.router.navigate(['/main/home', user_id]);
         }
       });
   }

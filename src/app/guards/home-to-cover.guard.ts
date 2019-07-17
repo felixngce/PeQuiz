@@ -16,7 +16,7 @@ export class HomeToCoverGuard implements CanActivate {
     if (this.authService.isLoggedIn()) {
 
       console.log("this is indeed logged in!")
-      this.router.navigate(["/main/home"])
+      this.router.navigate(["/main/home",this.authService.getSecureToken()])
       return false;
 
 

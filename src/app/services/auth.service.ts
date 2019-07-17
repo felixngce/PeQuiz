@@ -8,7 +8,10 @@ export class AuthService {
 
 
 
+
   constructor(private http: HttpClient) { }
+
+
 
   ngOnInit(){
 
@@ -24,8 +27,6 @@ export class AuthService {
   }
 
   authUser(username_or_email: string, password: string) {
-    console.log("at service" + username_or_email)
-
 
     return this.http.post<any[]>('./api/authuser/', {
       'username_or_email': username_or_email,
@@ -55,6 +56,9 @@ export class AuthService {
     isLoggedIn() {
       return this.getSecureToken() !== null;
       }
+
+      user_object_id = sessionStorage. getItem("LoggedIn");
+
      
    
 

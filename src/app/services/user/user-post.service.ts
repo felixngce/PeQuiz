@@ -9,13 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 export class UserPostService {
  constructor(private http:HttpClient) { }
 
- getAllPosts() {
- return this.http.get<any[]>('./api/users');
- }
 
 
-  
-  uploadPfp(){
-
-  }
 }

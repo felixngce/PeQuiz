@@ -30,7 +30,18 @@ import { AuthService } from './services/auth.service';
 
 
 
+
+export class testingClass  {
+  constructor(private authService: AuthService) { }
+ 
+    user_iddd = this.authService.getSecureToken()
+
+ 
+ }
+
 const routes: Routes = [
+
+  
 
   {
     path: '',
@@ -60,16 +71,16 @@ const routes: Routes = [
     component: MainComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'home', component: HomeComponent },
-      { path: 'profile', component: ProfilePageComponent },
+      { path: 'home/:id', component: HomeComponent },
+      { path: 'profile/:id', component: ProfilePageComponent },
       {
         path: 'quiz',
         component: QuizComponent,
 
         children: [
-          { path: 'create', component: CreateQuizComponent },
-          { path: 'description', component: QuizDescriptionComponent },
-          {path: 'details', component: QuizDetailsComponent}
+          { path: 'create:/id', component: CreateQuizComponent },
+          { path: 'description/:id', component: QuizDescriptionComponent },
+          {path: 'details/:id', component: QuizDetailsComponent}
 
 
 
@@ -98,5 +109,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
 export const routingComponents = [CoverComponent, AuthenticationComponent, LoginComponent, SignUpComponent, ForgetPasswordComponent, MainComponent, HomeComponent,
   ProfilePageComponent, CreateQuizComponent, QuizDescriptionComponent, GameComponent, JoinComponent]

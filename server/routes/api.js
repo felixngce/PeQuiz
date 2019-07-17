@@ -50,9 +50,16 @@ router.use(function (req, res, next) {
 // Get all users
 router.route('/users/').get(function (req, res) {
     db.collection('User').find().toArray((err, results) => { res.send(results) });
+    
 });
 
+//Find user by id
+router.route('/users/:id').get(function (req,res) {
+    console.log("hehexd") 
+    console.log(req.params)
 
+    db.collection('User').find(ObjectId(req.params['id'])).toArray((err, results) => { res.send(results) });
+})
 
 // register new user
 router.route('/users/').post(function (req, res) {
@@ -63,6 +70,10 @@ router.route('/users/').post(function (req, res) {
 
         var reqMsg = req.body;
         reqMsg["profile_picture"] = pfpPlaceHolder;
+        reqMsg["quiz_privacy"] = "friends_only";
+        reqMsg["quiz_created"] = [];
+        reqMsg["friends"] = [];
+
 
         bcrypt.hash(reqMsg["password"], BCRYPT_SALT_ROUNDS, function (err, hash) {
             reqMsg["password"] = hash;
@@ -81,8 +92,7 @@ router.route('/authuser/').post(function (req, res2) {
     var username_or_email = req.body.username_or_email;
 
     var password = req.body.password;
-    console.log("Im working")
-    console.log(req.body)
+
     db.collection('User').findOne(
         {
             $or: [

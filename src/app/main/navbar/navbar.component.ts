@@ -10,15 +10,28 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+
+
+
   
 
   constructor(private authService: AuthService, private router:Router) { }
+
+  user_obejct_id = this.authService.user_object_id;
 
   logOut(){
     console.log("logout button actually working")
     
     this.authService.logout()
     this.router.navigateByUrl('/cover' )
+  }
+
+  routeToProfile(){
+    this.router.navigate(["/main/profile",this.user_obejct_id])
+  }
+
+  routeToHome(){
+    this.router.navigate(["/main/home",this.user_obejct_id])
   }
 
   ngOnInit() {
