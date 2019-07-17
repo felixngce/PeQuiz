@@ -36,7 +36,7 @@ export class AccountDetailsColumnComponent implements OnInit {
         console.log(this.user_data);
         console.log(this.user_data[0].username)
         this.date= this.user_data[0].date_created
-        this.latest_date = this.datepipe.transform(this.date, 'yyyy-MM-dd hh:mm');
+        this.latest_date = this.datepipe.transform(this.date, 'dd-MM-yy hh:mm');
         
 
         this.isDataLoaded = true;

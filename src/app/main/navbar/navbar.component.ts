@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { UserGetService } from '../../services/user/user-get.service'
+import {ActivatedRoute} from'@angular/router'
+import { HttpClientModule } from '@angular/common/http'; 
+
+
+
 
 
 @Component({
@@ -15,9 +21,12 @@ export class NavbarComponent implements OnInit {
 
   
 
-  constructor(private authService: AuthService, private router:Router) { }
+  constructor(private authService: AuthService, private router:Router, private userGetService: UserGetService,private route: ActivatedRoute) { }
 
-  user_obejct_id = this.authService.user_object_id;
+  user_object_id = this.authService.getSecureToken();
+  public user_id;
+  public user_data;
+
 
   logOut(){
     console.log("logout button actually working")
@@ -27,14 +36,19 @@ export class NavbarComponent implements OnInit {
   }
 
   routeToProfile(){
-    this.router.navigate(["/main/profile",this.user_obejct_id])
+    this.router.navigate(["/main/profile",this.user_object_id])
   }
 
   routeToHome(){
-    this.router.navigate(["/main/home",this.user_obejct_id])
+    this.router.navigate(["/main/home",this.user_object_id])
   }
 
+
+
   ngOnInit() {
+    console.log("This is the child compnent")
+
+
   }
 
 }

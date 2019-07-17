@@ -17,4 +17,15 @@ export class UserGetService {
       console.log(id)
       return this.http.get<any[]>('./api/users/' + id)
     }
+
+    updateUsername(username: string, id
+      // total_quizzes_created: number, last_password_change: Date, online_status: boolean, friends_list: string, created_quizzes: string
+    ) {
+        console.log("This is the service username")
+        console.log(username)
+      return this.http.put<any[]>('./api/users/' + id, {
+        'username': username
+        //  'last_password_change': last_password_change, 'online_status': online_status, 'friends_list': friends_list, 'created_quizzes': created_quizzes
+      });
+    }
 }

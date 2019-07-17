@@ -44,6 +44,7 @@ export class AuthService {
     getSecureToken() {
       
     return sessionStorage .getItem("LoggedIn")
+    
     }
    
    

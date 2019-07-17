@@ -52,11 +52,11 @@
         </div>
         <hr>
         <div style="margin-bottom: 4%;">
-            <button style="float: right;" class="btn btn-primary" data-toggle="modal"
-                data-target="#deleteAccModal">Delete Account
-              </button>
-  
-          </div>
+          <button style="float: right;" class="btn btn-primary" data-toggle="modal" data-target="#deleteAccModal">Delete
+            Account
+          </button>
+
+        </div>
       </div>
     </div>
   </div>
@@ -75,15 +75,17 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
-          <input style="border:20px;" class="form-control mr-sm-2" type="name" placeholder="New Username"
+        <form [formGroup]="usernameForm " (ngSubmit)="onUpdateUsername(usernameForm)">
+          <input formControlName="new_username" style="border:20px;" class="form-control mr-sm-2" type="name" placeholder="New Username"
             aria-label="NewUsername">
 
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <form (ngSubmit)="onUpdateUsername(usernameForm)">
+          <button type="button submit" class="btn btn-primary">Save changes</button>
+        </form>
       </div>
     </div>
   </div>
@@ -110,7 +112,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary"  >Save changes</button>
       </div>
     </div>
   </div>

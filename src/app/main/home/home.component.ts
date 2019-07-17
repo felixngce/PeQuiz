@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { UserGetService} from '../../services/user/user-get.service';
 import {ActivatedRoute} from'@angular/router'
+import { HttpClientModule } from '@angular/common/http'; 
+
 
 @Component({
   selector: 'app-home',
@@ -14,14 +16,17 @@ export class HomeComponent implements OnInit {
   public user_data;
   
 
-  constructor(private route: ActivatedRoute, private userGetService: UserGetService) { }
+  constructor(private route: ActivatedRoute, private userGetService: UserGetService, private authService: AuthService) { }
 
   ngOnInit() {
 
     let id = this.route.snapshot.paramMap.get('id');
-    console.log("this is what is passed from url")
     console.log(id);
     this.user_id = id;
+    console.log("this is the home token")
+
+    console.log(this.authService.getSecureToken);
+
 
     this.findUserById();
   }
@@ -36,6 +41,7 @@ export class HomeComponent implements OnInit {
 
       });
   }
+
 
 
 
