@@ -23,13 +23,20 @@ import { JoinComponent } from './game/join/join.component';
 import { from } from 'rxjs';
 
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {AuthGuard} from './guards/auth.guard';
+import { HomeToCoverGuard } from './guards/home-to-cover.guard';
+import { AuthService } from './services/auth.service';
+
+
 
 
 const routes: Routes = [
 
   {
     path: '',
+   
     component: CoverComponent,
+    canActivate: [HomeToCoverGuard],
     children: [
       { path: 'cover', component: CoverContentComponent },
       {
@@ -51,6 +58,7 @@ const routes: Routes = [
   {
     path: 'main',
     component: MainComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'profile', component: ProfilePageComponent },

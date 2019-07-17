@@ -10,6 +10,10 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
+  ngOnInit(){
+
+  }
+
   registerUser(username: string, email: string, password: string
     // total_quizzes_created: number, last_password_change: Date, online_status: boolean, friends_list: string, created_quizzes: string
   ) {
@@ -37,18 +41,21 @@ export class AuthService {
     }
    
     getSecureToken() {
+      
     return sessionStorage .getItem("LoggedIn")
     }
    
-    setUserRole(role: string) {
-    sessionStorage .setItem("UserRole", role);
-    }
    
 
     logout() {
     sessionStorage.removeItem("LoggedIn");
     console.log(sessionStorage);
     }
+
+    isLoggedIn() {
+      return this.getSecureToken() !== null;
+      }
+     
    
 
 }

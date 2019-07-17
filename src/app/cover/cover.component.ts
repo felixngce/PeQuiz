@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service'
 
 @Component({
   selector: 'app-cover',
@@ -8,10 +9,16 @@ import { Router } from '@angular/router';
 })
 export class CoverComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
-    this.router.navigate(['/cover']);
-  }
+    if (this.authService.isLoggedIn()){
+      this.router.navigate(["/main/home"]);
+    
+    }
+    else{
+      this.router.navigate(["/cover"]);
+    }
 
+  }
 }

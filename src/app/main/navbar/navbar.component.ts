@@ -16,8 +16,9 @@ export class NavbarComponent implements OnInit {
 
   logOut(){
     console.log("logout button actually working")
-    this.authService.logout();
-    this.router.navigateByUrl('/cover');
+    
+    this.authService.logout()
+    this.router.navigateByUrl('/cover' )
   }
 
   ngOnInit() {
