@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserGetService } from '../../../services/user/user-get.service';
 import { ActivatedRoute } from '@angular/router'
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserPostService } from '../../../services/user/user-post.service';
 
 
@@ -14,6 +14,8 @@ export class ProfileColumnComponent implements OnInit {
 
   usernameForm: FormGroup
   emailForm: FormGroup
+  quizPrivacyForm: FormGroup
+  passwordForm: FormGroup
 
   constructor(private route: ActivatedRoute, private userGetService: UserGetService, private fb: FormBuilder) { }
 
@@ -23,29 +25,50 @@ export class ProfileColumnComponent implements OnInit {
   public isDataLoaded: Boolean = false;
   public updateUserDone: Boolean = false;
   public updateEmailDone: Boolean = false;
+  public quiz_privacy_check;
 
   public afterFindingUser;
 
+
   ngOnInit() {
-
-    this.usernameForm = this.fb.group({
-      new_username: '',
-  
-
-    });
-
-    this.emailForm = this.fb.group({
-
-      new_email: ''
-
-    });
-
 
     let id = this.route.snapshot.paramMap.get('id');
 
     this.user_id = id;
 
     this.findUserById()
+
+    this.usernameForm = this.fb.group({
+      new_username: ['']
+
+
+    });
+
+    this.emailForm = this.fb.group({
+
+      new_email: ['']
+
+    });
+
+    this.quizPrivacyForm = this.fb.group({
+
+      new_quiz_privacy: ['', Validators.required]
+
+
+    });
+    this.passwordForm = this.fb.group({
+
+      old_password: [''],
+      new_password: [''],
+      new_retype_password: ['']
+
+
+    });
+    this.quiz_privacy_check = this.quizPrivacyForm.value.new_quiz_privacy;
+
+
+
+
   }
 
   findUserById() {
@@ -62,7 +85,7 @@ export class ProfileColumnComponent implements OnInit {
 
   onUpdateUsername() {
 
-    this.userGetService.updateUser( this.user_id,this.usernameForm.value.new_username, this.user_data[0].email
+    this.userGetService.updateUser(this.user_id, this.usernameForm.value.new_username, this.user_data[0].email, this.user_data[0].quiz_privacy
     ).subscribe(results => {
       this.findUserById()
     });
@@ -71,14 +94,41 @@ export class ProfileColumnComponent implements OnInit {
 
   }
 
-  onUpdateEmail(){
+  onUpdateEmail() {
 
-    this.userGetService.updateUser( this.user_id,this.user_data[0].username, this.emailForm.value.new_email
+    this.userGetService.updateUser(this.user_id, this.user_data[0].username, this.emailForm.value.new_email, this.user_data[0].quiz_privacy
+    ).subscribe(results => {
+      this.findUserById()
+    });
+    this.updateUserDone = true;
+
+  }
+
+
+  onUpdateQuizPrivacy() {
+
+    if (this.quizPrivacyForm.value.new_quiz_privacy.length > 0) {
+      console.log(this.quizPrivacyForm.value.new_quiz_privacy)
+      this.userGetService.updateUser(this.user_id, this.user_data[0].username, this.user_data[0].email, this.quizPrivacyForm.value.new_quiz_privacy
       ).subscribe(results => {
         this.findUserById()
       });
-      this.updateUserDone = true;
 
+      this.updateUserDone = true;
+    }
+
+  }
+
+  onUpdatePassword(){
+
+      this.userGetService.updateUserPw(this.user_id,this.passwordForm.value.old_password,this.passwordForm.value.new_password 
+      ).subscribe(results => {
+        this.findUserById()
+
+        
+      });
+
+      this.updateUserDone = true;
   }
 
 

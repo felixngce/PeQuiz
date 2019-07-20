@@ -38,32 +38,30 @@ MongoClient.connect('mongodb+srv://Pelix-Ng:tB776773@pequizcluster-ndlzr.mongodb
 
 
 
-// route middleware that will happen on every request
-router.use(function (req, res, next) {
+// // route middleware that will happen on every request
+// router.use(function (req, res, next) {
 
-    // log each request to the console
-    console.log(req.method, req.url);
+//     // log each request to the console
+//     console.log(req.method, req.url);
 
-    // continue doing what we were doing and go to the route
-    next();
-});
+//     // continue doing what we were doing and go to the route
+//     next();
+// });
 
 
 
 // Get all users
 router.route('/users/').get(function (req, res) {
     db.collection('User').find().toArray((err, results) => { res.send(results) });
-    
+
 });
 
 //Find user by id
-router.route('/users/:id').get(function (req,res) {
-    console.log(req.params)
-
-    db.collection('User').find(ObjectId(req.params['id'])).toArray((err, results) => { 
-        console.log("These are the results!")
-        console.log(results[0].username)
-        res.send(results) });
+router.route('/users/:id').get(function (req, res) {
+     
+    db.collection('User').find(ObjectId(req.params['id'])).toArray((err, results) => {
+        res.send(results)
+    });
 })
 
 // register new user
@@ -75,7 +73,6 @@ router.route('/users/').post(function (req, res) {
         var time = new Date().getTime();
         var date = new Date(time);
 
-        console.log(date.toString())
 
         var reqMsg = req.body;
         reqMsg["profile_picture"] = pfpPlaceHolder;
@@ -107,10 +104,10 @@ router.route('/authuser/').post(function (req, res2) {
     db.collection('User').findOne(
         {
             $or: [
-                {"username": username_or_email},
-                {"email": username_or_email}
+                { "username": username_or_email },
+                { "email": username_or_email }
             ]
-            
+
         }, {
             password: 1,
             _id: 1
@@ -119,12 +116,10 @@ router.route('/authuser/').post(function (req, res2) {
             if (result == null) {
                 res2.send([{ "auth": false }]
                 );
-                console.log()
                 console.log("Can't find any user with the username");
             }
             else {
                 console.log("username found");
-
                 bcrypt.compare(password, result.password, function (err, res) {
                     if (err || res == false) {
                         res2.send([{ "auth": false }]);
@@ -138,19 +133,16 @@ router.route('/authuser/').post(function (req, res2) {
 });
 
 
-//Update user's username
-router.route('/users/:id').put(function (req,res){
-    console.log("this is the update body")
-    console.log(req.params["id"])
-    console.log(req.body.username)
-    console.log("This is the request body for updates")
-    console.log(req.body)
+//Update user's profile data
+router.route('/users/:id').put(function (req, res) {
+
     db.collection('User').updateOne(
-        {_id: ObjectId(req.params["id"]) },{
-            
-            $set: {"username": req.body.username
-             ,"email": req.body.email,
-            //  "quiz_privacy": req.body.quiz_privacy
+        { _id: ObjectId(req.params["id"]) }, {
+
+            $set: {
+                "username": req.body.username
+                , "email": req.body.email,
+                "quiz_privacy": req.body.quiz_privacy
             }
         }, (err, results) => {
             if (err) return console.log(err);
@@ -159,8 +151,84 @@ router.route('/users/:id').put(function (req,res){
         }
 
     )
-    
+
 });
+
+
+//Update user's password
+router.route('/usersPw/:id').put(function (req, res) {
+    var old_password = req.body.old_password;
+    var new_password = req.body.new_password;
+
+
+    db.collection('User').findOne(
+        {
+            _id: ObjectId(req.params["id"])
+        }, {
+            password: 1
+
+
+        }, function (err, result) {
+
+
+            bcrypt.compare(old_password, result.password, function (err, res) {
+                if (err || res == false) {
+                    
+                    console.log("This isn't your old password!!")
+                } else {
+                    console.log(new_password)
+                    bcrypt.hash(new_password, BCRYPT_SALT_ROUNDS, function (err, hash) {
+                        new_password = hash;
+                        console.log(new_password)
+
+
+                    db.collection('User').updateOne(
+                        { _id: ObjectId(req.params["id"]) },{
+                            $set: {
+                                "password": new_password
+                            }
+                        }
+                        , (err, results) => {
+                            if (err) return console.log(err);
+                            console.log('saved password to database');
+                            
+                        }
+                    )
+                    });
+                }
+            });
+        }, (err, results) => {
+            if (err) return console.log(err);
+            console.log('saved to database');
+            res.send(results);
+        }
+
+    )
+
+});
+
+//Delete user account
+// router.route('/users/:id').put(function (req, res) {
+
+//     db.collection('User').updateOne(
+//         { _id: ObjectId(req.params["id"]) }, {
+
+//             $set: {
+//                 "username": req.body.username
+//                 , "email": req.body.email,
+//                 "quiz_privacy": req.body.quiz_privacy
+//             }
+//         }, (err, results) => {
+//             if (err) return console.log(err);
+//             console.log('saved to database');
+//             res.send(results);
+//         }
+
+//     )
+
+// });
+
+
 
 
 
