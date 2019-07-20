@@ -78,7 +78,7 @@ const routes: Routes = [
         component: QuizComponent,
 
         children: [
-          { path: 'create:/id', component: CreateQuizComponent },
+          { path: 'create/:id', component: CreateQuizComponent },
           { path: 'description/:id', component: QuizDescriptionComponent },
           {path: 'details/:id', component: QuizDetailsComponent}
 

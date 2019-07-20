@@ -143,10 +143,15 @@ router.route('/users/:id').put(function (req,res){
     console.log("this is the update body")
     console.log(req.params["id"])
     console.log(req.body.username)
+    console.log("This is the request body for updates")
+    console.log(req.body)
     db.collection('User').updateOne(
         {_id: ObjectId(req.params["id"]) },{
             
-            $set: {"username": req.body.username}
+            $set: {"username": req.body.username
+             ,"email": req.body.email,
+            //  "quiz_privacy": req.body.quiz_privacy
+            }
         }, (err, results) => {
             if (err) return console.log(err);
             console.log('saved to database');
@@ -156,8 +161,6 @@ router.route('/users/:id').put(function (req,res){
     )
     
 });
-
-
 
 
 
