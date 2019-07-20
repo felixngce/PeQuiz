@@ -18,6 +18,7 @@ export class AccountDetailsColumnComponent implements OnInit {
   public afterFindingUser;
   public date;
   public latest_date;
+  public pw_date;
 
 
 
@@ -37,6 +38,7 @@ export class AccountDetailsColumnComponent implements OnInit {
         console.log(this.user_data[0].username)
         this.date= this.user_data[0].date_created
         this.latest_date = this.datepipe.transform(this.date, 'dd-MM-yy hh:mm');
+        this.pw_date = this.datepipe.transform(this.user_data[0].last_pw_change,'dd-MM-yy hh:mm')
         
 
         this.isDataLoaded = true;

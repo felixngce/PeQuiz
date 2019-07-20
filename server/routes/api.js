@@ -180,12 +180,15 @@ router.route('/usersPw/:id').put(function (req, res) {
                     bcrypt.hash(new_password, BCRYPT_SALT_ROUNDS, function (err, hash) {
                         new_password = hash;
                         console.log(new_password)
+                        var time = new Date().getTime();
+                        var date = new Date(time);
 
 
                     db.collection('User').updateOne(
                         { _id: ObjectId(req.params["id"]) },{
                             $set: {
-                                "password": new_password
+                                "password": new_password,
+                                "last_pw_change": date.toString()
                             }
                         }
                         , (err, results) => {
