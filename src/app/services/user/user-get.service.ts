@@ -39,6 +39,15 @@ export class UserGetService {
     });
   }
 
+  deleteUserAcc(id){
+    return this.http.post<any[]>('./api/delUser/' + id, {
+
+    });
+      
+    
+
+  }
+
 
 
 

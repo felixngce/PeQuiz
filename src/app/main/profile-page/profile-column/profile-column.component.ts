@@ -3,6 +3,10 @@ import { UserGetService } from '../../../services/user/user-get.service';
 import { ActivatedRoute } from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserPostService } from '../../../services/user/user-post.service';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
+import { timeout } from 'q';
+
 
 
 @Component({
@@ -17,7 +21,7 @@ export class ProfileColumnComponent implements OnInit {
   quizPrivacyForm: FormGroup
   passwordForm: FormGroup
 
-  constructor(private route: ActivatedRoute, private userGetService: UserGetService, private fb: FormBuilder) { }
+  constructor(private route: ActivatedRoute, private userGetService: UserGetService, private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
 
   public user_id;
@@ -119,16 +123,28 @@ export class ProfileColumnComponent implements OnInit {
 
   }
 
-  onUpdatePassword(){
+  onUpdatePassword() {
 
-      this.userGetService.updateUserPw(this.user_id,this.passwordForm.value.old_password,this.passwordForm.value.new_password 
-      ).subscribe(results => {
-        this.findUserById()
+    this.userGetService.updateUserPw(this.user_id, this.passwordForm.value.old_password, this.passwordForm.value.new_password
+    ).subscribe(results => {
+      this.findUserById()
 
-        
-      });
 
-      this.updateUserDone = true;
+    });
+
+    this.updateUserDone = true;
+  }
+
+  onDeleteUser() {
+    this.authService.logout()
+    this.userGetService.deleteUserAcc(this.user_id).subscribe(results => {
+
+    });
+    setTimeout(() => {
+      this.router.navigate(['/cover']);
+    },
+      1000);
+
   }
 
 

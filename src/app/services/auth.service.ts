@@ -52,6 +52,7 @@ export class AuthService {
     logout() {
     sessionStorage.removeItem("LoggedIn");
     console.log(sessionStorage);
+    
     }
 
     isLoggedIn() {

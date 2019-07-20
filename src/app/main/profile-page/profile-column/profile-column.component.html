@@ -80,8 +80,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <form (ngSubmit)="onUpdateUsername(usernameForm)">
-          <button type="button submit" class="btn btn-primary">Save changes</button>
+        <form (ngSubmit)="onUpdateUsername(usernameForm); data-dismiss= 'modal' ">
+          <button type="button submit" class="btn btn-primary" >Save changes</button>
         </form>
       </div>
     </div>
@@ -193,7 +193,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">I am sure</button>
+        <button type="button" class="btn btn-primary" (click)="onDeleteUser()" data-dismiss="modal" >I am sure</button>
       </div>
     </div>
   </div>

@@ -39,14 +39,14 @@ MongoClient.connect('mongodb+srv://Pelix-Ng:tB776773@pequizcluster-ndlzr.mongodb
 
 
 // // route middleware that will happen on every request
-// router.use(function (req, res, next) {
+router.use(function (req, res, next) {
 
-//     // log each request to the console
-//     console.log(req.method, req.url);
+    // log each request to the console
+    console.log(req.method, req.url);
 
-//     // continue doing what we were doing and go to the route
-//     next();
-// });
+    // continue doing what we were doing and go to the route
+    next();
+});
 
 
 
@@ -78,7 +78,7 @@ router.route('/users/').post(function (req, res) {
         reqMsg["profile_picture"] = pfpPlaceHolder;
         reqMsg["quiz_privacy"] = "Friends only";
         reqMsg["date_created"] = date.toString();
-        reqMsg["last_pw_change"] = null;
+        reqMsg["last_pw_change"] = "No change";
         reqMsg["quiz_created"] = [];
         reqMsg["friends"] = [];
 
@@ -208,25 +208,24 @@ router.route('/usersPw/:id').put(function (req, res) {
 });
 
 //Delete user account
-// router.route('/users/:id').put(function (req, res) {
+router.route('/delUser/:id').post(function (req, res) {
 
-//     db.collection('User').updateOne(
-//         { _id: ObjectId(req.params["id"]) }, {
+    console.log("Request received")
+    console.log(req.params["id"])
 
-//             $set: {
-//                 "username": req.body.username
-//                 , "email": req.body.email,
-//                 "quiz_privacy": req.body.quiz_privacy
-//             }
-//         }, (err, results) => {
-//             if (err) return console.log(err);
-//             console.log('saved to database');
-//             res.send(results);
-//         }
+    db.collection('User').deleteOne(
+        { _id: ObjectId(req.params["id"]) }, {
 
-//     )
 
-// });
+        }, (err, results) => {
+            if (err) return console.log(err);
+            console.log('deleted off database');
+            res.send(results);
+        }
+
+    )
+
+});
 
 
 
