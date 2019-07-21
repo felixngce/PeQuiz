@@ -22,6 +22,7 @@ export class UserGetService {
   updateUser(id, username: string
     , email: string
     , quiz_privacy: string) {
+
     return this.http.put<any[]>('./api/users/' + id, {
       'username': username,
       'email': email,
@@ -37,6 +38,14 @@ export class UserGetService {
       'new_password': new_password
 
     });
+  }
+
+  updateUserPfp(id, profile_picture){
+    console.log("this is the profile picture")
+    console.log(profile_picture)
+    return this.http.post<any[]>('./api/userPfp/' + id,
+      profile_picture
+    );
   }
 
   deleteUserAcc(id){

@@ -30,6 +30,8 @@ export class ProfileColumnComponent implements OnInit {
   public updateUserDone: Boolean = false;
   public updateEmailDone: Boolean = false;
   public quiz_privacy_check;
+  public selectedFile: File;
+
 
   public afterFindingUser;
 
@@ -87,7 +89,33 @@ export class ProfileColumnComponent implements OnInit {
     });
   }
 
+
+  onFileSelected(event){
+    this.selectedFile = <File>event.target.files[0];
+    
+
+  }
+
+
+  onUpdatePfp(){
+
+    console.log(this.selectedFile);
+
+    console.log("This is the file")
+
+    const fd = new FormData()
+    fd.append('profile_picture', this.selectedFile, this.selectedFile.name)
+
+      this.userGetService.updateUserPfp(this.user_id, fd).subscribe(results => {
+        this.findUserById()  
+      });
+      this.updateUserDone = true;
+  }
+
+
+
   onUpdateUsername() {
+    
 
     this.userGetService.updateUser(this.user_id, this.usernameForm.value.new_username, this.user_data[0].email, this.user_data[0].quiz_privacy
     ).subscribe(results => {
@@ -99,6 +127,7 @@ export class ProfileColumnComponent implements OnInit {
   }
 
   onUpdateEmail() {
+    
 
     this.userGetService.updateUser(this.user_id, this.user_data[0].username, this.emailForm.value.new_email, this.user_data[0].quiz_privacy
     ).subscribe(results => {
@@ -110,7 +139,7 @@ export class ProfileColumnComponent implements OnInit {
 
 
   onUpdateQuizPrivacy() {
-
+    
     if (this.quizPrivacyForm.value.new_quiz_privacy.length > 0) {
       console.log(this.quizPrivacyForm.value.new_quiz_privacy)
       this.userGetService.updateUser(this.user_id, this.user_data[0].username, this.user_data[0].email, this.quizPrivacyForm.value.new_quiz_privacy

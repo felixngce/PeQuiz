@@ -8,10 +8,10 @@
                 src="../../../../assets/images/pfp_placeholder.png"></th>
           </tr>
           <th>
-            <a style="margin-left: 46.5%;color: blue;">
-              Change
-            </a>
+            <input style="margin-left: 37%; margin-top: 2%" type="file" (change)="onFileSelected($event)">
+            <button type="button" class="btn btn-primary" (click)="onUpdatePfp()" >Update</button>
           </th>
+  
         </table>
 
 

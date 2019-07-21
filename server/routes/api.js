@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
 var fs = require('fs');
+var multer = require('multer');
 
 
+var storage = multer.memoryStorage()
+var upload = multer({storage: storage})
 
 
 
@@ -78,7 +81,7 @@ router.route('/users/').post(function (req, res) {
         reqMsg["profile_picture"] = pfpPlaceHolder;
         reqMsg["quiz_privacy"] = "Friends only";
         reqMsg["date_created"] = date.toString();
-        reqMsg["last_pw_change"] = "No change";
+        reqMsg["last_pw_change"] = null;
         reqMsg["quiz_created"] = [];
         reqMsg["friends"] = [];
 
@@ -132,9 +135,34 @@ router.route('/authuser/').post(function (req, res2) {
         });
 });
 
+//Update user's profile picture
+router.route('/userPfp/:id').post(upload.single('profile_picture'),function (req, res) {
+    console.log(req.file.buffer)
+    pfpImage = (Buffer.from(req.file.buffer).toString('base64'));
+
+
+    db.collection('User').updateOne(
+        { _id: ObjectId(req.params["id"]) }, {
+
+            $set: {
+                "profile_picture": pfpImage
+            }
+        }, (err, results) => {
+            if (err) return console.log(err);
+            console.log('saved to database');
+            res.send(results);
+        }
+
+    )
+
+});
+
+
 
 //Update user's profile data
 router.route('/users/:id').put(function (req, res) {
+
+    console.log(req.body)
 
     db.collection('User').updateOne(
         { _id: ObjectId(req.params["id"]) }, {
