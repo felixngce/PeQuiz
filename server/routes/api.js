@@ -6,7 +6,21 @@ var multer = require('multer');
 
 var storage = multer.memoryStorage()
 var upload = multer({storage: storage})
+var pfpPlaceHolder;
 
+// const image2base64 = require('image-to-base64');
+// image2base64("../../src/app/assets/images/pfp_placeholder.png") // you can also to use url
+//     .then(
+//         (response) => {
+//             console.log(response); //cGF0aC90by9maWxlLmpwZw==
+//             var pfpPlaceHolder = response;
+//         }
+//     )
+//     .catch(
+//         (error) => {
+//             console.log(error); //Exepection error....
+//         }
+//     )
 
 
 
@@ -70,7 +84,7 @@ router.route('/users/:id').get(function (req, res) {
 // register new user
 router.route('/users/').post(function (req, res) {
 
-    fs.readFile('src/assets/images/pfp_placeholder.png', 'utf8', function (err, contents) {
+    fs.readFile('http://localhost:4200/src/assets/images/pfp_placeholder.png', 'utf8', function (err, contents) {
 
         pfpPlaceHolder = (Buffer.from(contents).toString('base64'));
         var time = new Date().getTime();

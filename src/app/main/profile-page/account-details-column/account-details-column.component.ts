@@ -28,23 +28,28 @@ export class AccountDetailsColumnComponent implements OnInit {
 
     this.user_id = id;
 
-    this.findUserById()
-  }
+    this.userGetService.currentUserData.subscribe(data => {
+      this.user_data = data;
+      console.log("This is current pulled data")
+      console.log(this.user_data)
+      this.pw_date = this.datepipe.transform(this.user_data[0].last_pw_change,'dd-MM-yy hh:mm')
+      this.latest_date = this.datepipe.transform(this.user_data[0].date_created, 'dd-MM-yy hh:mm');
 
+
+      this.isDataLoaded = true; })
+
+  }
   findUserById(){
     this.userGetService.getUserById(this.user_id).subscribe(data => {
-        this.user_data = data;
-        console.log(this.user_data);
-        console.log(this.user_data[0].username)
-        this.date= this.user_data[0].date_created
-        this.latest_date = this.datepipe.transform(this.date, 'dd-MM-yy hh:mm');
-        this.pw_date = this.datepipe.transform(this.user_data[0].last_pw_change,'dd-MM-yy hh:mm')
-        
 
-        this.isDataLoaded = true;
+        this.userGetService.changeData(data)
+
+
 
 
       });
   }
+
+
 
 }

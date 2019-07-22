@@ -5,6 +5,7 @@ import {ActivatedRoute} from'@angular/router'
 import { HttpClientModule } from '@angular/common/http'; 
 
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,28 +20,18 @@ export class HomeComponent implements OnInit {
   constructor(private route: ActivatedRoute, private userGetService: UserGetService, private authService: AuthService) { }
 
   ngOnInit() {
-
-    let id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
-    this.user_id = id;
-    console.log("this is the home token")
-
-    console.log(this.authService.getSecureToken);
+    this.userGetService.currentUserData.subscribe(data => {
+      this.user_data = data;
+      console.log("this is the pulled data")
+      console.log(this.user_data)
+    });
 
 
-    this.findUserById();
+   
   }
 
 
-  findUserById(){
-    this.userGetService.getUserById(this.user_id).subscribe(data => {
-        this.user_data = data;
-        console.log(this.user_data);
-        console.log(this.user_id);
-
-
-      });
-  }
+  
 
 
 

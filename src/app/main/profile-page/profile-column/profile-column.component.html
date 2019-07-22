@@ -4,14 +4,18 @@
       <div class="modal-header">
         <table style="width: 100%">
           <tr>
-            <th style="margin-left: 40%"><img style="margin-left: 40%"
-                src="../../../../assets/images/pfp_placeholder.png"></th>
+            <th style="margin-left: 40%">
+              <div [ngStyle]="{'background': pfpSrc }">
+                <img style="width: 125px;height: 125px;margin-left:45%;border-radius:50%" src="{{pfpSrc}}">
+              </div>
+
+            </th>
           </tr>
           <th>
-            <input style="margin-left: 37%; margin-top: 2%" type="file" (change)="onFileSelected($event)">
-            <button type="button" class="btn btn-primary" (click)="onUpdatePfp()" >Update</button>
+            <input style="margin-left: 27%; margin-top: 2%" type="file" (change)="onFileSelected($event)">
+            <button type="button" class="btn btn-primary" (click)="onUpdatePfp()">Update</button>
           </th>
-  
+
         </table>
 
 
@@ -43,12 +47,13 @@
             </button> </p>
 
         </div>
-        
+
         <hr>
         <div style="margin-bottom: 4%;">
           <button style="float: left;" class="btn btn-primary" data-toggle="modal"
-              data-target="#passwordChangeModal">Edit Password
-            </button>
+            data-target="#passwordChangeModal">Edit
+            Password
+          </button>
           <button style="float: right;" class="btn btn-primary" data-toggle="modal" data-target="#deleteAccModal">Delete
             Account
           </button>
@@ -73,15 +78,15 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="usernameForm " (ngSubmit)="onUpdateUsername(usernameForm)">
-          <input formControlName="new_username" style="border:20px;" class="form-control mr-sm-2" type="name" placeholder="New Username"
-            aria-label="NewUsername">
+          <input formControlName="new_username" style="border:20px;" class="form-control mr-sm-2" type="name"
+            placeholder="New Username" aria-label="NewUsername">
 
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <form (ngSubmit)="onUpdateUsername(usernameForm); data-dismiss= 'modal' ">
-          <button type="button submit" class="btn btn-primary" >Save changes</button>
+          <button type="button submit" class="btn btn-primary">Save changes</button>
         </form>
       </div>
     </div>
@@ -102,16 +107,16 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="emailForm" (ngSubmit)="onUpdateEmail(emailForm)">
-          <input formControlName="new_email" style="border:20px;" class="form-control mr-sm-2" type="email" placeholder="New Email"
-            aria-label="Email">
+          <input formControlName="new_email" style="border:20px;" class="form-control mr-sm-2" type="email"
+            placeholder="New Email" aria-label="Email">
 
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <form (ngSubmit)="onUpdateEmail(emailForm)"> 
-        <button type="button submit" class="btn btn-primary"  >Save changes</button>
-      </form>
+        <form (ngSubmit)="onUpdateEmail(emailForm)">
+          <button type="button submit" class="btn btn-primary">Save changes</button>
+        </form>
       </div>
     </div>
   </div>
@@ -139,8 +144,8 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <form (ngSubmit)="onUpdateQuizPrivacy(quizPrivacyForm)">
-        <button type="button submit" class="btn btn-primary">Save changes</button>
-      </form>
+          <button type="button submit" class="btn btn-primary">Save changes</button>
+        </form>
       </div>
     </div>
   </div>
@@ -159,21 +164,21 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="passwordForm" (ngSubmit)="onUpdatePassword(passwordForm)">
-          <input formControlName="old_password" style="border:20px;" class="form-control mr-sm-2" type="password" placeholder="Old Password"
-            aria-label="oldPassword">
+          <input formControlName="old_password" style="border:20px;" class="form-control mr-sm-2" type="password"
+            placeholder="Old Password" aria-label="oldPassword">
           <br>
-          <input formControlName="new_password" style="border:20px;" class="form-control mr-sm-2" type="password" placeholder="New Password"
-            aria-label="newPassword">
+          <input formControlName="new_password" style="border:20px;" class="form-control mr-sm-2" type="password"
+            placeholder="New Password" aria-label="newPassword">
           <br>
-          <input formControlName="new_retype_password" style="border:20px;" class="form-control mr-sm-2" type="password" placeholder="Re-type Password"
-            aria-label="re-TypePassword">
+          <input formControlName="new_retype_password" style="border:20px;" class="form-control mr-sm-2" type="password"
+            placeholder="Re-type Password" aria-label="re-TypePassword">
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <form (ngSubmit)="onUpdatePassword(passwordForm)">
-        <button type="button submit" class="btn btn-primary">Save changes</button>
-      </form>
+          <button type="button submit" class="btn btn-primary">Save changes</button>
+        </form>
       </div>
     </div>
   </div>
@@ -193,7 +198,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="onDeleteUser()" data-dismiss="modal" >I am sure</button>
+        <button type="button" class="btn btn-primary" (click)="onDeleteUser()" data-dismiss="modal">I am sure</button>
       </div>
     </div>
   </div>
