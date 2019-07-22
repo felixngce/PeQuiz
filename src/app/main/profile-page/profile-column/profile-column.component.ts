@@ -175,9 +175,11 @@ export class ProfileColumnComponent implements OnInit {
     this.userGetService.updateUserPw(this.user_id, this.passwordForm.value.old_password, this.passwordForm.value.new_password
     ).subscribe(results => {
       this.findUserById()
+      console.log("Im here!")
 
     });
     // this.userGetService.changeData(this.user_data)
+    console.log("IIIIm here!")
 
 
     this.updateUserDone = true;
