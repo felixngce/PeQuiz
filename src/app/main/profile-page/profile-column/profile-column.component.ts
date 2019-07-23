@@ -195,9 +195,10 @@ export class ProfileColumnComponent implements OnInit {
   onDeleteUser() {
     this.authService.logout()
     this.userGetService.deleteUserAcc(this.user_id).subscribe(results => {
-
+      this.route
     });
     
+    this.router.navigateByUrl('/cover' )
 
   }
 
