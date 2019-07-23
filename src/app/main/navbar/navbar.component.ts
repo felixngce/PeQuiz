@@ -35,8 +35,7 @@ export class NavbarComponent implements OnInit {
   findUserById() { 
     this.userGetService.getUserById(this.user_object_id).subscribe(data => {
       this.user_data = data;
-      console.log(this.user_data);
-      console.log(this.user_data[0].username)
+
 
 
       this.isDataLoaded = true;
@@ -62,7 +61,17 @@ export class NavbarComponent implements OnInit {
   routeToHome(){
     this.router.navigate(["/main/home",this.user_object_id])
   }
+  routeToCreate(){
+    console.log(this.pulledData[0]._id)
+    this.router.navigate(["/main/quiz/create/",this.pulledData[0]._id])
+    console.log(this.pulledData[0]._id)
 
+    console.log("Function going off")
+
+  }
+  routeToQuizDesc(){
+    this.router.navigate(["/main/quiz/",this.pulledData[0]._id])
+  }
 
 
   ngOnInit() {

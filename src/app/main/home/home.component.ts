@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { UserGetService} from '../../services/user/user-get.service';
-import {ActivatedRoute} from'@angular/router'
+import {ActivatedRoute, Router} from'@angular/router'
 import { HttpClientModule } from '@angular/common/http'; 
 
 
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   public user_data;
   
 
-  constructor(private route: ActivatedRoute, private userGetService: UserGetService, private authService: AuthService) { }
+  constructor(private route: ActivatedRoute, private router:Router, private userGetService: UserGetService, private authService: AuthService) { }
 
   ngOnInit() {
     this.userGetService.currentUserData.subscribe(data => {
@@ -28,6 +28,15 @@ export class HomeComponent implements OnInit {
 
 
    
+  }
+
+  routeToCreate(){
+    console.log(this.user_data[0]._id)
+    this.router.navigate(["/main/quiz/create/",this.user_data[0]._id])
+    console.log(this.user_data[0]._id)
+
+    console.log("Function going off")
+
   }
 
 

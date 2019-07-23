@@ -16,40 +16,30 @@ export class HomeProfileColumnComponent implements OnInit {
   public isDataLoaded: Boolean = false;
   public afterFindingUser;
   public no_Quiz_Created;
-
+  public pfpSrc;
   
 
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
     console.log("This is the child compnent")
+    this.userGetService.currentUserData.subscribe(data => {
+      this.user_data = data;
+      console.log("this is the pulled data")
+      console.log(this.user_data)
+      this.pfpSrc = "data:image/png;base64," + this.user_data[0].profile_picture;
 
-    this.user_id = id;
+      this.isDataLoaded = true;
 
-      // this.afterFindingUser = new Promise(function(resolve, reject){
-      //   this.findUserById()
-      //   console.log(this.user_data)
-      //   resolve()
-      // });
 
-      // this.afterFindingUser.then(this.isDataLoaded = true);
 
-      this.findUserById()
+    });
+
     
 
     
   }
 
-  findUserById(){
-    this.userGetService.getUserById(this.user_id).subscribe(data => {
-        this.user_data = data;
-        console.log(this.user_data);
-        this.no_Quiz_Created = this.user_data[0].quiz_created.length
-        console.log(this.no_Quiz_Created);
-        this.isDataLoaded = true;
 
-
-      });
-  }
 
 }
