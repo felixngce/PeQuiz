@@ -118,6 +118,7 @@ export class ProfileColumnComponent implements OnInit {
 
       this.userGetService.updateUserPfp(this.user_id, fd).subscribe(results => {
         this.findUserById()
+        console.log("yep update works")
       });
       console.log(this.user_data)
       console.log(this.pulledData)
@@ -146,8 +147,9 @@ export class ProfileColumnComponent implements OnInit {
     
 
     this.userGetService.updateUser(this.user_id, this.user_data[0].username, this.emailForm.value.new_email, this.user_data[0].quiz_privacy
-    ).subscribe(results => {
-      console.log(results)
+    )
+    .subscribe(results => {
+      console.log("This shows that email subscribe is working")
       this.findUserById()
 
     });
@@ -173,13 +175,18 @@ export class ProfileColumnComponent implements OnInit {
   onUpdatePassword() {
 
     this.userGetService.updateUserPw(this.user_id, this.passwordForm.value.old_password, this.passwordForm.value.new_password
-    ).subscribe(results => {
-      this.findUserById()
-      console.log("Im here!")
+    )
+    .subscribe(results => {
+
 
     });
     // this.userGetService.changeData(this.user_data)
-    console.log("IIIIm here!")
+    console.log("Im here!")
+    setTimeout(() => {
+      this.findUserById()
+    },
+      1000);
+    console.log("fuck")
 
 
     this.updateUserDone = true;
@@ -190,10 +197,7 @@ export class ProfileColumnComponent implements OnInit {
     this.userGetService.deleteUserAcc(this.user_id).subscribe(results => {
 
     });
-    setTimeout(() => {
-      this.router.navigate(['/cover']);
-    },
-      1000);
+    
 
   }
 

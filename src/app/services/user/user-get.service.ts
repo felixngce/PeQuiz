@@ -66,8 +66,10 @@ export class UserGetService {
     return this.http.put<any[]>('http://localhost:3000/api/usersPw/' + id, {
       'old_password': old_password,
       'new_password': new_password
+      
 
     });
+    
   }
 
   updateUserPfp(id, profile_picture){

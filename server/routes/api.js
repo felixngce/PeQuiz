@@ -8,6 +8,11 @@ var storage = multer.memoryStorage()
 var upload = multer({storage: storage})
 var pfpPlaceHolder;
 
+var app = express();
+
+app.use(this.express.static('./../../src/assets/images'))
+
+
 // const image2base64 = require('image-to-base64');
 // image2base64("../../src/app/assets/images/pfp_placeholder.png") // you can also to use url
 //     .then(
@@ -232,10 +237,11 @@ router.route('/usersPw/:id').put(function (req, res) {
                                 "password": new_password,
                                 "last_pw_change": date.toString()
                             }
-                        }
-                        , (err, results) => {
+                        },
+                         (err, results) => {
                             if (err) return console.log(err);
                             console.log('saved password to database');
+
                             
                         }
                     )
@@ -245,7 +251,6 @@ router.route('/usersPw/:id').put(function (req, res) {
         }, (err, results) => {
             if (err) return console.log(err);
             console.log('saved to database');
-            res.send(results);
         }
 
     )
