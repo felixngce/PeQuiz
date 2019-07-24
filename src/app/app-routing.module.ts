@@ -16,14 +16,16 @@ import { QuizComponent } from './main/quiz/quiz.component';
 import { CreateQuizComponent } from './main/quiz/create-quiz/create-quiz.component'
 import { ProfilePageComponent } from './main/profile-page/profile-page.component';
 import { QuizDescriptionComponent } from './main/quiz/quiz-description/quiz-description.component';
-import {QuizDetailsComponent} from './main/quiz/quiz-details/quiz-details.component'
+import { QuizDetailsComponent } from './main/quiz/quiz-details/quiz-details.component'
+import { AddQuestionComponent } from './main/quiz/create-quiz/add-question/add-question.component'
+import { CreateQuizColumnComponent} from './main/quiz/create-quiz/create-quiz-column/create-quiz-column.component'
 
 import { GameComponent } from './game/game.component';
 import { JoinComponent } from './game/join/join.component';
 import { from } from 'rxjs';
 
-import {FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {AuthGuard} from './guards/auth.guard';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './guards/auth.guard';
 import { HomeToCoverGuard } from './guards/home-to-cover.guard';
 import { AuthService } from './services/auth.service';
 
@@ -31,21 +33,21 @@ import { AuthService } from './services/auth.service';
 
 
 
-export class testingClass  {
+export class testingClass {
   constructor(private authService: AuthService) { }
- 
-    user_iddd = this.authService.getSecureToken()
 
- 
- }
+  user_iddd = this.authService.getSecureToken()
+
+
+}
 
 const routes: Routes = [
 
-  
+
 
   {
     path: '',
-   
+
     component: CoverComponent,
     canActivate: [HomeToCoverGuard],
     children: [
@@ -78,9 +80,15 @@ const routes: Routes = [
         component: QuizComponent,
 
         children: [
-          { path: 'create/:id', component: CreateQuizComponent },
+          {
+            path: 'create', component: CreateQuizComponent,
+            children: [
+              {path: 'overview', component: CreateQuizColumnComponent},
+              { path: 'question/:id', component: AddQuestionComponent }
+            ]
+          },
           { path: 'desc/:id', component: QuizDescriptionComponent },
-          {path: 'details/:id', component: QuizDetailsComponent}
+          { path: 'details/:id', component: QuizDetailsComponent }
 
 
 

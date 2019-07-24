@@ -62,15 +62,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(["/main/home",this.user_object_id])
   }
   routeToCreate(){
-    console.log(this.pulledData[0]._id)
-    this.router.navigate(["/main/quiz/create/",this.pulledData[0]._id])
-    console.log(this.pulledData[0]._id)
-
-    console.log("Function going off")
-
+    this.router.navigate(["/main/quiz/create/overview"])
   }
   routeToQuizDesc(){
-    this.router.navigate(["/main/quiz/",this.pulledData[0]._id])
+    this.router.navigate(["/main/quiz/desc/",this.pulledData[0]._id])
   }
 
 

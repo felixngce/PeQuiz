@@ -37,6 +37,7 @@ import {FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common'
 
 import { HttpClientModule } from '@angular/common/http';
+import { AddQuestionComponent } from './main/quiz/create-quiz/add-question/add-question.component';
 
 
 
@@ -73,6 +74,7 @@ import { HttpClientModule } from '@angular/common/http';
     QuizComponent,
     QuizDetailsComponent,
     QuizDetailsColumnComponent,
+    AddQuestionComponent,
     
   ],
   imports: [

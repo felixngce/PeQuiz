@@ -1,0 +1,105 @@
+<div class="col-md-12">
+
+  <div tabindex="-1" role="dialog">
+
+
+    <div class="modal-dialog" role="document" style="max-width: 2000px;margin:3.4% 0;">
+      <div class="modal-content" style="background-color:lightgray">
+        <form [formGroup]="addQnForm" (ngSubmit)="onAddQn(addQnForm)">
+
+          <div class="modal-header">
+            <table style="width: 100%">
+              <tr>
+                <th>
+                  <h5 style="margin-bottom: 1%;">
+                    Add Question</h5>
+                </th>
+              </tr>
+              <tr>
+                <td>
+
+                  <input formControlName="question_string" class="form-control" type="text" style="width: 97.5%">
+                </td>
+              </tr>
+            </table>
+
+          </div>
+          <div class="modal-body">
+            <div style="padding-bottom: 1%;">
+              <table style="width: 100%">
+                <tr>
+                  <th>
+                    <h5 style="margin-bottom: 1%;">
+                      Answer 1</h5>
+                  </th>
+                  <th>
+                    <h5 style="margin-bottom: 1%;"> Answer 2</h5>
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <input formControlName="answer_1" class="form-control" style="width: 95%" type="text">
+                  </td>
+                  <td>
+                    <input formControlName="answer_2" class="form-control" style="width: 95%" type="text">
+                  </td>
+                </tr>
+                <tr>
+                  <td style="margin-top: 3%">
+                    <h5 style="margin-top: 1%;">
+                      Answer 3</h5>
+                  </td>
+                  <td style="margin-top: 3%">
+                    <h5 style="margin-top: 1%;">
+                      Answer 4</h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input formControlName="answer_3" class="form-control" style="width: 95%" type="text">
+                  </td>
+                  <td>
+                    <input formControlName="answer_4" class="form-control" style="width: 95%" type="text">
+                  </td>
+                </tr>
+              </table>
+
+            </div>
+          </div>
+
+
+          <div class="modal-footer"></div>
+          <span style="float: left">
+            <p>Time Limit(Seconds):</p>
+          </span>
+          <span style="margin-left: 5px">
+            <input formControlName="time_limit" style="width:5%" type="number">
+          </span>
+          <span style="margin-left: 10px"> Correct Answer:</span>
+          <span style="margin-left: 5px">
+            <input formControlName="correct_answer" style="width:5%" type="number">
+          </span>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div>
+    <form (ngSubmit)="onAddQn(addQnForm)">
+    <button class="btn btn-primary" type="submit button" style="width: 45%;border-radius:20px;height: 50px; margin-bottom: 3.4%"
+      >
+      Done
+    </button>
+  
+    <button class="btn btn-primary" style="width: 45%;border-radius:20px;height: 50px; margin-bottom: 3.4%; margin-left:10%;
+      background-color: rgb(170, 5, 5); border-color: rgb(170, 5, 5)" (click)="routeToCreate()">
+      Go Back
+    </button>
+  </form>
+  </div>
+
+
+
+</div>

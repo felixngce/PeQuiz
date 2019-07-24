@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
 
   routeToCreate(){
     console.log(this.user_data[0]._id)
-    this.router.navigate(["/main/quiz/create/",this.user_data[0]._id])
+    this.router.navigate(["/main/quiz/create/overview"])
     console.log(this.user_data[0]._id)
 
     console.log("Function going off")
