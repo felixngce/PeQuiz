@@ -14,7 +14,7 @@ export class QuizService {
     {
       title : null,
       description : null,
-      questions: []
+      questions: [{"question_string": "yes"}]
       
 
 
@@ -27,6 +27,17 @@ export class QuizService {
   changeCreateQuizData(quizData) {
     this.create_quiz_data.next(quizData)
     console.log(this.currentCreateQuizData)
+  }
+
+  submitNewQuiz(user_id, title, description, questions){
+    return this.http.post<any[]>('http://localhost:3000/api/newQuiz/', {
+      'user_created': user_id,
+      'title': title,
+      'description': description,
+      'questions' : questions
+    }
+    
+        );
   }
 
 

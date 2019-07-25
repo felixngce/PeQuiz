@@ -17,8 +17,9 @@
               </tr>
               <tr>
                 <td>
-
-                  <input formControlName="question_string" class="form-control" type="text" style="width: 97.5%">
+                  <div>
+                  <input formControlName="question_string" class="form-control" type="text" style="width: 97.5%" [value]="createQuizData[0].questions[editIndex].question_string">
+                </div>
                 </td>
               </tr>
             </table>
@@ -38,10 +39,10 @@
                 </tr>
                 <tr>
                   <td>
-                    <input formControlName="answer_1" class="form-control" style="width: 95%" type="text">
+                    <input formControlName="answer_1" class="form-control" style="width: 95%" value="fdsfdas" [value]="createQuizData[0].questions[editIndex].answers[0]">
                   </td>
                   <td>
-                    <input formControlName="answer_2" class="form-control" style="width: 95%" type="text">
+                    <input formControlName="answer_2"  class="form-control" style="width: 95%" type="text" [value]="createQuizData[0].questions[editIndex].answers[1]">
                   </td>
                 </tr>
                 <tr>
@@ -56,10 +57,10 @@
                 </tr>
                 <tr>
                   <td>
-                    <input formControlName="answer_3" class="form-control" style="width: 95%" type="text">
+                    <input id="" formControlName="answer_3" class="form-control" style="width: 95%" type="text" [value]="createQuizData[0].questions[editIndex].answers[2]"> 
                   </td>
                   <td>
-                    <input formControlName="answer_4" class="form-control" style="width: 95%" type="text">
+                    <input formControlName="answer_4" class="form-control" style="width: 95%" type="text" [value]="createQuizData[0].questions[editIndex].answers[3]">
                   </td>
                 </tr>
               </table>
@@ -73,11 +74,11 @@
             <p>Time Limit(Seconds):</p>
           </span>
           <span style="margin-left: 5px">
-            <input formControlName="time_limit" style="width:5%" type="number">
+            <input formControlName="time_limit" style="width:5%;padding-left: 1.5%" type="number"[value]="createQuizData[0].questions[editIndex].time_limit" >
           </span>
           <span style="margin-left: 10px"> Correct Answer:</span>
           <span style="margin-left: 5px">
-            <input formControlName="correct_answer" style="width:5%" type="number">
+            <input  formControlName="correct_answer" style="width:5%;padding-left: 1.5%" type="number" [value]="createQuizData[0].questions[editIndex].correct_answer">
           </span>
         </form>
       </div>

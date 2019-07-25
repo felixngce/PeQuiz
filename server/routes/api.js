@@ -11,20 +11,6 @@ var pfpPlaceHolder = "iVBORw0KGgoAAAANSUhEUgAAARgAAAEYCAYAAACHjumMAABsM0lEQVR42u
 
 
 
-// const image2base64 = require('image-to-base64');
-// image2base64("../../src/app/assets/images/pfp_placeholder.png") // you can also to use url
-//     .then(
-//         (response) => {
-//             console.log(response); //cGF0aC90by9maWxlLmpwZw==
-//             var pfpPlaceHolder = response;
-//         }
-//     )
-//     .catch(
-//         (error) => {
-//             console.log(error); //Exepection error....
-//         }
-//     )
-
 
 
 // declare axios for making http requests
@@ -274,6 +260,26 @@ router.route('/delUser/:id').post(function (req, res) {
 
 });
 
+
+// register new quiz
+router.route('/newQuiz/').post(function (req, res) {
+    console.log(req.body)
+
+
+        var time = new Date().getTime();
+        var date = new Date(time);
+
+        var reqMsg = req.body;
+        reqMsg["no_of_plays"] = 0;
+        reqMsg["date_created"] = date.toString();
+
+            db.collection('Quiz').insertOne(reqMsg, (err, results) => {
+            if (err) return console.log(err);
+            console.log('saved to database');
+            res.send(results);
+            });
+        
+    });
 
 
 

@@ -2,72 +2,71 @@
 
   <div tabindex="-1" role="dialog">
 
-    <button class="btn btn-primary"
-      style="width: 100%;border-radius:20px;height: 50px;background-color: rgb(170, 5, 5);border-color: rgb(170, 5, 5);margin-top: 3.4%">
-      Done
-    </button>
+    <form [formGroup]="addQuizForm" (ngSubmit)="onSubmitQuiz(addQuizForm)">
+      
 
-    <div class="modal-dialog" role="document" style="max-width: 2000px;margin:3.4% 0;">
-      <div class="modal-content" style="background-color:lightgray">
-        <div class="modal-header">
-          <table style="width: 100%">
-            <tr>
-              <th>
-                <h5 style="margin-bottom: 1%;">
-                  Title</h5>
-              </th>
-            </tr>
-            <tr>
-              <td>
+      <div class="modal-dialog" role="document" style="max-width: 2000px;margin:3.4% 0;">
+        <div class="modal-content" style="background-color:lightgray">
+          <div class="modal-header">
+            <table style="width: 100%">
+              <tr>
+                <th>
+                  <h5 style="margin-bottom: 1%;">
+                    Title</h5>
+                </th>
+              </tr>
+              <tr>
+                <td>
 
-                <input class="form-control" type="text" style="width: 100%">
-              </td>
-            </tr>
-          </table>
+                  <input formControlName="title" class="form-control" type="text" style="width: 100%">
+                </td>
+              </tr>
+            </table>
 
-        </div>
-        <div class="modal-body">
+          </div>
+          <div class="modal-body">
 
-          <div>
-            <div style="padding-bottom: 1%;">
-              <table style="width: 100%">
-                <tr>
-                  <th>
-                    <h5 style="margin-bottom: 1%;">
-                      Description</h5>
-                  </th>
-                </tr>
-                <tr>
-                  <td>
-                    <textarea class="form-control" cols="40" rows="4"></textarea>
-                  </td>
-                </tr>
-              </table>
+            <div>
+              <div style="padding-bottom: 1%;">
+                <table style="width: 100%">
+                  <tr>
+                    <th>
+                      <h5 style="margin-bottom: 1%;">
+                        Description</h5>
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <textarea formControlName="description" class="form-control" cols="40" rows="4"></textarea>
+                    </td>
+                  </tr>
+                </table>
 
-
+              </div>
 
 
             </div>
-
+            <div class="modal-footer" style="display:none"></div>
 
           </div>
-          <div class="modal-footer" style="display:none"></div>
-
         </div>
       </div>
-    </div>
-    <div *ngIf="isDataLoaded">
+    </form>
+    <div>
       <div *ngFor="let question of createQuizData[0].questions; let i = index"
         style="background-color: lightgray;min-height: 90px;margin:3.4% 0;border-radius: 5px">
         <div>
           <div>
             <button class="btn btn-primary"
-              style="float: right;margin-top: 2%;margin-right: 2%;background-color: rgb(16, 196, 16);border-color: rgb(16, 196, 16);">Edit</button>
+              style="float: right;margin-top: 2%;margin-right: 2%;background-color: rgb(16, 196, 16);border-color: rgb(16, 196, 16);"
+              (click)="routeToEdit(i)">Edit</button>
             <a>
               <button class="btn btn-primary"
-                style="float: right;margin-top: 2%;margin-right: 2%;background-color: orange">Delete</button>
+                style="float: right;margin-top: 2%;margin-right: 2%;background-color: orange"
+                (click)="deleteQuestion(i)">Delete</button>
             </a>
-            <p style="float: right;margin-right: 2%;padding-top: 2.5%"> Time Limit: <span>{{createQuizData[0].questions[i].time_limit}}</span> sec</p>
+            <p style="float: right;margin-right: 2%;padding-top: 2.5%"> Time Limit:
+              <span>{{createQuizData[0].questions[i].time_limit}}</span> sec</p>
           </div>
 
           <div>
@@ -92,6 +91,12 @@
         (click)="routeToQuestion()">
         Add Question
       </button>
+      <form [formGroup]="addQuizForm" (ngSubmit)="onSubmitQuiz(addQuizForm)">
+      <button class="btn btn-primary" type="submit"
+        style="width: 100%;border-radius:20px;height: 50px;background-color: rgb(170, 5, 5);border-color: rgb(170, 5, 5);margin-bottom: 3.4%">
+        Done
+      </button>
+    </form>
     </div>
 
 

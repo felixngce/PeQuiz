@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { QuizService } from '../../../../services/quiz.service';
 
@@ -14,10 +14,15 @@ export class AddQuestionComponent implements OnInit {
   public createQuizData;
   public newQuizData;
   public qnFormArray;
+  public editIndex;
+  public qnId: number ;
+  public shorterPath;
 
-  constructor(private fb : FormBuilder,private router: Router, private quizService: QuizService) { }
+  constructor(private route: ActivatedRoute,private fb : FormBuilder,private router: Router, private quizService: QuizService) { }
 
   ngOnInit() {
+    let qnId = this.route.snapshot.paramMap.get('id')
+    this.editIndex = +qnId - 1
     this.addQnForm = this.fb.group({
       question_string: '',
       answer_1: '',
@@ -32,17 +37,65 @@ export class AddQuestionComponent implements OnInit {
       this.quizService.currentCreateQuizData.subscribe(data => {
         this.createQuizData = data;
         console.log("this is the pulled data")
-        console.log(this.createQuizData[0].questions)
+        console.log(this.createQuizData)
     
   
       });
+  }
+
+  getEditIndex(){
+    return this.editIndex
   }
 
   onAddQn(){
     this.qnFormArray = {"question_string": this.addQnForm.value.question_string, "time_limit": this.addQnForm.value.time_limit,
      "correct_answer": this.addQnForm.value.correct_answer, answers:[this.addQnForm.value.answer_1,this.addQnForm.value.answer_2,this.addQnForm.value.answer_3
     ,this.addQnForm.value.answer_4]}
-    this.createQuizData[0].questions.push(this.qnFormArray)
+    if(this.createQuizData.length < this.qnId){
+      this.createQuizData[0].questions.push(this.qnFormArray)
+
+    }else{
+      this.shorterPath = this.createQuizData[0].questions[this.editIndex];
+
+      if(this.qnFormArray.question_string == '' && this.shorterPath.question_string != ''){
+        this.qnFormArray.question_string = this.shorterPath.question_string
+      }
+
+      if(this.qnFormArray.time_limit == ''){
+        if(this.shorterPath.time_limit == ''){
+          this.qnFormArray.time_limit = 20
+
+        }
+        else{
+          this.qnFormArray.time_limit = this.shorterPath.time_limit
+
+        }
+      }
+
+      if(this.qnFormArray.correct_answer == '' && this.shorterPath.correct_answer != ''){
+        this.qnFormArray.correct_answer = this.shorterPath.correct_answer
+        
+
+      }
+
+      if(this.qnFormArray.answers[0] == '' && this.shorterPath.answers[0] != ''){
+        this.qnFormArray.answers[0] = this.shorterPath.answers[0]
+      }
+      if(this.qnFormArray.answers[1] == '' && this.shorterPath.answers[1] != ''){
+        this.qnFormArray.answers[1] = this.shorterPath.answers[1]
+      }
+      if(this.qnFormArray.answers[2] == '' && this.shorterPath.answers[2] != ''){
+        this.qnFormArray.answers[2] = this.shorterPath.answers[2]
+      }
+      if(this.qnFormArray.answers[3] == '' && this.shorterPath.answers[3] != ''){
+        this.qnFormArray.answers[3] = this.shorterPath.answers[3]
+      }
+      console.log(this.qnFormArray)
+      console.log(this.qnFormArray.question_string == '')
+      this.createQuizData[0].questions.splice(this.editIndex,1,this.qnFormArray)
+
+    }
+    
     this.newQuizData = this.createQuizData
     console.log("This is the final sent data")
     console.log(this.newQuizData)
