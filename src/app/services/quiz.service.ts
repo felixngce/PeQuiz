@@ -14,12 +14,16 @@ export class QuizService {
     {
       title : null,
       description : null,
-      questions: [{"question_string": "yes"}]
+      questions: [
+        {"question_string": "Example Question", "time_limit":20, "correct_answer":1,"answers":["answer 1", "answer 2", "answer 3", "answer 4"]}
+      ]
       
 
 
     }
   ]
+
+
 
   private create_quiz_data = new BehaviorSubject(this.createQuizData);
   currentCreateQuizData = this.create_quiz_data.asObservable();

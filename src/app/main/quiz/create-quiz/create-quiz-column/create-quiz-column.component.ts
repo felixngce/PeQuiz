@@ -23,12 +23,14 @@ export class CreateQuizColumnComponent implements OnInit {
   public  user_id;
   public resetDataTemplate;
   public displayQuestions: Boolean;
+  public browserStoredData;
 
   ngOnInit() {
+     this.browserStoredData = JSON.parse(localStorage.getItem('quizArray'))
 
     this.resetDataTemplate = [
       {
-        title : null,
+        title : 'resetDataTemplate',
         description : null,
         questions: []
         
@@ -44,9 +46,12 @@ export class CreateQuizColumnComponent implements OnInit {
  
 
       });
+      console.log(JSON.parse(localStorage.getItem('quizArray')))
 
       this.quizService.currentCreateQuizData.subscribe(data => {
-        if(data[0].questions.length == 0){
+        //I fucked myself with this statement
+        if(data[0].questions.length == 1 && this.browserStoredData[0].questions.length > 1){
+          console.log("well this is working..")
           this.createQuizData = JSON.parse(localStorage.getItem('quizArray'));
           this.quizService.changeCreateQuizData(this.createQuizData)
 
@@ -103,11 +108,16 @@ export class CreateQuizColumnComponent implements OnInit {
     .subscribe(results => {
       console.log("This shows that quiz submit is working")
       console.log(results)
-      // localStorage.removeItem('quizArray')
-      // this.quizService.changeCreateQuizData(this.resetDataTemplate)
+      localStorage.removeItem('quizArray')
+      console.log(JSON.parse(localStorage.getItem('quizArray')))
+      console.log(this.resetDataTemplate)
 
-      this.router.navigate(["/main/home"])
+      localStorage.setItem('quizArray', JSON.stringify(this.resetDataTemplate));
+
+
+      this.router.navigate(["/main/home/" + this.user_id])
     });
+    this.quizService.changeCreateQuizData("helloo")
 
     
   }
