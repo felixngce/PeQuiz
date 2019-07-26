@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   public user_id;
   public user_data;
-  public validateCreateQuiz
+  public validateCreateQuiz;
   resetDataTemplate = [
     {
       title : 'resetDataTemplate',

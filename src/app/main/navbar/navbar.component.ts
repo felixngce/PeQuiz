@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { UserGetService } from '../../services/user/user-get.service'
 import {ActivatedRoute} from'@angular/router'
 import { HttpClientModule } from '@angular/common/http'; 
+import { QuizService } from 'src/app/services/quiz.service';
 
 
 
@@ -21,7 +22,7 @@ export class NavbarComponent implements OnInit {
 
   
 
-  constructor(private authService: AuthService, private router:Router, private userGetService: UserGetService,private route: ActivatedRoute,
+  constructor(private quizService: QuizService,private authService: AuthService, private router:Router, private userGetService: UserGetService,private route: ActivatedRoute,
      ) { }
 
   user_object_id = this.authService.getSecureToken();
@@ -30,6 +31,18 @@ export class NavbarComponent implements OnInit {
   public isDataLoaded: Boolean = false;
   public pfpSrc;
   public pulledData;
+  public validateCreateQuiz;
+  resetDataTemplate = [
+    {
+      title : 'resetDataTemplate',
+      description : null,
+      questions: [ {"question_string": "Example Question", "time_limit":20, "correct_answer":1,"answers":["answer 1", "answer 2", "answer 3", "answer 4"]}]
+      
+
+
+    }
+  ]
+
 
 
   findUserById() { 
@@ -62,6 +75,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(["/main/home",this.user_object_id])
   }
   routeToCreate(){
+    if(this.validateCreateQuiz == 'helloo'){
+      this.quizService.changeCreateQuizData(this.resetDataTemplate)
+      }
     this.router.navigate(["/main/quiz/create/overview"])
   }
   routeToQuizDesc(){
@@ -81,6 +97,12 @@ export class NavbarComponent implements OnInit {
 
 
     });
+
+    this.quizService.currentCreateQuizData.subscribe(data => {
+      this.validateCreateQuiz = data;
+      console.log(data)
+
+    })
 
 
     
