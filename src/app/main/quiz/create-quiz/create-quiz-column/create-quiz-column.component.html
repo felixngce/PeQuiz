@@ -18,7 +18,7 @@
               <tr>
                 <td>
 
-                  <input formControlName="title" class="form-control" type="text" style="width: 100%">
+                  <input   [value]="createQuizData[0].title"  formControlName="title" class="form-control" type="text" style="width: 100%">
                 </td>
               </tr>
             </table>
@@ -37,7 +37,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <textarea formControlName="description" class="form-control" cols="40" rows="4"></textarea>
+                      <textarea [value]="createQuizData[0].description" formControlName="description" class="form-control" cols="40" rows="4"></textarea>
                     </td>
                   </tr>
                 </table>

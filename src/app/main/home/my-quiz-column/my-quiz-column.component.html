@@ -9,42 +9,17 @@
       </a>
       </div>
       <div class="modal-body">
-        <div>
-          <button class="btn btn-primary" style="float: right;">View</button>
-          <p>(Quiz Name)</p>
+        <div *ngFor="let quiz of user_data[0].quiz_created; let i = index">
+          <button class="btn btn-primary" style="float: right;margin-bottom: 5px">View</button>
+          <p>{{user_data[0].quiz_created[i].title}}</p>
 
           <p style="display: inline;">5</p>
           <p style="display: inline;"> Questions</p>
+          <br>
 
           <hr>
         </div>
-        <div>
-          <button class="btn btn-primary" style="float: right;">View</button>
-          <p>(Quiz Name)</p>
-
-          <p style="display: inline;">5</p>
-          <p style="display: inline;"> Questions</p>
-
-          <hr>
-        </div>
-        <div>
-          <button class="btn btn-primary" style="float: right;">View</button>
-          <p>(Quiz Name)</p>
-
-          <p style="display: inline;">5</p>
-          <p style="display: inline;"> Questions</p>
-
-          <hr>
-        </div>
-        <div>
-          <button class="btn btn-primary" style="float: right;">View</button>
-          <p>(Quiz Name)</p>
-
-          <p style="display: inline;">5</p>
-          <p style="display: inline;"> Questions</p>
-
-          <hr>
-        </div>
+        
 
       </div>
     </div>

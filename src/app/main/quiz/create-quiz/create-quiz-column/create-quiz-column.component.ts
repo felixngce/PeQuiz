@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { QuizService } from 'src/app/services/quiz.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserGetService } from 'src/app/services/user/user-get.service';
 
 @Component({
   selector: 'app-create-quiz-column',
@@ -11,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class CreateQuizColumnComponent implements OnInit {
 
-  constructor( private fb : FormBuilder,private router:Router, private quizService: QuizService, private authService: AuthService) { }
+  constructor( private fb : FormBuilder,private router:Router, private quizService: QuizService, private authService: AuthService, private userGetService: UserGetService) { }
 
   addQuizForm: FormGroup;
   public createQuizData;
@@ -24,9 +25,24 @@ export class CreateQuizColumnComponent implements OnInit {
   public resetDataTemplate;
   public displayQuestions: Boolean;
   public browserStoredData;
+  public user_data;
+  public title_string="";
 
   ngOnInit() {
+
+    console.log(this.browserStoredData)
      this.browserStoredData = JSON.parse(localStorage.getItem('quizArray'))
+
+
+
+     this.userGetService.currentUserData.subscribe(data => {
+      this.user_data = data;
+      console.log("this is the pulled data")
+
+
+
+
+    });
 
     this.resetDataTemplate = [
       {
@@ -49,7 +65,7 @@ export class CreateQuizColumnComponent implements OnInit {
       console.log(JSON.parse(localStorage.getItem('quizArray')))
 
       this.quizService.currentCreateQuizData.subscribe(data => {
-        //I fucked myself with this statement
+        //If user refreshes the page and theres data left, use that data
         if(data[0].questions.length == 1 && this.browserStoredData[0].questions.length > 1){
           console.log("well this is working..")
           this.createQuizData = JSON.parse(localStorage.getItem('quizArray'));
@@ -83,6 +99,7 @@ export class CreateQuizColumnComponent implements OnInit {
 
   }
   routeToQuestion(){
+    this.changingTitle()
     this.question_url_num =  this.createQuizData[0].questions.length + 1
     this.router.navigate(["/main/quiz/create/question/" + this.question_url_num])
   }
@@ -104,6 +121,19 @@ export class CreateQuizColumnComponent implements OnInit {
 
   onSubmitQuiz(){
 
+    if(this.addQuizForm.value.title.length == 0 || this.addQuizForm.value.description.length == 0){
+      this.addQuizForm = this.fb.group({
+        title: this.createQuizData[0].title,
+        description: this.createQuizData[0].description
+   
+  
+        });
+      console.log("This is the final form title")
+      console.log(this.addQuizForm.value.title)
+
+
+    }
+
     this.quizService.submitNewQuiz(this.user_id,this.addQuizForm.value.title, this.addQuizForm.value.description, this.createQuizData[0].questions)
     .subscribe(results => {
       console.log("This shows that quiz submit is working")
@@ -114,13 +144,33 @@ export class CreateQuizColumnComponent implements OnInit {
 
       localStorage.setItem('quizArray', JSON.stringify(this.resetDataTemplate));
 
-
+      console.log("why isn't this routing")
       this.router.navigate(["/main/home/" + this.user_id])
     });
     this.quizService.changeCreateQuizData("helloo")
 
     
   }
+
+  changingTitle(){
+    if(this.addQuizForm.value.title != 0){
+      this.createQuizData[0].title = this.addQuizForm.value.title;
+      console.log(this.createQuizData)
+      this.quizService.changeCreateQuizData(this.createQuizData)
+
+    }
+
+    if(this.addQuizForm.value.description != 0){
+      this.createQuizData[0].description = this.addQuizForm.value.description;
+      this.quizService.changeCreateQuizData(this.createQuizData)
+
+    }
+    console.log(this.createQuizData)
+
+
+
+
+    }
 
 
 }

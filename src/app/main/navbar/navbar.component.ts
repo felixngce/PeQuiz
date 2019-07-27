@@ -36,7 +36,7 @@ export class NavbarComponent implements OnInit {
     {
       title : 'resetDataTemplate',
       description : null,
-      questions: [ {"question_string": "Example Question", "time_limit":20, "correct_answer":1,"answers":["answer 1", "answer 2", "answer 3", "answer 4"]}]
+      questions: []
       
 
 
@@ -62,6 +62,8 @@ export class NavbarComponent implements OnInit {
 
   logOut(){
     console.log("logout button actually working")
+    localStorage.setItem('quizArray', JSON.stringify(this.resetDataTemplate));
+
     
     this.authService.logout()
     this.router.navigateByUrl('/cover' )

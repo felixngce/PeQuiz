@@ -21,7 +21,7 @@ export class UserGetService {
       last_pw_change: null,
       password: null,
       profile_picture: null,
-      quiz_created: [],
+      quiz_created: [null],
       quiz_privacy: null,
       username: null,
       _id: null
