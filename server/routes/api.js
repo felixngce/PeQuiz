@@ -272,7 +272,7 @@ router.route('/newQuiz/').post(function (req, res) {
     var reqMsg = req.body;
     
     reqMsg["no_of_plays"] = 0;
-    reqMsg["date_created"] = date.toString();
+    reqMsg["quiz_date_created"] = date.toString();
     console.log(reqMsg)
 
     db.collection('User').updateOne(
@@ -290,6 +290,25 @@ router.route('/newQuiz/').post(function (req, res) {
     
 
 });
+
+//delete quiz from array
+router.route('/deleteQuiz/:id').put(function (req,res){
+    console.log("This is delete quiz console logs")
+    console.log(req.params["id"])
+    console.log(req.body)
+db.collection('User').updateOne({_id : ObjectId(req.params["id"])}, 
+    {$set:{ 
+        "quiz_created": req.body.quiz_array
+       
+                                    
+                  
+    }}
+,(err, results) => {
+    if (err) return console.log(err);
+    console.log('deleted off database');
+    res.send(results);
+});
+})
 
 
 

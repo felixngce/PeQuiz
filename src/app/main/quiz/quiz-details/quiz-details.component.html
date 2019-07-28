@@ -1,9 +1,88 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <app-quiz-details-column></app-quiz-details-column>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document" style="max-width: 1900px;margin:3.4% 0;">
+          <div class="modal-content" style="background-color:lightgoldenrodyellow">
+            <div class="modal-header" *ngIf="isDataLoaded">
+              <span>
+
+                <h3 style="margin-top: 4%;">
+                  {{user_data[0].quiz_created[array_id].title}}</h3>
+
+                <h4 style="margin-top: 30px">{{user_data[0].quiz_created[array_id].description}}</h4>
+              </span>
+              <div style="width: 40%;margin-top: 4%;margin-left:25%">
+
+
+
+                <span>
+                <form style="float: right;margin-bottom: 4%;">
+
+                  <input value="hideAnswers" (input)='answerValue=!($event.target.checked)' id="hideAnswers"
+                    type="radio" name="gender" value="male" checked> Hide Answers
+
+                  <input type="radio" (input)='answerValue=$event.target.checked' value="showAnswers" name="gender"
+                    value="female"> Show Answers
+
+
+                </form>
+
+              </span>
+              </div>
+              <button class="btn btn-primary" style="float: right;margin-top: 3.5%;margin-right: 3%;background-color: orange;border-color: orange"
+              (click)="deleteQuiz(array_id)" >Delete</button>
+
+
+            </div>
+            <div class="modal-body" *ngIf="isDataLoaded">
+
+              <div *ngFor="let question of user_data[0].quiz_created[array_id].questions;let i = index">
+                <div style="padding-bottom: 3%;">
+
+
+                  <h1 style="font-size: 20px;display: inline;">Question {{i + 1}}</h1>
+                  <p style="display: inline; float: right;margin-right: 3%;">Timer: <span>{{user_data[0].quiz_created[array_id].questions[i].time_limit}}</span> seconds</p>
+                </div>
+
+                <h5 style="display: inline;margin-top: 3%; ">{{user_data[0].quiz_created[array_id].questions[i].question_string}}</h5>
+                <div style="margin-top:2%; margin-bottom: 4%" *ngIf="answerValue">
+                  <table style="width:100%;">
+                    <tr>
+                      <td style="border-right: 1px solid black;"
+                      [ngClass]="{'showAnswerBg' :user_data[0].quiz_created[array_id].questions[i].correct_answer == 1 }"
+                      
+                       > 
+                          {{user_data[0].quiz_created[array_id].questions[i].answers[0]}}
+                      </td>
+                      <td style="width: 50%;" [ngClass]="{'showAnswerBg' :user_data[0].quiz_created[array_id].questions[i].correct_answer == 2 }">
+                          {{user_data[0].quiz_created[array_id].questions[i].answers[1]}}
+
+                      </td>
+                    </tr>
+                    <br>
+                    <tr>
+                      <td style=" border-right: 1px solid black;width: 50%;"[ngClass]="{'showAnswerBg' :user_data[0].quiz_created[array_id].questions[i].correct_answer == 3 }">
+                          {{user_data[0].quiz_created[array_id].questions[i].answers[2]}}
+
+                      </td>
+                      <td style="width: 50%;"[ngClass]="{'showAnswerBg' :user_data[0].quiz_created[array_id].questions[i].correct_answer == 4 }">
+                          {{user_data[0].quiz_created[array_id].questions[i].answers[3]}}
+
+                      </td>
+                    </tr>
+
+                  </table>
+
+                </div>
+                <hr>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
-
+</div>

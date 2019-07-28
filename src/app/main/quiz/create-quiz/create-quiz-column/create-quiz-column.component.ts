@@ -27,6 +27,7 @@ export class CreateQuizColumnComponent implements OnInit {
   public browserStoredData;
   public user_data;
   public title_string="";
+  public deleteBoolean = false;
 
   ngOnInit() {
 
@@ -66,7 +67,7 @@ export class CreateQuizColumnComponent implements OnInit {
 
       this.quizService.currentCreateQuizData.subscribe(data => {
         //If user refreshes the page and theres data left, use that data
-        if(data[0].questions.length == 1 && this.browserStoredData[0].questions.length > 1){
+        if(data[0].questions.length == 0 && this.browserStoredData[0].questions.length > 1){
           console.log("well this is working..")
           this.createQuizData = JSON.parse(localStorage.getItem('quizArray'));
           this.quizService.changeCreateQuizData(this.createQuizData)
@@ -106,6 +107,7 @@ export class CreateQuizColumnComponent implements OnInit {
 
 
   routeToEdit(index){
+    this.changingTitle()
     this.question_url_num =  index + 1
     this.router.navigate(["/main/quiz/create/question/" + this.question_url_num])
 
@@ -114,7 +116,10 @@ export class CreateQuizColumnComponent implements OnInit {
 
   deleteQuestion(index){
     this.createQuizData[0].questions.splice(index,1)
+    console.log("yeeeee")
+    console.log(this.createQuizData)
     this.quizService.changeCreateQuizData(this.createQuizData)
+    this.deleteBoolean = true;
 
 
   }
@@ -154,6 +159,7 @@ export class CreateQuizColumnComponent implements OnInit {
 
   changingTitle(){
     if(this.addQuizForm.value.title != 0){
+      console.log("howdy yo")
       this.createQuizData[0].title = this.addQuizForm.value.title;
       console.log(this.createQuizData)
       this.quizService.changeCreateQuizData(this.createQuizData)

@@ -181,12 +181,10 @@ export class ProfileColumnComponent implements OnInit {
 
     });
     // this.userGetService.changeData(this.user_data)
-    console.log("Im here!")
     setTimeout(() => {
       this.findUserById()
     },
       1000);
-    console.log("fuck")
 
 
     this.updateUserDone = true;

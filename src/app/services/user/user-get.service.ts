@@ -89,6 +89,16 @@ export class UserGetService {
 
   }
 
+  deleteQuiz(id, quiz_array){
+
+    return this.http.put<any[]>('http://localhost:3000/api/deleteQuiz/' + id, {
+      'quiz_array' : quiz_array
+      
+
+    });
+
+  }
+
 
 
 

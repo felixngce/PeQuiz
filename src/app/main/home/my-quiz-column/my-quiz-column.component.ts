@@ -19,9 +19,6 @@ export class MyQuizColumnComponent implements OnInit {
     this.userGetService.currentUserData.subscribe(data => {
       this.user_data = data;
       this.user_id = this.authService.getSecureToken()
-      console.log("this is the pulled data from my-quiz")
-
-      console.log(this.user_data)
 
 
 
@@ -35,16 +32,21 @@ export class MyQuizColumnComponent implements OnInit {
   findUserById(){
     this.userGetService.getUserById(this.user_id).subscribe(data => {
         this.user_data = data;
-        console.log("This is the user data sent to service")
-        console.log(this.user_data);
 
-        console.log("This is me changing the service data!")
         this.userGetService.changeData(this.user_data)
 
 
 
 
       });
+  }
+
+  routeToQuizDesc(){
+    this.router.navigate(["/main/quiz/desc/",this.user_data[0]._id])
+  }
+
+  routeToDetails(i){
+    this.router.navigate(['/main/quiz/details/' + i])
   }
 
 }

@@ -17,25 +17,24 @@
       </div>
       <div class="modal-body">
 
-        <div>
+        <div  *ngFor="let quiz of user_data[0].quiz_created; let i = index">
           <div style="padding-bottom: 1%;">
             <button class="btn btn-primary" style="float: right; background-color: red;border-color: red;">Play</button>
             <button class="btn btn-primary"
               style="float: right;margin-right: 2%;background-color: rgb(16, 196, 16);border-color: rgb(16, 196, 16);">Edit</button>
-            <a routerLink="/main/quiz/details">
-              <button class="btn btn-primary" style="float: right;margin-right: 2%;">More Details</button>
+            <a>
+              <button class="btn btn-primary" (click)="routeToDetails(i)" style="float: right;margin-right: 2%;">See Questions</button>
             </a>
-            <a routerLink="/main/quiz/details">
+            <a>
               <button class="btn btn-primary"
-                style="float: right;margin-right: 2%;background-color: orange">Delete</button>
+                style="float: right;margin-right: 2%;background-color: orange;border-color: orange" (click)="deleteQuiz(i)">Delete</button>
             </a>
-            <p>(Quiz Name)</p>
+            <p>{{user_data[0].quiz_created[i].title}}</p>
           </div>
 
-          <p style="display: inline;">This is the Quiz Description.This is the Quiz Description.This is the Quiz
-            Description.This is the Quiz Description.</p>
+          <p style="display: inline;">{{user_data[0].quiz_created[i].description}}.</p>
           <div style="margin-top:2%; margin-bottom: 4%">
-            <p style="display: inline;">Date Created: <span>19/10/19</span></p>
+            <p style="display: inline;">Date Created: <span>{{user_data[0].quiz_created[i].quiz_date_created}}</span></p>
             <p style="display: inline;margin-left: 5%;">Number of plays: <span>30</span></p>
 
           </div>
@@ -46,40 +45,7 @@
           <hr>
         </div>
 
-        <div>
-          <button class="btn btn-primary" style="float: right;">Edit</button>
-          <button class="btn btn-primary"
-            style="float: right;margin-right: 2%; background-color: red;border-color: red;">Play</button>
-          <p>(Quiz Name)</p>
 
-          <p style="display: inline;">This is the Quiz Description.</p>
-          <p></p>
-
-
-          <hr>
-        </div>
-        <div>
-          <button class="btn btn-primary" style="float: right;">Edit</button>
-          <button class="btn btn-primary"
-            style="float: right;margin-right: 2%; background-color: red;border-color: red;">Play</button>
-          <p>(Quiz Name)</p>
-
-          <p style="display: inline;">This is the Quiz Description.</p>
-
-
-          <hr>
-        </div>
-        <div>
-          <button class="btn btn-primary" style="float: right;">Edit</button>
-          <button class="btn btn-primary"
-            style="float: right;margin-right: 2%; background-color: red;border-color: red;">Play</button>
-          <p>(Quiz Name)</p>
-
-          <p style="display: inline;">This is the Quiz Description.</p>
-
-
-          <hr>
-        </div>
 
       </div>
     </div>

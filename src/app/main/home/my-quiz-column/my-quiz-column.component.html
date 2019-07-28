@@ -4,16 +4,16 @@
       <div class="modal-header">
         <h5>
           My Quizzes</h5>
-          <a routerLink="/main/quiz/description">
-        <button class="btn btn-primary" style="float: right;margin-top: 14%;">More Details</button>
+          <a>
+        <button class="btn btn-primary" style="float: right;margin-top: 14%;" (click)="routeToQuizDesc()">More Details</button>
       </a>
       </div>
       <div class="modal-body">
         <div *ngFor="let quiz of user_data[0].quiz_created; let i = index">
-          <button class="btn btn-primary" style="float: right;margin-bottom: 5px">View</button>
+          <button class="btn btn-primary" style="float: right;margin-bottom: 5px" (click)="routeToDetails(i)" >View</button>
           <p>{{user_data[0].quiz_created[i].title}}</p>
 
-          <p style="display: inline;">5</p>
+          <p style="display: inline;">{{user_data[0].quiz_created[i].questions.length}}</p>
           <p style="display: inline;"> Questions</p>
           <br>
 
