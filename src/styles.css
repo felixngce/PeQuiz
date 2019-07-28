@@ -158,6 +158,7 @@ html{
 
   .coverLoginBtn{
     background-color: #b5651d;
+    border-color: #b5651d;
   }
   .coverLoginBtn:hover{
     background-color: #703f14;

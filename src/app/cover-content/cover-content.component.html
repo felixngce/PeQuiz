@@ -7,6 +7,7 @@
     <div class="subHeadMsg">
       <p>While Leaving The Boring Parts Behind</p>
     </div>
+   
     <div style="text-align: center; margin-top: 5%; z-index: 100;">
       <div style="display: inline-block; padding-right: 5%">
         <a [routerLink]="'/authentication/login'">
@@ -16,12 +17,26 @@
         </a>
       </div>
 
+      <div style="display: inline-block;">
+          <a routerLink="/authentication/sign-up">
+            <a [routerLink]="'/game/join'">
+              <button
+                style="background-color: red;border-color: red;"
+                class="btn btn-primary coverBtns">PLAY</button>
+            </a>
+          </a>
+  
+  
+        </div>
+
       <div style="display: inline-block; padding-left: 5%">
         <a routerLink="/authentication/sign-up">
           <button type="button" class="btn btn-primary coverBtns">
             Sign up
           </button>
         </a>
+
+
       </div>
     </div>
 
