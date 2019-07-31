@@ -11,6 +11,8 @@
       <div class="modal-body">
         <div *ngFor="let quiz of user_data[0].quiz_created; let i = index">
           <button class="btn btn-primary" style="float: right;margin-bottom: 5px" (click)="routeToDetails(i)" >View</button>
+          <button class="btn btn-primary" style="float: right;margin-bottom: 5px;margin-right: 10px;background-color: red;border-color: red" 
+          (click)="routeHostToGame(i)">Play</button>
           <p>{{user_data[0].quiz_created[i].title}}</p>
 
           <p style="display: inline;">{{user_data[0].quiz_created[i].questions.length}}</p>

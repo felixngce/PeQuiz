@@ -18,16 +18,21 @@ import { ProfilePageComponent } from './main/profile-page/profile-page.component
 import { QuizDescriptionComponent } from './main/quiz/quiz-description/quiz-description.component';
 import { QuizDetailsComponent } from './main/quiz/quiz-details/quiz-details.component'
 import { AddQuestionComponent } from './main/quiz/create-quiz/add-question/add-question.component'
-import { CreateQuizColumnComponent} from './main/quiz/create-quiz/create-quiz-column/create-quiz-column.component'
+import { CreateQuizColumnComponent } from './main/quiz/create-quiz/create-quiz-column/create-quiz-column.component'
 
 import { GameComponent } from './game/game.component';
 import { JoinComponent } from './game/join/join.component';
 import { from } from 'rxjs';
+import { PlayComponent } from './game/play/play.component'
+import { HostComponent } from './game/play/host/host.component'
+import { HostLobbyComponent } from './game/play/host/host-lobby/host-lobby.component'
+import { LobbyComponent } from './game/play/player/lobby/lobby.component'
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeToCoverGuard } from './guards/home-to-cover.guard';
 import { AuthService } from './services/auth.service';
+import { PlayerComponent } from './game/play/player/player.component';
 
 
 
@@ -83,7 +88,7 @@ const routes: Routes = [
           {
             path: 'create', component: CreateQuizComponent,
             children: [
-              {path: 'overview', component: CreateQuizColumnComponent},
+              { path: 'overview', component: CreateQuizColumnComponent },
               { path: 'question/:id', component: AddQuestionComponent }
             ]
           },
@@ -105,7 +110,20 @@ const routes: Routes = [
     component: GameComponent,
 
     children: [
-      { path: 'join', component: JoinComponent }
+      { path: 'join', component: JoinComponent },
+      {
+        path: 'play', component: PlayComponent,
+        children: [
+          {
+            path: 'host', component: HostComponent, children: [
+              { path: 'lobby', component: HostLobbyComponent }
+            ]
+          },
+          {path: 'player', component: PlayerComponent, children: [
+            { path: 'lobby', component: LobbyComponent}
+          ]}
+        ]
+      }
     ]
   }
 ];

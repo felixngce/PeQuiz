@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserGetService } from 'src/app/services/user/user-get.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { WebSocketService } from 'src/app/services/web-socket.service';
 
 @Component({
   selector: 'app-my-quiz-column',
@@ -12,8 +13,9 @@ export class MyQuizColumnComponent implements OnInit {
 
   public user_data;
   public user_id;
+  public quiz_object;
 
-  constructor(private router:Router,private userGetService: UserGetService, private authService: AuthService) { }
+  constructor(private webSocketService:WebSocketService,private router:Router,private userGetService: UserGetService, private authService: AuthService) { }
 
   ngOnInit() {
     this.userGetService.currentUserData.subscribe(data => {
@@ -47,6 +49,13 @@ export class MyQuizColumnComponent implements OnInit {
 
   routeToDetails(i){
     this.router.navigate(['/main/quiz/details/' + i])
+  }
+
+  routeHostToGame(quiz_id){
+    this.quiz_object = this.user_data[0].quiz_created[quiz_id]
+    this.webSocketService.hostCreateGame({host_id: this.user_id, quiz_id: quiz_id, quiz_data:this.quiz_object})
+    console.log(quiz_id)
+    this.router.navigate(['/game/play/host/lobby'])
   }
 
 }

@@ -4,6 +4,7 @@ import { UserGetService} from '../../services/user/user-get.service';
 import {ActivatedRoute, Router} from'@angular/router'
 import { HttpClientModule } from '@angular/common/http'; 
 import { QuizService } from 'src/app/services/quiz.service';
+import {WebSocketService} from 'src/app/services/web-socket.service'
 
 
 
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   public user_id;
   public user_data;
   public validateCreateQuiz;
+  public quiz_object;
   resetDataTemplate = [
     {
       title : 'resetDataTemplate',
@@ -29,7 +31,7 @@ export class HomeComponent implements OnInit {
   ]
   
 
-  constructor(private route: ActivatedRoute, private router:Router, private userGetService: UserGetService, private authService: AuthService, private quizService: QuizService) { }
+  constructor(private webSocketService:WebSocketService, private route: ActivatedRoute, private router:Router, private userGetService: UserGetService, private authService: AuthService, private quizService: QuizService) { }
 
   ngOnInit() {
     this.userGetService.currentUserData.subscribe(data => {
@@ -45,6 +47,7 @@ export class HomeComponent implements OnInit {
       console.log(data)
 
     })
+
   }
 
   routeToCreate(){
@@ -64,6 +67,8 @@ export class HomeComponent implements OnInit {
     console.log("Function going off")
 
   }
+
+
 
   
 

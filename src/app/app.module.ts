@@ -38,6 +38,10 @@ import { DatePipe } from '@angular/common'
 
 import { HttpClientModule } from '@angular/common/http';
 import { AddQuestionComponent } from './main/quiz/create-quiz/add-question/add-question.component';
+import { HostComponent } from './game/play/host/host.component';
+import { PlayerComponent } from './game/play/player/player.component';
+import { LobbyComponent } from './game/play/player/lobby/lobby.component';
+import { HostLobbyComponent } from './game/play/host/host-lobby/host-lobby.component';
 
 
 
@@ -75,6 +79,10 @@ import { AddQuestionComponent } from './main/quiz/create-quiz/add-question/add-q
     QuizDetailsComponent,
     QuizDetailsColumnComponent,
     AddQuestionComponent,
+    HostComponent,
+    PlayerComponent,
+    LobbyComponent,
+    HostLobbyComponent,
     
   ],
   imports: [
