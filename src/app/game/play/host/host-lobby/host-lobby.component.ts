@@ -11,7 +11,7 @@ import * as io from 'socket.io-client';
 export class HostLobbyComponent implements OnInit {
 
   constructor(private webSocketService: WebSocketService) {
-    this.webSocketService.getSessionData(); }
+    }
 
   public session_data;
   public isDataLoaded : Boolean = false;
@@ -19,23 +19,25 @@ export class HostLobbyComponent implements OnInit {
 
   ngOnInit() {
     console.log("daf")
+
+    this.webSocketService.listen('getSessionData').subscribe((data) => {
+      console.log(data)
+      this.session_data = data;
+      this.isDataLoaded = true
+      this.webSocketService.changeSessionData(this.session_data)
+
+    })
+
  
     
 
-    this.session_data = this.webSocketService.getSessionData()
+    // console.log(this.session_data)
+    // this.webSocketService.currentSessionData.subscribe(data => {
+    //   this.session_data = data;
+    //   console.log(this.session_data)
+    //   this.isDataLoaded = true;
 
-    console.log(this.session_data)
-    this.webSocketService.currentSessionData.subscribe(data => {
-      this.session_data = data;
-      console.log(this.session_data)
-      this.isDataLoaded = true;
-
-
-
-
-
-
-    });
+    // });
 
 
   }

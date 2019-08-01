@@ -56,7 +56,7 @@ server.listen(port, () => console.log(`API running on localhost:${port}`));
 var io = socketIO(server);
 
 io.on('connection', (socket) => {
-    console.log('user connected SOCKET.IO YESfdasfdas');
+    console.log('user connected SOCKET.IO');
     socket.on('host-create-room', function(data){
         console.log(data)
         console.log("above shows the host-create-room event works")
@@ -68,7 +68,7 @@ io.on('connection', (socket) => {
 
         db.collection('Session').insertOne(data, (err, results) => {
             if (err) return console.log(err);
-            console.log('saved to database');
+            console.log('session data is saved to db');
 
             db.collection('Session').findOne({'host_id': data.host_id},
             function (err, result) {
@@ -82,6 +82,23 @@ io.on('connection', (socket) => {
 
 
 
+    })
+
+    socket.on('host-disconnect',function(data){
+        console.log('host is disconnecting')
+        console.log(data)
+        socket.leave(data.game_pin)
+        //delete this data off the db
+        db.collection('Session').deleteOne(
+            { _id: ObjectId(data._id) }, {
+    
+    
+            }, (err, results) => {
+                if (err) return console.log(err);
+                console.log('deleted off database');
+            }
+    
+        )
     })
 });
 
