@@ -27,6 +27,30 @@ import { PlayComponent } from './game/play/play.component'
 import { HostComponent } from './game/play/host/host.component'
 import { HostLobbyComponent } from './game/play/host/host-lobby/host-lobby.component'
 import { LobbyComponent } from './game/play/player/lobby/lobby.component'
+import { PodiumComponent} from './game/play/podium/podium.component'
+import { PlayerAwardComponent} from './game/play/player-award/player-award.component'
+
+
+import { HostCycleComponent} from './game/play/host-cycle/host-cycle.component'
+import { HostAnswersComponent} from './game/play/host-cycle/host-answers/host-answers.component'
+import { AnswerColumnComponent} from './game/play/host-cycle/host-answers/answer-column/answer-column.component'
+import { InProgressComponent} from './game/play/host-cycle/host-answers/in-progress/in-progress.component'
+import { QuestionDoneComponent} from './game/play/host-cycle/host-answers/question-done/question-done.component'
+import { HostQuestionComponent} from './game/play/host-cycle/host-question/host-question.component'
+import { ScoreboardComponent} from './game/play/host-cycle/scoreboard/scoreboard.component'
+
+
+
+
+
+
+
+import {PlayerCycleComponent} from './game/play/player-cycle/player-cycle.component'
+import {PlayerOutcomeComponent} from './game/play/player-cycle/player-outcome/player-outcome.component'
+import {PlayerQuestionComponent} from './game/play/player-cycle/player-question/player-question.component'
+import {PlayerWaitComponent} from './game/play/player-cycle/player-wait/player-wait.component'
+
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/auth.guard';
@@ -114,13 +138,28 @@ const routes: Routes = [
       {
         path: 'play', component: PlayComponent,
         children: [
-          {
+          {path: 'player-award', component: PlayerAwardComponent},
+          {path: 'podium', component: PodiumComponent},{
+            path: 'host-cycle', component: HostCycleComponent, children: [
+              {path: 'host-answers', component: HostAnswersComponent, children: [
+                {path: 'in-progress/:id', component: InProgressComponent},
+                {path: 'chart/:id', component: QuestionDoneComponent}
+              ]},
+              {path: 'host-question/:id', component: HostQuestionComponent},
+              {path: 'scoreboard/:id', component: ScoreboardComponent}
+            ]},
+            {path: 'player-cycle', component: PlayerCycleComponent, children: [
+              {path: 'player-outcome/:id', component: PlayerOutcomeComponent},
+              {path: 'player-wait/:id', component: PlayerWaitComponent},
+              {path:'player-question/:id', component: PlayerQuestionComponent}
+            ]},
+            {
             path: 'host', component: HostComponent, children: [
               { path: 'lobby', component: HostLobbyComponent }
             ]
           },
           {path: 'player', component: PlayerComponent, children: [
-            { path: 'lobby', component: LobbyComponent}
+            { path: 'lobby/:id', component: LobbyComponent}
           ]}
         ]
       }

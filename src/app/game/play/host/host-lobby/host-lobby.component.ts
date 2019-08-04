@@ -41,7 +41,6 @@ export class HostLobbyComponent implements OnInit {
       this.webSocketService.changeSessionData(this.session_data)
     })
 
-    this.yeet()
 
     
 
@@ -59,15 +58,7 @@ export class HostLobbyComponent implements OnInit {
 
 
   }
- yeet(){
-  this.webSocketService.listen("sending-session-dataa").subscribe((data)=>{
-    console.log("hi")
-    console.log(data)
-    this.session_data = data;
-    this.isDataLoaded = true
-    this.webSocketService.changeSessionData(this.session_data)
-  })
-}
+
   routeToHome(){
     this.router.navigate(["/main/home/" + this.user_id])
   }

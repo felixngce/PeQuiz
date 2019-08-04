@@ -42,6 +42,19 @@ import { HostComponent } from './game/play/host/host.component';
 import { PlayerComponent } from './game/play/player/player.component';
 import { LobbyComponent } from './game/play/player/lobby/lobby.component';
 import { HostLobbyComponent } from './game/play/host/host-lobby/host-lobby.component';
+import { PlayerCycleComponent } from './game/play/player-cycle/player-cycle.component';
+import { PlayerQuestionComponent } from './game/play/player-cycle/player-question/player-question.component';
+import { PlayerWaitComponent } from './game/play/player-cycle/player-wait/player-wait.component';
+import { PlayerOutcomeComponent } from './game/play/player-cycle/player-outcome/player-outcome.component';
+import { PlayerAwardComponent } from './game/play/player-award/player-award.component';
+import { HostCycleComponent } from './game/play/host-cycle/host-cycle.component';
+import { HostQuestionComponent } from './game/play/host-cycle/host-question/host-question.component';
+import { InProgressComponent } from './game/play/host-cycle/host-answers/in-progress/in-progress.component';
+import { QuestionDoneComponent } from './game/play/host-cycle/host-answers/question-done/question-done.component';
+import { ScoreboardComponent } from './game/play/host-cycle/scoreboard/scoreboard.component';
+import { HostAnswersComponent } from './game/play/host-cycle/host-answers/host-answers.component';
+import { AnswerColumnComponent } from './game/play/host-cycle/host-answers/answer-column/answer-column.component';
+import { PodiumComponent } from './game/play/podium/podium.component';
 
 
 
@@ -83,6 +96,19 @@ import { HostLobbyComponent } from './game/play/host/host-lobby/host-lobby.compo
     PlayerComponent,
     LobbyComponent,
     HostLobbyComponent,
+    PlayerCycleComponent,
+    PlayerQuestionComponent,
+    PlayerWaitComponent,
+    PlayerOutcomeComponent,
+    PlayerAwardComponent,
+    HostCycleComponent,
+    HostQuestionComponent,
+    InProgressComponent,
+    QuestionDoneComponent,
+    ScoreboardComponent,
+    HostAnswersComponent,
+    AnswerColumnComponent,
+    PodiumComponent,
     
   ],
   imports: [

@@ -75,6 +75,11 @@ export class WebSocketService {
       console.log('yeet')
 
     })
+
+
+  }
+  hostStartGame(game_pin){
+      this.socket.to(game_pin).emit('game-started')
   }
 
   changeSessionData(session_data) {
