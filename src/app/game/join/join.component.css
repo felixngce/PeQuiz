@@ -53,7 +53,7 @@ body{
     font-size: 20px;
     text-align: center;
 }
-#pin{
+.join_fields{
     width: 50%;
     padding: 12px 0px;
     margin: 8px 0;

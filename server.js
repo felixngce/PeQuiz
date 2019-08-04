@@ -84,6 +84,20 @@ io.on('connection', (socket) => {
 
     })
 
+    socket.on('get-display-name', function(data){
+        console.log("this should be the pin")
+        console.log(data)
+        db.collection('Session').findOne({"game_pin": data},function (err, results){
+            console.log(results)
+            io.emit("getSessionData", results)
+
+        })
+    });
+
+    socket.on('disconnect',function(data){
+        console.log('some fucking idiot is disconnecting')
+    })
+
     socket.on('host-disconnect',function(data){
         console.log('host is disconnecting')
         console.log(data)
@@ -99,6 +113,66 @@ io.on('connection', (socket) => {
             }
     
         )
+    })
+
+    socket.on('player-connect',function(data){
+        console.log('player is connecting')
+        console.log(data)
+        db.collection('Session').findOne({game_pin: data.game_pin}, function(err,result){
+        console.log("this is the resultsff")
+        var i;
+        var playerNo = result.player.length
+        console.log("This is the length of the player array")
+        console.log(playerNo)
+        if(playerNo == 0){
+            console.log("there are 0 players")
+            db.collection('Session').updateOne({},{
+                $push: {
+                    "player": {'display_name': data.display_name, 'points' : 0}
+                }},
+            function(err,result){
+                if (err) return console.log(err);
+    
+                console.log("a room was actually found")
+                socket.join(data.game_pin)
+                socket.emit('player-join-success')
+                socket.emit
+            })
+        }
+        else{
+            var counter = 0;
+
+
+            for (i = 0; i < playerNo; i++) { 
+                if(data.display_name != result.player[i].display_name){
+                    counter += 1;
+
+                }
+            }
+            //If there aren't matching display names
+            if(counter == playerNo){
+                console.log("there aren't any matching display names")
+            db.collection('Session').updateOne({},{
+                $push: {
+                    "player": {'display_name': data.display_name, 'points' : 0}
+                }},
+            function(err,result){
+                if (err) return console.log(err);
+    
+                console.log("a room was actually found and u aren't the 1st player")
+                socket.join(data.game_pin)
+                socket.emit('player-join-success')
+            })
+
+            }
+            else{
+                socket.emit("display_name_taken")
+            }
+        }
+
+            
+
+    })
     })
 });
 

@@ -1,21 +1,25 @@
 <html>
 <div class="rainbow-background">
     <div style="padding-top: 10%;">
-      
-<h1 id = "title">Join a Game</h1>
-<form action="/player/">
-        <br>
-        <div class="form-field">
-            <label id = "label">Game Pin</label>
-            <input id = "pin" type="number" name="pin"/>
-        </div>
-        <br>
-        <div class="form-field">
-            <button id = "joinButton">Join</button>
-            <a><button (click)="routeToHome()" id="goBack">Go Back</button></a>
-        </div>
-</form>
-</div>
+
+        <h1 id="title">Join a Game</h1>
+        <form [formGroup]="joinGameForm" (ngSubmit)="playerJoinGame(joinGameForm)">
+            <br>
+            <div class="form-field">
+                <label id="label">Game PIN</label>
+                <input formControlName="game_pin" class="join_fields" type="number" name="pin" />
+                <label style="margin-top: 2%" id="label">Display Name</label>
+                <input formControlName="display_name" class="join_fields" type="text" name="" />
+
+            </div>
+            <br>
+            <div class="form-field">
+                <button type="submit" id="joinButton">Join</button>
+                <a><button (click)="routeToHome()" id="goBack">Go Back</button></a>
+            </div>
+        </form>
+    </div>
 
 </div>
+
 </html>

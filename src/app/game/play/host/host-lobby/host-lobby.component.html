@@ -1,5 +1,38 @@
-<div *ngIf="isDataLoaded">
-<p>
-  {{session_data.game_pin}}
-</p>
+<div class="rainbow-background">
+  <div *ngIf="isDataLoaded" style="padding-top: 5%">
+    <div>
+      <h1 style="text-align: center;font-size: 50px;color: white">
+
+
+
+        Use this game PIN to join the room:</h1>
+      <button class="btn btn-primary" style="float: right;margin-right: 5%;width: 9.7%" (click)="routeToHome()">
+        Go Back
+      </button>
+    </div>
+
+
+
+
+    <h1 style="color: white; text-align: center;font-size: 80px; margin-left: 15%">
+      {{session_data.game_pin}}
+    </h1>
+    <hr style="border: 3px solid white;margin-top: 0px;">
+    <ul style="list-style-type: none;float: left;width: 100%;">
+      <li style="width: 50%;display:inline-block;;color: white;font-size: 40px;">
+        <p><span>{{session_data.player.length}}</span><span> Players</span></p>
+      </li>
+      <li style="width: 50%;display:inline-block;;color: white;font-size: 40px;">
+        <button class="btn btn-primary"
+          style=" background-color: grey;color: white; float: right;margin-right:10%;width: 20%;margin-top: 5%;border-color: grey">
+          Start
+        </button>
+      </li>
+      
+        <li *ngFor="let player of session_data.player; let i = index" style="width: 33%;display:inline-block;text-align: center;color: white;font-size: 40px;padding-top: 40px;">
+          {{session_data.player[i].display_name}}
+        </li>
+      
+    </ul>
+  </div>
 </div>

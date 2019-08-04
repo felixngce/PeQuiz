@@ -43,6 +43,10 @@ export class WebSocketService {
     });
   }
 
+  getCurrentSocket() {
+    return this.socket;
+  }
+
   emit(eventName: string, data: any) {
     this.socket.emit(eventName, data)
   }
@@ -54,9 +58,25 @@ export class WebSocketService {
 
   }
 
+  getDisplayNames(data){
+    console.log(data)
+    this.socket.emit('get-display-name', data);
+  }
+
   hostDisconnect(data){
     this.socket.emit('host-disconnect', data);
   }
+
+  playerConnect(data){
+    this.socket.emit('player-connect', data);
+  }
+  playerSuccessfullyConnect(){
+    this.socket.on('player-join-success',function(data){
+      console.log('yeet')
+
+    })
+  }
+
   changeSessionData(session_data) {
     this.central_session_data.next(session_data)
     console.log(this.currentSessionData)

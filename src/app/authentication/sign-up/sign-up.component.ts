@@ -29,6 +29,8 @@ export class SignUpComponent implements OnInit {
       password:''
 
       });
+
+      
   }
 
   onSignUp(){
@@ -40,6 +42,8 @@ export class SignUpComponent implements OnInit {
     });
     
     }
+
+    
    
 
 }
