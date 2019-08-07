@@ -55,6 +55,9 @@ import { ScoreboardComponent } from './game/play/host-cycle/scoreboard/scoreboar
 import { HostAnswersComponent } from './game/play/host-cycle/host-answers/host-answers.component';
 import { AnswerColumnComponent } from './game/play/host-cycle/host-answers/answer-column/answer-column.component';
 import { PodiumComponent } from './game/play/podium/podium.component';
+import { PlayerAnswerComponent } from './game/play/player-cycle/player-answer/player-answer.component';
+import { PlayerDataBarComponent } from './game/play/player-cycle/player-data-bar/player-data-bar.component';
+import { HostQuestionBarComponent } from './game/play/host-cycle/host-answers/host-question-bar/host-question-bar.component';
 
 
 
@@ -109,6 +112,9 @@ import { PodiumComponent } from './game/play/podium/podium.component';
     HostAnswersComponent,
     AnswerColumnComponent,
     PodiumComponent,
+    PlayerAnswerComponent,
+    PlayerDataBarComponent,
+    HostQuestionBarComponent,
     
   ],
   imports: [

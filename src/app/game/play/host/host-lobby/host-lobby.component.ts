@@ -18,11 +18,11 @@ export class HostLobbyComponent implements OnInit {
 
   public session_data;
   public isDataLoaded : Boolean = false;
-  public user_id = this.authService.getSecureToken;
+  public user_id = this.authService.getSecureToken();
 
 
   ngOnInit() {
-    console.log("daf")
+
 
     this.webSocketService.listen('getSessionData').subscribe((data) => {
       console.log(data)
@@ -61,6 +61,12 @@ export class HostLobbyComponent implements OnInit {
 
   routeToHome(){
     this.router.navigate(["/main/home/" + this.user_id])
+  }
+
+  startGame(){
+    this.webSocketService.hostStartGame(this.session_data)
+    this.webSocketService.changeSessionData(this.session_data)
+    this.router.navigate(["/game/play/host-cycle/host-question/" + this.session_data.game_pin])
   }
 
 }

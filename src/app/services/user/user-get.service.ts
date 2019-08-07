@@ -37,7 +37,6 @@ export class UserGetService {
 
   changeData(user_data) {
     this.central_user_data.next(user_data)
-    console.log(this.currentUserData)
   }
 
   getAllUsers() {
@@ -45,7 +44,6 @@ export class UserGetService {
   }
 
   getUserById(id) {
-    console.log(id) 
     return this.http.get<any[]>('http://localhost:3000/api/users/' + id)
   }
 
@@ -73,8 +71,6 @@ export class UserGetService {
   }
 
   updateUserPfp(id, profile_picture){
-    console.log("this is the profile picture")
-    console.log(profile_picture)
     return this.http.post<any[]>('http://localhost:3000/api/userPfp/' + id,
       profile_picture
     );

@@ -82,7 +82,6 @@ router.route('/users/:id').get(function (req, res) {
 
 // register new user
 router.route('/users/').post(function (req, res) {
-    console.log(req.body)
 
 
 
@@ -149,7 +148,6 @@ router.route('/authuser/').post(function (req, res2) {
 
 //Update user's profile picture
 router.route('/userPfp/:id').post(upload.single('profile_picture'), function (req, res) {
-    console.log(req.file.buffer)
     pfpImage = (Buffer.from(req.file.buffer).toString('base64'));
 
 
@@ -174,7 +172,6 @@ router.route('/userPfp/:id').post(upload.single('profile_picture'), function (re
 //Update user's profile data
 router.route('/users/:id').put(function (req, res) {
 
-    console.log(req.body)
 
     db.collection('User').updateOne(
         { _id: ObjectId(req.params["id"]) }, {
@@ -216,10 +213,8 @@ router.route('/usersPw/:id').put(function (req, res) {
 
                     console.log("This isn't your old password!!")
                 } else {
-                    console.log(new_password)
                     bcrypt.hash(new_password, BCRYPT_SALT_ROUNDS, function (err, hash) {
                         new_password = hash;
-                        console.log(new_password)
                         var time = new Date().getTime();
                         var date = new Date(time);
 
@@ -253,8 +248,7 @@ router.route('/usersPw/:id').put(function (req, res) {
 //Delete user account
 router.route('/delUser/:id').post(function (req, res) {
 
-    console.log("Request received")
-    console.log(req.params["id"])
+
 
     db.collection('User').deleteOne(
         { _id: ObjectId(req.params["id"]) }, {
@@ -273,7 +267,6 @@ router.route('/delUser/:id').post(function (req, res) {
 
 // register new quiz
 router.route('/newQuiz/').post(function (req, res) {
-    console.log(req.body)
 
 
     var time = new Date().getTime();
@@ -283,7 +276,6 @@ router.route('/newQuiz/').post(function (req, res) {
     
     reqMsg["no_of_plays"] = 0;
     reqMsg["quiz_date_created"] = date.toString();
-    console.log(reqMsg)
 
     db.collection('User').updateOne(
         {_id: ObjectId(reqMsg.user_created)},{
@@ -303,9 +295,7 @@ router.route('/newQuiz/').post(function (req, res) {
 
 //delete quiz from array
 router.route('/deleteQuiz/:id').put(function (req,res){
-    console.log("This is delete quiz console logs")
-    console.log(req.params["id"])
-    console.log(req.body)
+
 db.collection('User').updateOne({_id : ObjectId(req.params["id"])}, 
     {$set:{ 
         "quiz_created": req.body.quiz_array

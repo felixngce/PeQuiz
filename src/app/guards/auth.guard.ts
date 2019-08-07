@@ -15,14 +15,11 @@ export class AuthGuard implements CanActivate {
     //If user is logged in, guard= true for MainComponent, and also redirect
     if (this.authService.isLoggedIn()) {
 
-      console.log("this is indeed logged in!")
       return true;
 
 
     }
     else{
-      console.log("if this is " + !this.authService.isLoggedIn());
-      console.log("this is suppose to redirect me to cover!");
 
       this.router.navigate(["/cover"]);
       return false;

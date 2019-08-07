@@ -14,11 +14,11 @@ export class WebSocketService {
       _id: null,
       host_id: null,
       quiz_id: null,
-      players: [],
+      player: [],
       quiz_data: [],
       game_live: null,
       game_pin: null,
-      players_answered: null,
+      current_question: null,
 
 
 
@@ -33,54 +33,6 @@ export class WebSocketService {
   private socket = io('http://localhost:3000')
   private central_session_data = new BehaviorSubject(this.sessionDataPlaceHolder);
   currentSessionData = this.central_session_data.asObservable();
-
-
-  listen(eventName: string) {
-    return new Observable((subscriber) => {
-      this.socket.on(eventName, (data) => {
-        subscriber.next(data);
-      })
-    });
-  }
-
-  getCurrentSocket() {
-    return this.socket;
-  }
-
-  emit(eventName: string, data: any) {
-    this.socket.emit(eventName, data)
-  }
-
-
-  hostCreateGame(data) {
-    this.socket.emit('host-create-room', data);
-    console.log(data)
-
-  }
-
-  getDisplayNames(data){
-    console.log(data)
-    this.socket.emit('get-display-name', data);
-  }
-
-  hostDisconnect(data){
-    this.socket.emit('host-disconnect', data);
-  }
-
-  playerConnect(data){
-    this.socket.emit('player-connect', data);
-  }
-  playerSuccessfullyConnect(){
-    this.socket.on('player-join-success',function(data){
-      console.log('yeet')
-
-    })
-
-
-  }
-  hostStartGame(game_pin){
-      this.socket.to(game_pin).emit('game-started')
-  }
 
   changeSessionData(session_data) {
     this.central_session_data.next(session_data)
@@ -100,6 +52,82 @@ export class WebSocketService {
 
     })
   }
+
+
+  listen(eventName: string) {
+    return new Observable((subscriber) => {
+      this.socket.on(eventName, (data) => {
+        subscriber.next(data);
+      })
+    });
+  }
+
+  getCurrentSocket() {
+    return this.socket;
+  }
+
+  emit(eventName: string, data: any) {
+    this.socket.emit(eventName, data)
+  }
+
+  setSessionGamePin(game_pin: any) {
+    sessionStorage.setItem("gamePIN", game_pin)
+    console.log(sessionStorage);
+  }
+
+  getSessionGamePin() {
+
+    return sessionStorage.getItem("gamePIN")
+
+  }
+
+  removeSessionGamePin() {
+    sessionStorage.removeItem("gamePIN");
+    console.log(sessionStorage);
+    
+    }
+
+  hostCreateGame(data) {
+    this.socket.emit('host-create-room', data);
+    console.log(data)
+
+  }
+
+  getDisplayNames(data) {
+    console.log(data)
+    this.socket.emit('get-display-name', data);
+  }
+
+  hostDisconnect(data) {
+    this.socket.emit('host-disconnect', data);
+    console.log('host disconnected')
+    console.log(data)
+  }
+
+  playerConnect(data) {
+    this.socket.emit('player-connect', data);
+  }
+  playerSuccessfullyConnect() {
+    this.socket.on('player-join-success', function (data) {
+      console.log('yeet')
+
+    })
+
+
+  }
+  hostStartGame(game_pin) {
+    this.socket.emit('game-starting', game_pin)
+  }
+
+  goToAnswering(game_pin){
+    this.socket.emit('go-to-answering', game_pin)
+  }
+
+  getNewSessionData(game_pin){
+    this.socket.emit('get-new-session-data',game_pin)
+  }
+
+
 
   chatJoin() {
   }

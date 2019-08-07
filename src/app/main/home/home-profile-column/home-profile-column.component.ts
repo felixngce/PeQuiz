@@ -22,11 +22,8 @@ export class HomeProfileColumnComponent implements OnInit {
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
-    console.log("This is the child compnent")
     this.userGetService.currentUserData.subscribe(data => {
       this.user_data = data;
-      console.log("this is the pulled data")
-      console.log(this.user_data)
       this.pfpSrc = "data:image/png;base64," + this.user_data[0].profile_picture;
 
       this.isDataLoaded = true;

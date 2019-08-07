@@ -31,11 +31,14 @@ export class JoinComponent implements OnInit {
     this.user_id = this.authService.getSecureToken()
     console.log(this.user_id)
 
-    this.findUserById()
+    // this.findUserById()
+
+    this.webSocketService.removeSessionGamePin()
 
     this.webSocketService.listen('player-join-success').subscribe((data) => {
       console.log('User connect successful!')
       this.webSocketService.getDisplayNames(this.joinGameForm.value.game_pin);
+      this.webSocketService.setSessionGamePin(this.joinGameForm.value.game_pin)
       this.router.navigate(["/game/play/player/lobby/" + this.joinGameForm.value.game_pin], {queryParams: {
      'name': this.joinGameForm.value.display_name}});
 

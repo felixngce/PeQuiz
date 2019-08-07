@@ -21,24 +21,26 @@ export class MainComponent implements OnInit {
 
 
   sessionDataPlaceHolder =
-  {
-    _id: null,
-    host_id: null,
-    quiz_id: null,
-    players: [],
-    quiz_data: [],
-    game_live: null,
-    game_pin: null,
-    players_answered: null,
+    {
+      _id: null,
+      host_id: null,
+      quiz_id: null,
+      players: [],
+      quiz_data: [],
+      game_live: null,
+      game_pin: null,
+      players_answered: null,
 
-  }
+    }
 
   ngOnInit() {
-    
-    
-      // this.router.navigate(['/main/home']);
-      this.user_id = this.authService.getSecureToken()
-      this.findUserById()
+
+
+
+
+    // this.router.navigate(['/main/home']);
+    this.user_id = this.authService.getSecureToken()
+    this.findUserById()
     this.deleteSessionInfo()
     console.log(this.session_data)
     this.webSocketService.hostDisconnect(this.session_data)
@@ -48,31 +50,29 @@ export class MainComponent implements OnInit {
 
 
 
-  
+
   }
-deleteSessionInfo(){
-  this.webSocketService.currentSessionData.subscribe(data => {
-    this.session_data = data;
+  deleteSessionInfo() {
+    this.webSocketService.currentSessionData.subscribe(data => {
+      this.session_data = data;
 
-    console.log(this.session_data)
+      console.log(this.session_data)
 
 
 
-  });
-}
-  findUserById(){
+    });
+  }
+  findUserById() {
     this.userGetService.getUserById(this.user_id).subscribe(data => {
-        this.user_data = data;
-        console.log("This is the user data sent to service")
-        console.log(this.user_data);
+      this.user_data = data;
 
-        console.log("This is me changing the service data!")
-        this.userGetService.changeData(this.user_data)
+
+      this.userGetService.changeData(this.user_data)
 
 
 
 
-      });
+    });
   }
 
 }

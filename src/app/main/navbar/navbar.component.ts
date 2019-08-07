@@ -61,7 +61,6 @@ export class NavbarComponent implements OnInit {
 
 
   logOut(){
-    console.log("logout button actually working")
     localStorage.setItem('quizArray', JSON.stringify(this.resetDataTemplate));
 
     
@@ -91,8 +90,7 @@ export class NavbarComponent implements OnInit {
     
     this.userGetService.currentUserData.subscribe(data => {
       this.pulledData = data;
-      console.log("this is the pulled data")
-      console.log(this.pulledData)
+
 
       this.pfpSrc = "data:image/png;base64," + this.pulledData[0].profile_picture;
 
@@ -102,7 +100,6 @@ export class NavbarComponent implements OnInit {
 
     this.quizService.currentCreateQuizData.subscribe(data => {
       this.validateCreateQuiz = data;
-      console.log(data)
 
     })
 

@@ -54,7 +54,6 @@ export class MyQuizColumnComponent implements OnInit {
   routeHostToGame(quiz_id){
     this.quiz_object = this.user_data[0].quiz_created[quiz_id]
     this.webSocketService.hostCreateGame({host_id: this.user_id, quiz_id: quiz_id, quiz_data:this.quiz_object})
-    console.log(quiz_id)
     this.router.navigate(['/game/play/host/lobby'])
   }
 

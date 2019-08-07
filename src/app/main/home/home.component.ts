@@ -35,36 +35,27 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.userGetService.currentUserData.subscribe(data => {
-      console.log(this.quizService.createQuizData)
 
       this.user_data = data;
-      console.log("this is the pulled data")
-      console.log(this.user_data)
+
     });
 
     this.quizService.currentCreateQuizData.subscribe(data => {
       this.validateCreateQuiz = data;
-      console.log(data)
 
     })
 
   }
 
   routeToCreate(){
-    console.log(localStorage.getItem('quizArray'));
 
-    console.log(this.user_data[0]._id)
 
-    //problem here
-    console.log(this.resetDataTemplate)
-    console.log(this.validateCreateQuiz)
+
     if(this.validateCreateQuiz == 'helloo'){
     this.quizService.changeCreateQuizData(this.resetDataTemplate)
     }
     this.router.navigate(["/main/quiz/create/overview"])
-    console.log(this.user_data[0]._id)
 
-    console.log("Function going off")
 
   }
 

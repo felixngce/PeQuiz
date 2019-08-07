@@ -46,9 +46,11 @@ import { ScoreboardComponent} from './game/play/host-cycle/scoreboard/scoreboard
 
 
 import {PlayerCycleComponent} from './game/play/player-cycle/player-cycle.component'
-import {PlayerOutcomeComponent} from './game/play/player-cycle/player-outcome/player-outcome.component'
 import {PlayerQuestionComponent} from './game/play/player-cycle/player-question/player-question.component'
+import {PlayerAnswerComponent} from './game/play/player-cycle/player-answer/player-answer.component'
 import {PlayerWaitComponent} from './game/play/player-cycle/player-wait/player-wait.component'
+import {PlayerOutcomeComponent} from './game/play/player-cycle/player-outcome/player-outcome.component'
+
 
 
 
@@ -151,7 +153,8 @@ const routes: Routes = [
             {path: 'player-cycle', component: PlayerCycleComponent, children: [
               {path: 'player-outcome/:id', component: PlayerOutcomeComponent},
               {path: 'player-wait/:id', component: PlayerWaitComponent},
-              {path:'player-question/:id', component: PlayerQuestionComponent}
+              {path:'player-question/:id', component: PlayerQuestionComponent},
+              {path: 'player-answer/:id', component: PlayerAnswerComponent}
             ]},
             {
             path: 'host', component: HostComponent, children: [
