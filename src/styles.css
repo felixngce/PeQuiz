@@ -37,6 +37,52 @@ html{
   background-size: cover;
 }
 
+.scoreboard-background{
+  background-color:#ff9933;
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.podium-background{
+  background-color:rgb(81, 51, 165);
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.player-wait-background{
+  background-color: #3399ff;
+  min-height: 92vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.player-correct-background{
+  background-color:#4CAF50;
+  min-height: 92vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.player-wrong-background{
+  background-color:rgb(255, 51, 85);
+  min-height: 92vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
 .containerEx{
   display: inline;
   text-align: center;

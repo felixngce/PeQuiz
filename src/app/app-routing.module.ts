@@ -141,7 +141,7 @@ const routes: Routes = [
         path: 'play', component: PlayComponent,
         children: [
           {path: 'player-award', component: PlayerAwardComponent},
-          {path: 'podium', component: PodiumComponent},{
+          {path: 'podium/:id', component: PodiumComponent},{
             path: 'host-cycle', component: HostCycleComponent, children: [
               {path: 'host-answers', component: HostAnswersComponent, children: [
                 {path: 'in-progress/:id', component: InProgressComponent},

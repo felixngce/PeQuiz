@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-podium',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PodiumComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
+  }
+
+  routeToHome(){
+    this.router.navigate(['/cover'])
+
   }
 
 }

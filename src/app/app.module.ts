@@ -35,6 +35,7 @@ import {UserGetService} from './services/user/user-get.service'
 
 import {FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { DatePipe } from '@angular/common'
+import {MatProgressSpinnerModule, MatRadioModule, MatSliderModule} from '@angular/material'
 
 import { HttpClientModule } from '@angular/common/http';
 import { AddQuestionComponent } from './main/quiz/create-quiz/add-question/add-question.component';
@@ -123,6 +124,8 @@ import { HostQuestionBarComponent } from './game/play/host-cycle/host-answers/ho
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatProgressSpinnerModule, MatRadioModule, MatSliderModule
+
   ],
   providers: [AuthService,
               DatePipe],
