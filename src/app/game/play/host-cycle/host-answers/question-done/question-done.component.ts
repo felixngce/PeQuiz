@@ -9,6 +9,10 @@ export class QuestionDoneComponent implements OnInit {
 
   constructor() { }
 
+  blueHeight = 130;
+
+  //Max-height 260px, normal 10px
+
   ngOnInit() {
   }
 
