@@ -31,13 +31,13 @@ export class PlayerQuestionComponent implements OnInit {
     //   this.webSocketService.changeSessionData(this.session_data)
     // })
 
-    this.webSocketService.listen('getSessionData').subscribe((data) => {
-      this.session_data = data;
-      this.isDataLoaded = true
-      this.webSocketService.changeSessionData(this.session_data)
-      console.log(this.session_data)
+    // this.webSocketService.listen('getSessionData').subscribe((data) => {
+    //   this.session_data = data;
+    //   this.isDataLoaded = true
+    //   this.webSocketService.changeSessionData(this.session_data)
+    //   console.log(this.session_data)
 
-    })
+    // })
     this.startCountdown(5)
 
     this.webSocketService.currentSessionData.subscribe(data => {

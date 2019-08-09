@@ -38,7 +38,7 @@ export class ScoreboardComponent implements OnInit {
       this.webSocketService.changeSessionData(this.current_session_data);
       console.log("this is current_session_data// should be")
       console.log(this.current_session_data)
-      this.webSocketService.emit('player-back-to-question', this.current_session_data)
+      this.webSocketService.emit('player-back-to-question', this.host_id)
       this.router.navigate(["/game/play/host-cycle/host-question/" + this.game_pin])
     })
 
