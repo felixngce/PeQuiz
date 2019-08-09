@@ -161,7 +161,7 @@ io.on('connection', (socket) => {
                 console.log("there are 0 players")
                 db.collection('Session').updateOne({ "game_pin": data.game_pin }, {
                     $push: {
-                        "player": { 'display_name': data.display_name, 'points': 0 }
+                        "player": { 'display_name': data.display_name, 'points': 0 , 'answer': 0, 'answer_outcome':false, 'points_awarded':0 , 'game_pin': data.game_pin}
                     }
                 },
                     function (err, result) {
@@ -170,7 +170,6 @@ io.on('connection', (socket) => {
                         console.log("a room was actually found")
                         socket.join(data.game_pin)
                         socket.emit('player-join-success')
-                        socket.emit
                     })
             }
             else {
@@ -188,7 +187,7 @@ io.on('connection', (socket) => {
                     console.log("there aren't any matching display names")
                     db.collection('Session').updateOne({ "game_pin": data.game_pin }, {
                         $push: {
-                            "player": { 'display_name': data.display_name, 'points': 0 }
+                            "player": { 'display_name': data.display_name, 'points': 0 , 'answer': 0, 'answer_outcome':false, 'points_awarded':0 , 'game_pin': data.game_pin}
                         }
                     },
                         function (err, result) {
@@ -215,6 +214,41 @@ io.on('connection', (socket) => {
 
 
     })
+
+    socket.on('player-answered', function(data){
+        console.log(data);
+        io.to(data.game_pin).emit('one-player-answered', data)
+    })
+    function sortEggsInNest(a, b) {
+        if (a > b) {
+          return -1;;
+        } else if (b > a) {
+          return 1;;
+        } else {
+          return 0;
+        }
+      }
+
+    socket.on('player-unsorted-list', function(data){
+        data.player_list.sort(function(a,b){
+            {return b.points - a.points}
+        })
+        console.log('sorted list')
+        console.log(data)
+        db.collection('Session').updateOne(
+            { host_id: data.host_id }, {
+    
+                $set: {
+                    "player": data.player_list
+                }
+            }, (err, results) => {
+                if (err) return console.log(err);
+                io.to(data.player_list[0].game_pin).emit('just-player-data', data.player_list)
+            }
+    
+        )
+    })
+    
 });
 
 

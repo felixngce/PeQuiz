@@ -1,13 +1,13 @@
-<!-- <div class="player-correct-background">
+<div *ngIf="player_object.answer_outcome == true" class="player-correct-background">
   <div style="padding-top:12%">
     <h2 style="color: white;text-align:center;font-size: 50px">Correct!</h2>
-    <h2 style="color: white;text-align:center; margin-top: 3%">+<span>892</span></h2>
+    <h2 style="color: white;text-align:center; margin-top: 3%">+<span>{{player_object.points_awarded}}</span></h2>
     <h2 style="color: white;text-align:center; margin-top: 3%">You're in<span> 3rd</span> place</h2>
 
   </div>
-</div> -->
+</div>
 
-<div class="player-wrong-background">
+<div *ngIf="player_object.answer_outcome == false" class="player-wrong-background">
     <div style="padding-top:12%">
       <h2 style="color: white;text-align:center;font-size: 50px">Wrong!</h2>
       <h2 style="color: white;text-align:center; margin-top: 3%">Better luck next time xD</h2>

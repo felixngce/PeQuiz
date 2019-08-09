@@ -23,7 +23,6 @@ export class PlayerQuestionComponent implements OnInit {
     this.webSocketService.getDisplayNames(this.session_room_id)
 
     this.webSocketService.listen('getSessionData').subscribe((data) => {
-      console.log(data)
       this.session_data = data;
       this.isDataLoaded = true
       this.webSocketService.changeSessionData(this.session_data)

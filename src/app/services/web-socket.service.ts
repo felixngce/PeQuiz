@@ -19,24 +19,25 @@ export class WebSocketService {
       game_live: null,
       game_pin: null,
       current_question: null,
-
-
-
-
-
     }
 
-
-
-
+    chartArray = [null];
 
   private socket = io('http://localhost:3000')
   private central_session_data = new BehaviorSubject(this.sessionDataPlaceHolder);
   currentSessionData = this.central_session_data.asObservable();
 
+  private to_chart_array = new BehaviorSubject(this.chartArray);
+  getChartArray  = this.to_chart_array.asObservable();
+
   changeSessionData(session_data) {
     this.central_session_data.next(session_data)
     console.log(this.currentSessionData)
+  }
+
+  updateChartData(chart_data){
+    this.to_chart_array.next(chart_data)
+    console.log(this.to_chart_array)
   }
 
   getSessionData() {
