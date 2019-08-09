@@ -56,6 +56,7 @@ export class QuestionDoneComponent implements OnInit {
   }
 
   routeToScoreboard(){
+    this.webSocketService.updateChartData([null])
     this.router.navigate(['/game/play/host-cycle/scoreboard/' + this.game_pin])
   }
 

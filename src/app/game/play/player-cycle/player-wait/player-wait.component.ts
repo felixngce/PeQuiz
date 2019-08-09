@@ -22,7 +22,8 @@ export class PlayerWaitComponent implements OnInit {
   constructor(private webSocketService: WebSocketService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.session_room_id = this.route.snapshot.queryParamMap.get('id')
+    this.session_room_id = this.route.snapshot.paramMap.get('id')
+    console.log(this.session_room_id);
     this.session_display_name = this.route.snapshot.queryParamMap.get('name')
     this.webSocketService.currentSessionData.subscribe(data => {
       this.current_session_data = data;

@@ -19,8 +19,17 @@ export class PlayerQuestionComponent implements OnInit {
   ngOnInit() {
     this.session_room_id = this.route.snapshot.queryParamMap.get('id')
     this.session_display_name = this.route.snapshot.queryParamMap.get('name')
+    this.webSocketService.emit('getStartingData', this.session_room_id)
     console.log(this.session_room_id)
     this.webSocketService.getDisplayNames(this.session_room_id)
+
+    // this.webSocketService.listen('get-starting-data').subscribe((data)=>{
+    //   console.log("This should have the correct current qn num")
+    //   console.log(data)
+    //   this.session_data = data;
+    //   this.isDataLoaded = true
+    //   this.webSocketService.changeSessionData(this.session_data)
+    // })
 
     this.webSocketService.listen('getSessionData').subscribe((data) => {
       this.session_data = data;

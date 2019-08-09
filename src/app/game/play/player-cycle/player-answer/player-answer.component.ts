@@ -134,7 +134,6 @@ export class PlayerAnswerComponent implements OnInit {
     this.counter = seconds;
 
     var interval = setInterval(() => {
-      console.log(this.counter);
       this.counter--;
 
 

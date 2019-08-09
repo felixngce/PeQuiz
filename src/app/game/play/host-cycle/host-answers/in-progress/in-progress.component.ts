@@ -80,6 +80,8 @@ export class InProgressComponent implements OnInit {
       }
     }
     this.webSocketService.updateChartData([this.answer_1_num, this.answer_2_num, this.answer_3_num,this.answer_4_num])
+    // this.current_session_data.player = this.toDbArray;
+    // this.webSocketService.changeSessionData(this.current_session_data)
     console.log([this.answer_1_num, this.answer_2_num, this.answer_3_num,this.answer_4_num])
     this.toDbArray = [];
     this.forLoopArray = [];
@@ -89,7 +91,6 @@ export class InProgressComponent implements OnInit {
     this.counter = seconds;
 
     var interval = setInterval(() => {
-      console.log(this.counter);
       this.counter--;
 
 

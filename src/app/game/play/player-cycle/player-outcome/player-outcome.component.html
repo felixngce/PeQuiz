@@ -2,7 +2,11 @@
   <div style="padding-top:12%">
     <h2 style="color: white;text-align:center;font-size: 50px">Correct!</h2>
     <h2 style="color: white;text-align:center; margin-top: 3%">+<span>{{player_object.points_awarded}}</span></h2>
-    <h2 style="color: white;text-align:center; margin-top: 3%">You're in<span> 3rd</span> place</h2>
+    <h2 style="color: white;text-align:center; margin-top: 3%">You're in<span> {{this.player_position}}</span> 
+      <span *ngIf="this.player_position == 1">st</span>
+      <span *ngIf="this.player_position == 2">nd</span>
+      <span *ngIf="this.player_position == 3">rd</span>
+      <span *ngIf="this.player_position > 3">th</span> place</h2>
 
   </div>
 </div>
@@ -11,7 +15,14 @@
     <div style="padding-top:12%">
       <h2 style="color: white;text-align:center;font-size: 50px">Wrong!</h2>
       <h2 style="color: white;text-align:center; margin-top: 3%">Better luck next time xD</h2>
-      <h2 style="color: white;text-align:center; margin-top: 3%">You're in<span> 3rd</span> place</h2>
+      <h2 style="color: white;text-align:center; margin-top: 3%">You're in<span> {{this.player_position}}</span> 
+        <span *ngIf="this.player_position == 1">st</span>
+        <span *ngIf="this.player_position == 2">nd</span>
+        <span *ngIf="this.player_position == 3">rd</span>
+        <span *ngIf="this.player_position > 3">th</span>
+
+
+         place</h2>
   
     </div>
   </div>

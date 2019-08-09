@@ -248,6 +248,31 @@ io.on('connection', (socket) => {
     
         )
     })
+
+    socket.on('update-current-question', function(data){
+        
+        db.collection('Session').updateOne({ host_id: data.host_id},{
+            $set:{
+                "current_question": data.new_current_question
+            }
+        }, (err, results) => {
+            if (err) return console.log(err);
+            io.to(data.game_pin).emit('current-question-updated')
+        })
+    })
+
+    socket.on('player-back-to-question', function(data){
+        console.log("hey go back")
+        console.log(data)
+        io.to(data.game_pin).emit('to-player-question',data);
+    })
+    socket.on('getStartingData', function(data){
+        db.collection('Session').findOne({'game_pin': data},  function (err, result) {
+            io.to(data).emit('get-starting-data', result)
+            console.log("these are qwerresultsss")
+            console.log(result)
+        })
+    })
     
 });
 
