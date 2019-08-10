@@ -14,14 +14,12 @@ export class LobbyComponent implements OnInit {
   constructor(private webSocketService: WebSocketService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    console.log(this.webSocketService.getSessionGamePin())
 
 
     this.game_pin = this.route.snapshot.paramMap.get('id')
     this.display_name = this.route.snapshot.queryParamMap.get('name')
     this.webSocketService.listen("game-starting-players").subscribe((data)=>{
-      console.log("hi")
-      console.log(data)
+   
       this.webSocketService.changeSessionData(data);
       this.router.navigate(["/game/play/player-cycle/player-question/" + this.game_pin ],{queryParams: {
         'name': this.display_name}} )

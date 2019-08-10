@@ -77,8 +77,6 @@ export class ProfileColumnComponent implements OnInit {
 
     this.userGetService.currentUserData.subscribe(data => {
       this.user_data = data;
-      console.log("this is the pulled data for profile-column")
-      console.log(this.user_data)
       this.pfpSrc = "data:image/png;base64," + this.user_data[0].profile_picture;
       this.isDataLoaded = true;
 
@@ -92,7 +90,6 @@ export class ProfileColumnComponent implements OnInit {
     this.userGetService.getUserById(this.user_id).subscribe(data => {
 
         this.userGetService.changeData(data)
-        console.log(data)
 
 
 
@@ -109,19 +106,15 @@ export class ProfileColumnComponent implements OnInit {
 
   onUpdatePfp(){
 
-    console.log(this.selectedFile);
 
-    console.log("This is the file")
 
     const fd = new FormData()
     fd.append('profile_picture', this.selectedFile, this.selectedFile.name)
 
       this.userGetService.updateUserPfp(this.user_id, fd).subscribe(results => {
         this.findUserById()
-        console.log("yep update works")
       });
-      console.log(this.user_data)
-      console.log(this.pulledData)
+
       // Right here i am uploading old data to the service
       // this.userGetService.changeData(this.user_data)
 
@@ -149,7 +142,6 @@ export class ProfileColumnComponent implements OnInit {
     this.userGetService.updateUser(this.user_id, this.user_data[0].username, this.emailForm.value.new_email, this.user_data[0].quiz_privacy
     )
     .subscribe(results => {
-      console.log("This shows that email subscribe is working")
       this.findUserById()
 
     });
@@ -161,7 +153,6 @@ export class ProfileColumnComponent implements OnInit {
   onUpdateQuizPrivacy() {
     
     if (this.quizPrivacyForm.value.new_quiz_privacy.length > 0) {
-      console.log(this.quizPrivacyForm.value.new_quiz_privacy)
       this.userGetService.updateUser(this.user_id, this.user_data[0].username, this.user_data[0].email, this.quizPrivacyForm.value.new_quiz_privacy
       ).subscribe(results => {
         this.findUserById()
@@ -180,7 +171,6 @@ export class ProfileColumnComponent implements OnInit {
 
 
     });
-    // this.userGetService.changeData(this.user_data)
     setTimeout(() => {
       this.findUserById()
     },

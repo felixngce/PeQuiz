@@ -29,14 +29,12 @@ export class JoinComponent implements OnInit {
       });
 
     this.user_id = this.authService.getSecureToken()
-    console.log(this.user_id)
 
     // this.findUserById()
 
     this.webSocketService.removeSessionGamePin()
 
     this.webSocketService.listen('player-join-success').subscribe((data) => {
-      console.log('User connect successful!')
       this.webSocketService.getDisplayNames(this.joinGameForm.value.game_pin);
       this.webSocketService.setSessionGamePin(this.joinGameForm.value.game_pin)
       this.router.navigate(["/game/play/player/lobby/" + this.joinGameForm.value.game_pin], {queryParams: {
@@ -56,7 +54,6 @@ export class JoinComponent implements OnInit {
     this.userGetService.getUserById(this.user_id).subscribe(data => {
         this.user_data = data;
 
-        console.log(this.user_data);
 
         this.userGetService.changeData(this.user_data)
 
@@ -71,8 +68,6 @@ export class JoinComponent implements OnInit {
   }
 
   playerJoinGame(){
-    console.log("Player joins the game")
-    console.log(this.joinGameForm.value.display_name)
     this.webSocketService.playerConnect({game_pin: this.joinGameForm.value.game_pin, display_name: this.joinGameForm.value.display_name});
   }
 

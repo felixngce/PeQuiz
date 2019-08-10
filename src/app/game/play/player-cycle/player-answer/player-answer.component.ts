@@ -39,7 +39,6 @@ export class PlayerAnswerComponent implements OnInit {
       this.question_data = this.current_session_data.quiz_data.questions[this.current_qn_index]
       this.qn_time_limit = this.current_session_data.quiz_data.questions[this.current_qn_index].time_limit
       this.startCountdown(this.qn_time_limit)
-      console.log(this.current_qn_index)
       this.isDataLoaded = true;
     });
 
@@ -60,7 +59,6 @@ export class PlayerAnswerComponent implements OnInit {
     this.webSocketService.emit('player-answered',{'display_name': this.session_display_name, 'points': this.player_object.points, 'answer': 1,
      'answer_outcome': this.answer_outcome,'points_awarded': this.points, 
     'game_pin': this.game_pin})
-    console.log(this.points)
     this.counter = 0;
 
     this.router.navigate(['/game/play/player-cycle/player-wait/' + this.game_pin],{queryParams: {'name': this.session_display_name}})
@@ -82,7 +80,6 @@ export class PlayerAnswerComponent implements OnInit {
     this.webSocketService.emit('player-answered',{'display_name': this.session_display_name, 'points': this.player_object.points, 'answer': 2,
     'answer_outcome': this.answer_outcome,'points_awarded': this.points, 
    'game_pin': this.game_pin})
-    console.log(this.points)
     this.counter = 0;
 
     this.router.navigate(['/game/play/player-cycle/player-wait/' + this.game_pin],{queryParams: {'name': this.session_display_name}})
@@ -103,7 +100,6 @@ export class PlayerAnswerComponent implements OnInit {
     this.webSocketService.emit('player-answered',{'display_name': this.session_display_name, 'points': this.player_object.points, 'answer': 3,
     'answer_outcome': this.answer_outcome,'points_awarded': this.points, 
    'game_pin': this.game_pin})
-    console.log(this.points)
     this.counter = 0;
 
     this.router.navigate(['/game/play/player-cycle/player-wait/' + this.game_pin],{queryParams: {'name': this.session_display_name}})
@@ -124,7 +120,6 @@ export class PlayerAnswerComponent implements OnInit {
     this.webSocketService.emit('player-answered',{'display_name': this.session_display_name, 'points': this.player_object.points, 'answer': 4,
     'answer_outcome': this.answer_outcome,'points_awarded': this.points, 
    'game_pin': this.game_pin})
-    console.log(this.points)
     this.counter = 0;
     this.router.navigate(['/game/play/player-cycle/player-wait/' + this.game_pin],{queryParams: {'name': this.session_display_name}})
 
@@ -143,7 +138,6 @@ export class PlayerAnswerComponent implements OnInit {
         // the timer has reached zero.
 
         this.answer1()
-        console.log('yayeet!');
 
         clearInterval(interval);
       };

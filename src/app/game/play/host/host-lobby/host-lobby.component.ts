@@ -35,38 +35,11 @@ export class HostLobbyComponent implements OnInit {
   ngOnInit() {
 
     this.webSocketService.listen('getSessionData').subscribe((data) => {
-      console.log(data)
       this.session_data = data;
       this.isDataLoaded = true
       this.webSocketService.changeSessionData(this.session_data)
-      console.log(this.session_data)
 
     })
-
-    // this.webSocketService.listen("sending-session-dataa").subscribe((data)=>{
-    //   console.log("hi")
-    //   console.log(data)
-    //   this.session_data = data;
-    //   this.isDataLoaded = true
-    //   this.webSocketService.changeSessionData(this.session_data)
-    // })
-
-
-    
-
-
- 
-    
-
-    // console.log(this.session_data)
-    // this.webSocketService.currentSessionData.subscribe(data => {
-    //   this.session_data = data;
-    //   console.log(this.session_data)
-    //   this.isDataLoaded = true;
-
-    // });
-
-
   }
 
   routeToHome(){

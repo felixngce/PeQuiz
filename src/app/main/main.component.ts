@@ -42,7 +42,6 @@ export class MainComponent implements OnInit {
     this.user_id = this.authService.getSecureToken()
     this.findUserById()
     this.deleteSessionInfo()
-    console.log(this.session_data)
     this.webSocketService.hostDisconnect(this.session_data)
 
     this.webSocketService.changeSessionData(this.sessionDataPlaceHolder)
@@ -56,7 +55,6 @@ export class MainComponent implements OnInit {
     this.webSocketService.currentSessionData.subscribe(data => {
       this.session_data = data;
 
-      console.log(this.session_data)
 
 
 

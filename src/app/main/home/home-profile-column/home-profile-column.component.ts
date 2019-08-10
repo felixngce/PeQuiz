@@ -17,6 +17,8 @@ export class HomeProfileColumnComponent implements OnInit {
   public afterFindingUser;
   public no_Quiz_Created;
   public pfpSrc;
+  public totalQuizPlays = 0;
+  public isLooped = false
   
 
 
@@ -25,7 +27,12 @@ export class HomeProfileColumnComponent implements OnInit {
     this.userGetService.currentUserData.subscribe(data => {
       this.user_data = data;
       this.pfpSrc = "data:image/png;base64," + this.user_data[0].profile_picture;
-
+      if (!this.isLooped) {
+        for(var i = 0;i < this.user_data[0].quiz_created.length;i++){
+          this.totalQuizPlays += this.user_data[0].quiz_created[i].no_of_plays
+        }
+      }
+      this.isLooped = true;
       this.isDataLoaded = true;
 
 

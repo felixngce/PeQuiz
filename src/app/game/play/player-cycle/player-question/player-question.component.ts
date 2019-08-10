@@ -20,29 +20,17 @@ export class PlayerQuestionComponent implements OnInit {
     this.session_room_id = this.route.snapshot.queryParamMap.get('id')
     this.session_display_name = this.route.snapshot.queryParamMap.get('name')
     this.webSocketService.emit('getStartingData', this.session_room_id)
-    console.log(this.session_room_id)
     this.webSocketService.getDisplayNames(this.session_room_id)
-
-    // this.webSocketService.listen('get-starting-data').subscribe((data)=>{
-    //   console.log("This should have the correct current qn num")
-    //   console.log(data)
-    //   this.session_data = data;
-    //   this.isDataLoaded = true
-    //   this.webSocketService.changeSessionData(this.session_data)
-    // })
-
 
     this.startCountdown(5)
 
     this.webSocketService.currentSessionData.subscribe(data => {
       this.session_data = data;
-      console.log(this.session_data)
       this.isDataLoaded = true;
 
     });
 
     this.webSocketService.listen('player-to-answering').subscribe((data) => {
-      console.log("received signal to go to answering")
       this.router.navigate(["/game/play/player-cycle/player-answer/" + data],{queryParams: {
         'name': this.session_display_name}} )
     })
@@ -56,8 +44,6 @@ export class PlayerQuestionComponent implements OnInit {
     this.counter = seconds;
 
     var interval = setInterval(() => {
-      console.log(this.counter);
-      console.log("hi")
       this.counter--;
 
 
@@ -67,7 +53,6 @@ export class PlayerQuestionComponent implements OnInit {
         // the timer has reached zero.
 
         clearInterval(interval);
-        console.log('Ding!');
         this.webSocketService.goToAnswering(this.session_room_id)
       };
     }, 1000);

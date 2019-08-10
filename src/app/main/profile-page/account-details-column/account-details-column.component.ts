@@ -24,14 +24,11 @@ export class AccountDetailsColumnComponent implements OnInit {
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
-    console.log("This is the child compnent")
 
     this.user_id = id;
 
     this.userGetService.currentUserData.subscribe(data => {
       this.user_data = data;
-      console.log("This is current pulled data")
-      console.log(this.user_data)
       this.pw_date = this.datepipe.transform(this.user_data[0].last_pw_change,'dd-MM-yy hh:mm')
       this.latest_date = this.datepipe.transform(this.user_data[0].date_created, 'dd-MM-yy hh:mm');
 

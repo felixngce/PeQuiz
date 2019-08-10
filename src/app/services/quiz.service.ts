@@ -30,7 +30,6 @@ export class QuizService {
 
   changeCreateQuizData(quizData) {
     this.create_quiz_data.next(quizData)
-    console.log(this.currentCreateQuizData)
   }
 
   submitNewQuiz(user_id, title, description, questions){

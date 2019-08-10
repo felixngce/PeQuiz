@@ -32,27 +32,11 @@ export class WebSocketService {
 
   changeSessionData(session_data) {
     this.central_session_data.next(session_data)
-    console.log(this.currentSessionData)
   }
 
   updateChartData(chart_data){
     this.to_chart_array.next(chart_data)
-    console.log(this.to_chart_array)
   }
-
-  // getSessionData() {
-  //   console.log("")
-  //   //socket.on doesn't go with getSessionData
-  //   this.socket.on('getSessionData', function (data) {
-  //     console.log("Hi")
-  //     console.log(data)
-  //     this.sessionDataPlaceHolder = data;
-  //     console.log(this.sessionDataPlaceHolder)
-
-
-
-  //   })
-  // }
 
 
   listen(eventName: string) {
@@ -73,7 +57,6 @@ export class WebSocketService {
 
   setSessionGamePin(game_pin: any) {
     sessionStorage.setItem("gamePIN", game_pin)
-    console.log(sessionStorage);
   }
 
   getSessionGamePin() {
@@ -84,25 +67,21 @@ export class WebSocketService {
 
   removeSessionGamePin() {
     sessionStorage.removeItem("gamePIN");
-    console.log(sessionStorage);
     
     }
 
   hostCreateGame(data) {
     this.socket.emit('host-create-room', data);
-    console.log(data)
 
   }
 
   getDisplayNames(data) {
-    console.log(data)
     this.socket.emit('get-display-name', data);
   }
 
   hostDisconnect(data) {
     this.socket.emit('host-disconnect', data);
-    console.log('host disconnected')
-    console.log(data)
+
   }
 
   playerConnect(data) {
@@ -110,7 +89,6 @@ export class WebSocketService {
   }
   playerSuccessfullyConnect() {
     this.socket.on('player-join-success', function (data) {
-      console.log('yeet')
 
     })
 

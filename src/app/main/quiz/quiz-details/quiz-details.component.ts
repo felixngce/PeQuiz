@@ -24,7 +24,6 @@ export class QuizDetailsComponent implements OnInit {
       this.user_data = data;
       this.user_id = this.authService.getSecureToken()
 
-      console.log(this.user_data)
 
 
 
@@ -32,20 +31,13 @@ export class QuizDetailsComponent implements OnInit {
     });
 
     this.findUserById()
-
-    console.log(this.array_id)
-    console.log("yett")
-
-    console.log(this.user_data)
     
-
   }
 
 
   findUserById(){
     this.userGetService.getUserById(this.user_id).subscribe(data => {
         this.user_data = data;
-        console.log(this.user_data)
 
         this.userGetService.changeData(this.user_data)
 

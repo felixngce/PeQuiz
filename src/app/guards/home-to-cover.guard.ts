@@ -15,7 +15,6 @@ export class HomeToCoverGuard implements CanActivate {
     //If user is logged in, guard= true for MainComponent, and also redirect
     if (this.authService.isLoggedIn()) {
 
-      console.log("this is indeed logged in!")
       this.router.navigate(["/main/home",this.authService.getSecureToken()])
       return false;
 

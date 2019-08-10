@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserGetService } from 'src/app/services/user/user-get.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatePipe } from '@angular/common'
+import { WebSocketService } from 'src/app/services/web-socket.service';
 
 @Component({
   selector: 'app-quiz-description-column',
@@ -15,20 +16,15 @@ export class QuizDescriptionColumnComponent implements OnInit {
   public user_id;
   public quiz_date;
   public updateQuizArray;
+  public quiz_object;
 
 
-  constructor(private router:Router,private userGetService: UserGetService, private authService: AuthService,public datepipe: DatePipe) { }
+  constructor(private router:Router,private userGetService: UserGetService, private authService: AuthService,public datepipe: DatePipe,private webSocketService: WebSocketService) { }
 
   ngOnInit() {
     this.userGetService.currentUserData.subscribe(data => {
       this.user_data = data;
       this.user_id = this.authService.getSecureToken()
-
-      console.log(this.user_data)
-
-
-
-
     });
     this.findUserById()
   }
@@ -39,12 +35,9 @@ export class QuizDescriptionColumnComponent implements OnInit {
         var i = 0;
         for (let quiz of this.user_data[0].quiz_created){
           
-          console.log(this.user_data[0].quiz_created[i].date_created)
         this.user_data[0].quiz_created[i].quiz_date_created = this.datepipe.transform(this.user_data[0].quiz_created[i].quiz_date_created,'dd MMMM yy')
            i += 1
         }
-
-        console.log(this.user_data);
 
         this.userGetService.changeData(this.user_data)
 
@@ -66,6 +59,11 @@ export class QuizDescriptionColumnComponent implements OnInit {
 
 
     });
+  }
+  routeHostToGame(quiz_id){
+    this.quiz_object = this.user_data[0].quiz_created[quiz_id]
+    this.webSocketService.hostCreateGame({host_id: this.user_id, quiz_id: quiz_id, quiz_data:this.quiz_object})
+    this.router.navigate(['/game/play/host/lobby'])
   }
 
 }

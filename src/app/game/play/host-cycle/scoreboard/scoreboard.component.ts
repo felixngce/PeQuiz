@@ -22,22 +22,19 @@ export class ScoreboardComponent implements OnInit {
     this.webSocketService.emit('get-new-session-data', this.host_id);
 
     this.webSocketService.listen('getting-new-session-data').subscribe((data)=>{
-      console.log(data)
       this.current_session_data = data;
       for(var i = 0; i < this.current_session_data.player.length ; i++){
         if(i < 5){
           this.scoreboard_array.push(this.current_session_data.player[i])
         }
       }
-      console.log(this.scoreboard_array)
 
     })
 
     this.webSocketService.listen('current-question-updated').subscribe((data)=>{
       this.current_session_data.current_question += 1;
       this.webSocketService.changeSessionData(this.current_session_data);
-      console.log("this is current_session_data// should be")
-      console.log(this.current_session_data)
+
       this.webSocketService.emit('player-back-to-question', this.host_id)
       this.router.navigate(["/game/play/host-cycle/host-question/" + this.game_pin])
     })

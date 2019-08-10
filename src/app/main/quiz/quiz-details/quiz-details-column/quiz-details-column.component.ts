@@ -11,7 +11,7 @@ export class QuizDetailsColumnComponent implements OnInit {
 
   
   log(x) 
-  {console.log(x);
+  {
   }
 
 

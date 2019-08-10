@@ -36,8 +36,6 @@ export class AddQuestionComponent implements OnInit {
 
       this.quizService.currentCreateQuizData.subscribe(data => {
         this.createQuizData = data;
-        console.log("this is the pulled data")
-        console.log(this.createQuizData)
     
   
       });
@@ -90,15 +88,11 @@ export class AddQuestionComponent implements OnInit {
       if(this.qnFormArray.answers[3] == '' && this.shorterPath.answers[3] != ''){
         this.qnFormArray.answers[3] = this.shorterPath.answers[3]
       }
-      console.log(this.qnFormArray)
-      console.log(this.qnFormArray.question_string == '')
       this.createQuizData[0].questions.splice(this.editIndex,1,this.qnFormArray)
 
     }
     
     this.newQuizData = this.createQuizData
-    console.log("This is the final sent data")
-    console.log(this.newQuizData)
     this.quizService.changeCreateQuizData(this.newQuizData)
     this.router.navigate(["/main/quiz/create/overview"])
   }

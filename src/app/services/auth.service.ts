@@ -20,9 +20,7 @@ export class AuthService {
   registerUser(username: string, email: string, password: string
     // total_quizzes_created: number, last_password_change: Date, online_status: boolean, friends_list: string, created_quizzes: string
   ) {
-    console.log(username)
-    console.log(email)
-    console.log(password)
+
     return this.http.post<any[]>('http://localhost:3000/api/users/', {
       'username': username, 'email': email, 'password': password
       //  'last_password_change': last_password_change, 'online_status': online_status, 'friends_list': friends_list, 'created_quizzes': created_quizzes
@@ -41,7 +39,6 @@ export class AuthService {
 
   setSecureToken(secure_token: string) {
     sessionStorage.setItem("LoggedIn", secure_token)
-    console.log(sessionStorage);
     }
    
     getSecureToken() {
@@ -54,7 +51,6 @@ export class AuthService {
 
     logout() {
     sessionStorage.removeItem("LoggedIn");
-    console.log(sessionStorage);
     
     }
 

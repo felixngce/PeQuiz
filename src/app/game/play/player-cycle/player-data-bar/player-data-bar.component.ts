@@ -17,15 +17,12 @@ export class PlayerDataBarComponent implements OnInit {
 
   ngOnInit() {
     this.session_display_name = this.route.snapshot.queryParamMap.get('name')
-    console.log(this.session_display_name)
 
 
     this.webSocketService.currentSessionData.subscribe(data => {
       this.session_data = data;
-      console.log(this.session_data)
       this.isDataLoaded = true;
       this.player_object = this.session_data.player.find(player => player.display_name === this.session_display_name)
-      console.log(this.player_object)
 
 
     });

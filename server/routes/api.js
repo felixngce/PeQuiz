@@ -18,9 +18,7 @@ var pfpPlaceHolder = "iVBORw0KGgoAAAANSUhEUgAAARgAAAEYCAYAAACHjumMAABsM0lEQVR42u
 
 
 
-// io.on('connection', (socket) => {
-//     console.log('user connected SOCKET.IO YES???????????');
-// });
+
 
 
 // declare axios for making http requests
@@ -101,7 +99,7 @@ router.route('/users/').post(function (req, res) {
         reqMsg["password"] = hash;
         db.collection('User').insertOne(reqMsg, (err, results) => {
             if (err) return console.log(err);
-            console.log('saved to database');
+            console.log('registered user to database');
             res.send(results);
         });
     });
@@ -159,7 +157,7 @@ router.route('/userPfp/:id').post(upload.single('profile_picture'), function (re
             }
         }, (err, results) => {
             if (err) return console.log(err);
-            console.log('saved to database');
+            console.log('profile picture saved to database');
             res.send(results);
         }
 
@@ -183,7 +181,7 @@ router.route('/users/:id').put(function (req, res) {
             }
         }, (err, results) => {
             if (err) return console.log(err);
-            console.log('saved to database');
+            console.log('user info updated to database');
             res.send(results);
         }
 
@@ -238,7 +236,6 @@ router.route('/usersPw/:id').put(function (req, res) {
             });
         }, (err, results) => {
             if (err) return console.log(err);
-            console.log('saved to database');
         }
 
     )
@@ -284,7 +281,7 @@ router.route('/newQuiz/').post(function (req, res) {
         }
     },(err, results) => {
         if (err) return console.log(err);
-        console.log('saved to database');
+        console.log('quiz to database');
         res.send(results);
     });  
        

@@ -31,14 +31,12 @@ export class CreateQuizColumnComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.browserStoredData)
      this.browserStoredData = JSON.parse(localStorage.getItem('quizArray'))
 
 
 
      this.userGetService.currentUserData.subscribe(data => {
       this.user_data = data;
-      console.log("this is the pulled data")
 
 
 
@@ -63,12 +61,10 @@ export class CreateQuizColumnComponent implements OnInit {
  
 
       });
-      console.log(JSON.parse(localStorage.getItem('quizArray')))
 
       this.quizService.currentCreateQuizData.subscribe(data => {
         //If user refreshes the page and theres data left, use that data
         if(data[0].questions.length == 0 && this.browserStoredData[0].questions.length > 1){
-          console.log("well this is working..")
           this.createQuizData = JSON.parse(localStorage.getItem('quizArray'));
           this.quizService.changeCreateQuizData(this.createQuizData)
 
@@ -82,22 +78,10 @@ export class CreateQuizColumnComponent implements OnInit {
 
 
         this.isDataLoaded = true;
-
-        console.log("this is the pulled data")
-        console.log(this.createQuizData)
-
-    
-  
+ 
       });
-      console.log(this.createQuizData[0].questions[0].question_string)
       this.questionArray = this.createQuizData[0].questions
-      console.log(this.questionArray)
-
-
-      console.log(localStorage.getItem('quizArray'));
-
       
-
   }
   routeToQuestion(){
     this.changingTitle()
@@ -116,8 +100,6 @@ export class CreateQuizColumnComponent implements OnInit {
 
   deleteQuestion(index){
     this.createQuizData[0].questions.splice(index,1)
-    console.log("yeeeee")
-    console.log(this.createQuizData)
     this.quizService.changeCreateQuizData(this.createQuizData)
     this.deleteBoolean = true;
 
@@ -133,23 +115,18 @@ export class CreateQuizColumnComponent implements OnInit {
    
   
         });
-      console.log("This is the final form title")
-      console.log(this.addQuizForm.value.title)
 
 
     }
 
     this.quizService.submitNewQuiz(this.user_id,this.addQuizForm.value.title, this.addQuizForm.value.description, this.createQuizData[0].questions)
     .subscribe(results => {
-      console.log("This shows that quiz submit is working")
-      console.log(results)
+
       localStorage.removeItem('quizArray')
-      console.log(JSON.parse(localStorage.getItem('quizArray')))
-      console.log(this.resetDataTemplate)
+
 
       localStorage.setItem('quizArray', JSON.stringify(this.resetDataTemplate));
 
-      console.log("why isn't this routing")
       this.router.navigate(["/main/home/" + this.user_id])
     });
     this.quizService.changeCreateQuizData("helloo")
@@ -159,9 +136,7 @@ export class CreateQuizColumnComponent implements OnInit {
 
   changingTitle(){
     if(this.addQuizForm.value.title != 0){
-      console.log("howdy yo")
       this.createQuizData[0].title = this.addQuizForm.value.title;
-      console.log(this.createQuizData)
       this.quizService.changeCreateQuizData(this.createQuizData)
 
     }
@@ -171,10 +146,6 @@ export class CreateQuizColumnComponent implements OnInit {
       this.quizService.changeCreateQuizData(this.createQuizData)
 
     }
-    console.log(this.createQuizData)
-
-
-
 
     }
 

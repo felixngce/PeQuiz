@@ -29,7 +29,6 @@ export class HostQuestionComponent implements OnInit {
     
     this.webSocketService.listen('getting-new-session-data').subscribe((data)=>{
       this.session_data = data;
-      console.log(this.session_data)
       this.webSocketService.changeSessionData(this.session_data)
     })
 
@@ -42,8 +41,7 @@ export class HostQuestionComponent implements OnInit {
     this.counter = seconds;
 
     var interval = setInterval(() => {
-      console.log(this.counter);
-      console.log("hi")
+
       this.counter--;
 
 

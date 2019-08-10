@@ -13,8 +13,8 @@ export class PodiumComponent implements OnInit {
   public user_id = this.authService.getSecureToken();
   public current_session_data;
   public scoreboard_array = [];
-
-
+  public trial;
+  public yeet;
   sessionDataPlaceHolder =
   {
     _id: null,
@@ -32,16 +32,22 @@ export class PodiumComponent implements OnInit {
   constructor(private router:Router, private webSocketService: WebSocketService, private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit() {
+
+
     this.game_pin = this.route.snapshot.paramMap.get('id');
+    this.yeet = 'yo' + 1 + 'its me'
+    this.trial = {};
+    this.trial[this.yeet] = 'yohh';
+    console.log(this.trial)
     this.webSocketService.currentSessionData.subscribe(data => {
-      console.log(data)
       this.current_session_data = data;
+      this.webSocketService.emit('update-quiz-plays', this.current_session_data);
+
       for(var i = 0; i < this.current_session_data.player.length ; i++){
         if(i < 5){
           this.scoreboard_array.push(this.current_session_data.player[i])
         }
       }
-      console.log(this.scoreboard_array)
     })
   }
 

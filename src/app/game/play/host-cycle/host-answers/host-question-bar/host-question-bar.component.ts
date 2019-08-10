@@ -18,7 +18,6 @@ export class HostQuestionBarComponent implements OnInit {
     this.webSocketService.currentSessionData.subscribe(data => {
       this.current_session_data = data;
       this.current_qn_index = this.current_session_data.current_question - 1
-      console.log(this.current_qn_index)
       this.isDataLoaded = true;
     });
   }

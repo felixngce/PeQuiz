@@ -56,11 +56,8 @@ server.listen(port, () => console.log(`API running on localhost:${port}`));
 var io = socketIO(server);
 
 io.on('connection', (socket) => {
-    console.log('user connected SOCKET.IO');
 
     socket.on('host-create-room', function (data) {
-        console.log(data)
-        console.log("above shows the host-create-room event works")
         data["game-live"] = false;
         data["player"] = [];
         data["current_question"] = 1;
@@ -70,19 +67,15 @@ io.on('connection', (socket) => {
 
         db.collection('Session').insertOne(data, (err, results) => {
             if (err) return console.log(err);
-            console.log('session data is saved to db');
 
             db.collection('Session').findOne({ 'host_id': data.host_id },
                 function (err, result) {
                     socket.join(result.game_pin)
-                    console.log('this is the room the host joined')
-                    console.log(result.game_pin)
+                    
 
 
                     io.to(result.game_pin).emit("getSessionData", result)
-                    console.log("these are the huh???results")
-                    console.log(result)
-                    console.log('Game Created with pin:', result.game_pin);
+            
                 })
         });
 
@@ -92,12 +85,8 @@ io.on('connection', (socket) => {
 
 
     socket.on('get-display-name', function (data) {
-        console.log("this should be the pin")
-        console.log(data)
+
         db.collection('Session').findOne({game_pin: data },function (err, results) {
-            console.log("These should be the results..")
-            console.log(results)
-            console.log("you should see the room here")
 
             console.log(socket.rooms); // contains an object with all of the roomnames as keys and values
 
@@ -107,15 +96,10 @@ io.on('connection', (socket) => {
     });
 
     socket.on('get-new-session-data', function (data) {
-        console.log("this should be the pinnnnnnnnnnnnn")
-        console.log(data)
+
         db.collection('Session').findOne({ 'host_id': data }, 
             function (err, result) {
                 
-            console.log("These should be the results.....")
-            console.log(result)
-
-
             io.to(result.game_pin).emit("getting-new-session-data", result)
 
         })
@@ -131,7 +115,6 @@ io.on('connection', (socket) => {
 
     socket.on('host-disconnect', function (data) {
         console.log('host is disconnecting')
-        console.log(data)
         socket.leave(data.game_pin)
         //delete this data off the db
         db.collection('Session').deleteMany(
@@ -148,14 +131,11 @@ io.on('connection', (socket) => {
 
     socket.on('player-connect', function (data) {
         console.log('player is connecting')
-        console.log(data)
         db.collection('Session').findOne({ game_pin: data.game_pin }, function (err, result) {
-            console.log("this is the resultsff")
-            console.log(result)
+    
             var i;
             var playerNo = result.player.length
-            console.log("This is the length of the player array")
-            console.log(playerNo)
+
             if (playerNo == 0) {
                 console.log("there are 0 players")
                 db.collection('Session').updateOne({ "game_pin": data.game_pin }, {
@@ -215,7 +195,6 @@ io.on('connection', (socket) => {
     })
 
     socket.on('player-answered', function(data){
-        console.log(data);
         io.to(data.game_pin).emit('one-player-answered', data)
     })
     function sortEggsInNest(a, b) {
@@ -232,8 +211,7 @@ io.on('connection', (socket) => {
         data.player_list.sort(function(a,b){
             {return b.points - a.points}
         })
-        console.log('sorted list')
-        console.log(data)
+      
         db.collection('Session').updateOne(
             { host_id: data.host_id }, {
     
@@ -263,8 +241,7 @@ io.on('connection', (socket) => {
 
     socket.on('player-back-to-question', function(data){
         db.collection('Session').findOne({'host_id': data},  function (err, result) { 
-            console.log("these are qwerresultsss")
-            console.log(result)      
+    
             io.to(result.game_pin).emit('to-player-question',result);
         })
     })
@@ -287,6 +264,23 @@ io.on('connection', (socket) => {
     socket.on('player-to-award', function(data){
         io.to(data).emit('go-to-award', data)
     })
+
+    socket.on('update-quiz-plays', function(data){
+        user_quiz_field = 'quiz_created.' + data.quiz_id + '.no_of_plays'
+        new_quiz_id = data.quiz_data.no_of_plays + 1;
+        new_user_quiz_field = {};
+        new_user_quiz_field[user_quiz_field] = new_quiz_id;
+        console.log(user_quiz_field)
+        console.log(new_quiz_id)
+        console.log(new_user_quiz_field)
+        db.collection('User').updateOne({_id: ObjectId(data.host_id)}, {
+            $set:
+                new_user_quiz_field
+            
+        },(err, results) => {
+            if (err) return console.log(err);
+        })//for db.collection
+    })// for socket.on
     
 });
 

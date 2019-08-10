@@ -28,8 +28,7 @@ export class AnswerColumnComponent implements OnInit {
 
 
       this.isDataLoaded = true;
-      // this.player_object = this.session_data.player.find(player => player.display_name === this.session_display_name)
-      // console.log(this.player_object)
+
       this.webSocketService.listen('show-correct-answer').subscribe((data) => {
       if(this.question_data.correct_answer != 1){
         this.redOpacity = 0.3;

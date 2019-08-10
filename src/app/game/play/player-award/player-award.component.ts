@@ -21,10 +21,8 @@ export class PlayerAwardComponent implements OnInit {
     this.session_display_name = this.route.snapshot.queryParamMap.get('name')
 
     this.webSocketService.currentSessionData.subscribe((data) => {
-      console.log(data)
       this.current_session_data = data;
       this.player_object = this.current_session_data.player.find(player => player.display_name === this.session_display_name)
-      console.log(this.player_object)
       for(var i = 0;i < this.current_session_data.player.length;i++ ){
         if(this.player_object.display_name == this.current_session_data.player[i].display_name){
           this.player_position = i + 1;

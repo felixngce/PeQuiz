@@ -31,15 +31,11 @@ export class QuestionDoneComponent implements OnInit {
 
     this.webSocketService.getChartArray.subscribe(data => {
       this.chart_data = data;
-      console.log(this.chart_data)
       
 
       for(var i = 0; i < this.chart_data.length; i++){
-        console.log(this.chart_data[i])
         this.total_players += this.chart_data[i]
-        console.log(this.total_players)
       }
-      console.log(this.total_players)
       this.redHeight += (this.chart_data[0] / this.total_players) * 85
       this.blueHeight += (this.chart_data[1] / this.total_players) * 85
       this.greenHeight += (this.chart_data[2] / this.total_players) * 85

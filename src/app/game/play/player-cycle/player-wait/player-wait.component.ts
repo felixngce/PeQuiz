@@ -23,7 +23,6 @@ export class PlayerWaitComponent implements OnInit {
 
   ngOnInit() {
     this.session_room_id = this.route.snapshot.paramMap.get('id')
-    console.log(this.session_room_id);
     this.session_display_name = this.route.snapshot.queryParamMap.get('name')
     this.webSocketService.currentSessionData.subscribe(data => {
       this.current_session_data = data;
@@ -31,15 +30,12 @@ export class PlayerWaitComponent implements OnInit {
       
       this.current_qn_index = this.current_session_data.current_question - 1
       this.question_data = this.current_session_data.quiz_data.questions[this.current_qn_index]
-      console.log(this.current_qn_index)
       this.isDataLoaded = true;
-      console.log(this.current_session_data)
     });
 
     this.webSocketService.listen('just-player-data').subscribe((data) => {
 
       this.current_session_data.player = data;
-      console.log(this.current_session_data)
       this.webSocketService.changeSessionData(this.current_session_data)
 
       this.router.navigate(["/game/play/player-cycle/player-outcome/" + this.session_room_id],{queryParams: {

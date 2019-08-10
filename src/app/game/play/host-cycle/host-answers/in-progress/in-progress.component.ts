@@ -37,8 +37,7 @@ export class InProgressComponent implements OnInit {
     this.game_pin = this.route.snapshot.paramMap.get('id')
 
     this.webSocketService.listen('one-player-answered').subscribe((data) => {
-      console.log("Start of array 1")
-      console.log(data)
+
       this.toDbArray.push(data);
       this.forLoopArray.push(data);
       
@@ -55,7 +54,6 @@ export class InProgressComponent implements OnInit {
       this.current_session_data = data;
       this.current_qn_index = this.current_session_data.current_question - 1
       this.startCountdown(this.current_session_data.quiz_data.questions[this.current_qn_index].time_limit)
-      console.log(this.current_qn_index)
       this.isDataLoaded = true;
     });
 
@@ -63,9 +61,7 @@ export class InProgressComponent implements OnInit {
 
   answeringPhaseOver(){
     this.webSocketService.emit('player-unsorted-list', {"player_list":this.toDbArray, "host_id":this.current_session_data.host_id })
-    console.log(this.toDbArray[0].answer)
     for(this.player = 0; this.player < this.toDbArray.length; this.player++){
-      console.log(this.player)
       if(this.toDbArray[this.player].answer === 1){
         this.answer_1_num += 1;
       }
@@ -80,9 +76,7 @@ export class InProgressComponent implements OnInit {
       }
     }
     this.webSocketService.updateChartData([this.answer_1_num, this.answer_2_num, this.answer_3_num,this.answer_4_num])
-    // this.current_session_data.player = this.toDbArray;
-    // this.webSocketService.changeSessionData(this.current_session_data)
-    console.log([this.answer_1_num, this.answer_2_num, this.answer_3_num,this.answer_4_num])
+
     this.toDbArray = [];
     this.forLoopArray = [];
     this.backToPlayer = [];
@@ -91,7 +85,6 @@ export class InProgressComponent implements OnInit {
     this.counter = seconds;
 
     var interval = setInterval(() => {
-      console.log(this.counter)
       this.counter--;
 
 
