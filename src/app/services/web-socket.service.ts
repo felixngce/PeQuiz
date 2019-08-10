@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
+import {environment} from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +24,7 @@ export class WebSocketService {
 
     chartArray = [null];
 
-  private socket = io('http://localhost:3000')
+  private socket = io(environment.apiBaseUrl);
   private central_session_data = new BehaviorSubject(this.sessionDataPlaceHolder);
   currentSessionData = this.central_session_data.asObservable();
 
@@ -67,7 +68,7 @@ export class WebSocketService {
 
   removeSessionGamePin() {
     sessionStorage.removeItem("gamePIN");
-    
+
     }
 
   hostCreateGame(data) {

@@ -10,9 +10,9 @@
 
 
           <form style="float: right;margin-bottom: 4%;">
-            
-            <input value="hideAnswers" (input)='answerValue=!($event.target.checked)' id="hideAnswers"  type="radio" name="gender" value="male" checked> Hide Answers
-          
+
+            <input value="hideAnswers" id="hideAnswers"  type="radio" name="gender" value="male" checked> Hide Answers
+
             <input type="radio" (input)='answerValue=$event.target.checked' value="showAnswers" name="gender" value="female"> Show Answers
           </form>
 
@@ -25,7 +25,7 @@
         <div>
           <div style="padding-bottom: 3%;">
 
-            
+
             <h1 style="font-size: 20px;display: inline;">Question 1</h1>
             <p style="display: inline; float: right;margin-right: 3%;">Timer: <span>20</span> seconds</p>
           </div>
@@ -33,7 +33,7 @@
           <h5 style="display: inline;margin-top: 3%; ">This is the Question text.This is the Question text.This is the Question text
             .This is the Question text?</h5>
           <div style="margin-top:2%; margin-bottom: 4%" *ngIf="answerValue">
-            <table style="width:100%;"> 
+            <table style="width:100%;">
               <tr>
                 <td style="border-right: 1px solid black; background-color:rgb(16, 196, 16);">
                   This is answer 1

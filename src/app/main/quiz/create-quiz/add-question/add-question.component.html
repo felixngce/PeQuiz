@@ -5,7 +5,7 @@
 
     <div class="modal-dialog" role="document" style="max-width: 2000px;margin:3.4% 0;">
       <div class="modal-content" style="background-color:lightgray">
-        <form [formGroup]="addQnForm" (ngSubmit)="onAddQn(addQnForm)">
+        <form [formGroup]="addQnForm" (ngSubmit)="onAddQn()">
 
           <div class="modal-header">
             <table style="width: 100%">
@@ -57,7 +57,7 @@
                 </tr>
                 <tr>
                   <td>
-                    <input id="" formControlName="answer_3" class="form-control" style="width: 95%" type="text" [value]="createQuizData[0].questions[editIndex].answers[2]"> 
+                    <input id="" formControlName="answer_3" class="form-control" style="width: 95%" type="text" [value]="createQuizData[0].questions[editIndex].answers[2]">
                   </td>
                   <td>
                     <input formControlName="answer_4" class="form-control" style="width: 95%" type="text" [value]="createQuizData[0].questions[editIndex].answers[3]">
@@ -88,12 +88,12 @@
 
 
   <div>
-    <form (ngSubmit)="onAddQn(addQnForm)">
+    <form (ngSubmit)="onAddQn()">
     <button class="btn btn-primary" type="submit button" style="width: 45%;border-radius:20px;height: 50px; margin-bottom: 3.4%"
       >
       Done
     </button>
-  
+
     <button class="btn btn-primary" style="width: 45%;border-radius:20px;height: 50px; margin-bottom: 3.4%; margin-left:10%;
       background-color: rgb(170, 5, 5); border-color: rgb(170, 5, 5)" (click)="routeToCreate()">
       Go Back

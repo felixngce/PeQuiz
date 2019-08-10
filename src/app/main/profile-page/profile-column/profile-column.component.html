@@ -77,7 +77,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="usernameForm " (ngSubmit)="onUpdateUsername(usernameForm)">
+        <form [formGroup]="usernameForm " (ngSubmit)="onUpdateUsername()">
           <input formControlName="new_username" style="border:20px;" class="form-control mr-sm-2" type="name"
             placeholder="New Username" aria-label="NewUsername">
 
@@ -85,7 +85,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <form (ngSubmit)="onUpdateUsername(usernameForm); data-dismiss= 'modal' ">
+        <form (ngSubmit)="onUpdateUsername()">
           <button type="button submit" class="btn btn-primary">Save changes</button>
         </form>
       </div>
@@ -106,7 +106,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="emailForm" (ngSubmit)="onUpdateEmail(emailForm)">
+        <form [formGroup]="emailForm" (ngSubmit)="onUpdateEmail()">
           <input formControlName="new_email" style="border:20px;" class="form-control mr-sm-2" type="email"
             placeholder="New Email" aria-label="Email">
 
@@ -114,7 +114,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <form (ngSubmit)="onUpdateEmail(emailForm)">
+        <form (ngSubmit)="onUpdateEmail()">
           <button type="button submit" class="btn btn-primary">Save changes</button>
         </form>
       </div>
@@ -134,7 +134,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="quizPrivacyForm" (ngSubmit)="onUpdateQuizPrivacy(quizPrivacyForm)">
+        <form [formGroup]="quizPrivacyForm" (ngSubmit)="onUpdateQuizPrivacy()">
           <input formControlName="new_quiz_privacy" type="radio" value="Public" checked> Public<br>
           <input formControlName="new_quiz_privacy" type="radio" value="Friends Only"> Friends Only<br>
           <input formControlName="new_quiz_privacy" type="radio" value="Private"> Private
@@ -143,7 +143,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <form (ngSubmit)="onUpdateQuizPrivacy(quizPrivacyForm)">
+        <form (ngSubmit)="onUpdateQuizPrivacy()">
           <button type="button submit" class="btn btn-primary">Save changes</button>
         </form>
       </div>
@@ -163,7 +163,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="passwordForm" (ngSubmit)="onUpdatePassword(passwordForm)">
+        <form [formGroup]="passwordForm" (ngSubmit)="onUpdatePassword()">
           <input formControlName="old_password" style="border:20px;" class="form-control mr-sm-2" type="password"
             placeholder="Old Password" aria-label="oldPassword">
           <br>
@@ -176,7 +176,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <form (ngSubmit)="onUpdatePassword(passwordForm)">
+        <form (ngSubmit)="onUpdatePassword()">
           <button type="button submit" class="btn btn-primary">Save changes</button>
         </form>
       </div>
