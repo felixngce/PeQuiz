@@ -8,7 +8,7 @@
         <button class="btn btn-primary" style="float: right;margin-top: 14%;" (click)="routeToQuizDesc()">More Details</button>
       </a>
       </div>
-      <div class="modal-body">
+      <div *ngIf="isDataLoaded" class="modal-body">
         <div *ngFor="let quiz of user_data[0].quiz_created; let i = index">
           <button class="btn btn-primary" style="float: right;margin-bottom: 5px" (click)="routeToDetails(i)" >View</button>
           <button class="btn btn-primary" style="float: right;margin-bottom: 5px;margin-right: 10px;background-color: red;border-color: red" 

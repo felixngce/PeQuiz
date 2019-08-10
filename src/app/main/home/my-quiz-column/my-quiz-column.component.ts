@@ -14,6 +14,7 @@ export class MyQuizColumnComponent implements OnInit {
   public user_data;
   public user_id;
   public quiz_object;
+  public isDataLoaded = false;
 
   constructor(private webSocketService:WebSocketService,private router:Router,private userGetService: UserGetService, private authService: AuthService) { }
 
@@ -37,6 +38,7 @@ export class MyQuizColumnComponent implements OnInit {
 
         this.userGetService.changeData(this.user_data)
 
+      this.isDataLoaded = true;
 
 
 
