@@ -19,10 +19,20 @@ export class HostLobbyComponent implements OnInit {
   public session_data;
   public isDataLoaded : Boolean = false;
   public user_id = this.authService.getSecureToken();
+  sessionDataPlaceHolder =
+  {
+    _id: null,
+    host_id: null,
+    quiz_id: null,
+    player: [],
+    quiz_data: [],
+    game_live: null,
+    game_pin: null,
+    current_question: null,
+  }
 
 
   ngOnInit() {
-
 
     this.webSocketService.listen('getSessionData').subscribe((data) => {
       console.log(data)
@@ -33,13 +43,13 @@ export class HostLobbyComponent implements OnInit {
 
     })
 
-    this.webSocketService.listen("sending-session-dataa").subscribe((data)=>{
-      console.log("hi")
-      console.log(data)
-      this.session_data = data;
-      this.isDataLoaded = true
-      this.webSocketService.changeSessionData(this.session_data)
-    })
+    // this.webSocketService.listen("sending-session-dataa").subscribe((data)=>{
+    //   console.log("hi")
+    //   console.log(data)
+    //   this.session_data = data;
+    //   this.isDataLoaded = true
+    //   this.webSocketService.changeSessionData(this.session_data)
+    // })
 
 
     

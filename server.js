@@ -79,7 +79,7 @@ io.on('connection', (socket) => {
                     console.log(result.game_pin)
 
 
-                    socket.emit("getSessionData", result)
+                    io.to(result.game_pin).emit("getSessionData", result)
                     console.log("these are the huh???results")
                     console.log(result)
                     console.log('Game Created with pin:', result.game_pin);
@@ -89,7 +89,8 @@ io.on('connection', (socket) => {
 
 
     })
-    //So this is wrong...
+
+
     socket.on('get-display-name', function (data) {
         console.log("this should be the pin")
         console.log(data)
@@ -113,9 +114,7 @@ io.on('connection', (socket) => {
                 
             console.log("These should be the results.....")
             console.log(err)
-            console.log(result)
-            console.log("you should see the room here")
-            console.log(socket.rooms); // contains an object with all of the roomnames as keys and values
+
 
             io.to(result.game_pin).emit("getting-new-session-data", result)
 
@@ -135,7 +134,7 @@ io.on('connection', (socket) => {
         console.log(data)
         socket.leave(data.game_pin)
         //delete this data off the db
-        db.collection('Session').deleteOne(
+        db.collection('Session').deleteMany(
             { _id: ObjectId(data._id) }, {
 
 
@@ -277,6 +276,11 @@ io.on('connection', (socket) => {
             io.to(data).emit('get-starting-data', result)
             
         })
+    })
+
+    socket.on('game-finished', function(data){
+        socket.leave(data)
+
     })
     
 });

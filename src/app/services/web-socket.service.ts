@@ -40,19 +40,19 @@ export class WebSocketService {
     console.log(this.to_chart_array)
   }
 
-  getSessionData() {
-    console.log("")
-    //socket.on doesn't go with getSessionData
-    this.socket.on('getSessionData', function (data) {
-      console.log("Hi")
-      console.log(data)
-      this.sessionDataPlaceHolder = data;
-      console.log(this.sessionDataPlaceHolder)
+  // getSessionData() {
+  //   console.log("")
+  //   //socket.on doesn't go with getSessionData
+  //   this.socket.on('getSessionData', function (data) {
+  //     console.log("Hi")
+  //     console.log(data)
+  //     this.sessionDataPlaceHolder = data;
+  //     console.log(this.sessionDataPlaceHolder)
 
 
 
-    })
-  }
+  //   })
+  // }
 
 
   listen(eventName: string) {
