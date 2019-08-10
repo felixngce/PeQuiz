@@ -52,6 +52,7 @@ export class ScoreboardComponent implements OnInit {
 
     }
     else{
+      this.webSocketService.emit('player-to-award', this.game_pin);
       this.router.navigate(['/game/play/podium/' + this.game_pin])
 
     }

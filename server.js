@@ -113,7 +113,7 @@ io.on('connection', (socket) => {
             function (err, result) {
                 
             console.log("These should be the results.....")
-            console.log(err)
+            console.log(result)
 
 
             io.to(result.game_pin).emit("getting-new-session-data", result)
@@ -243,6 +243,7 @@ io.on('connection', (socket) => {
             }, (err, results) => {
                 if (err) return console.log(err);
                 io.to(data.player_list[0].game_pin).emit('just-player-data', data.player_list)
+                io.to(data.player_list[0].game_pin).emit('show-correct-answer')
             }
     
         )
@@ -281,6 +282,10 @@ io.on('connection', (socket) => {
     socket.on('game-finished', function(data){
         socket.leave(data)
 
+    })
+
+    socket.on('player-to-award', function(data){
+        io.to(data).emit('go-to-award', data)
     })
     
 });

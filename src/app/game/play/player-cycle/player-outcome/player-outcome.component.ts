@@ -48,6 +48,11 @@ export class PlayerOutcomeComponent implements OnInit {
       console.log("theres ppl calling me back")
       this.router.navigate(['/game/play/player-cycle/player-question/' + this.session_room_id],{queryParams:{"name": this.session_display_name}})
     })
+
+
+    this.webSocketService.listen('go-to-award').subscribe((data) =>{
+      this.router.navigate(['/game/play/player-award/'+ this.session_room_id],{queryParams:{"name": this.session_display_name}})
+    })
   }
 
 }

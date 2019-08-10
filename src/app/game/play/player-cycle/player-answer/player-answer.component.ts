@@ -21,7 +21,7 @@ export class PlayerAnswerComponent implements OnInit {
 
   qn_time_limit;
   answer_outcome = false;
-  public player_answered = false;
+  public player_answered: Boolean= false;
 
   constructor(private webSocketService: WebSocketService, private router:Router, private route: ActivatedRoute) { }
 
@@ -137,15 +137,15 @@ export class PlayerAnswerComponent implements OnInit {
       this.counter--;
 
 
-      if (this.counter == 0) {
+      if (this.counter == 0 && this.player_answered == false) {
 
         // The code here will run when
         // the timer has reached zero.
 
-
+        this.answer1()
+        console.log('yayeet!');
 
         clearInterval(interval);
-        console.log('Ding!');
       };
     }, 1000);
   };

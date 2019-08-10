@@ -55,6 +55,16 @@ html{
   background-size: cover;
 }
 
+.player-award-background{
+  background-color:rgb(70, 23, 143);
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
 .player-wait-background{
   background-color: #3399ff;
   min-height: 92vh;

@@ -1,3 +1,28 @@
-<p>
-  player-award works!
-</p>
+<div class="player-award-background">
+
+  <div>
+    <div *ngIf="player_position == 1">
+      <h1 style="color: white; font-size: 100px;text-align: center;padding-top: 12%"> <span>{{player_position}}</span>st Place!</h1>
+      <h1 style="color: white;text-align: center;padding-top: 5%">Winner!</h1>
+    </div>
+    <div *ngIf="player_position == 2">
+        <h1 style="color: white; font-size: 100px;text-align: center;padding-top: 12%"> <span>{{player_position}}</span>nd Place!</h1>
+        <h1 style="color: white;text-align: center;padding-top: 5%">So Close!</h1>
+      </div>
+      <div *ngIf="player_position == 3">
+          <h1 style="color: white; font-size: 100px;text-align: center;padding-top: 12%"> <span>{{player_position}}</span>rd Place!</h1>
+          <h1 style="color: white;text-align: center;padding-top: 5%">Getting there!</h1>
+        </div>
+        <div *ngIf="player_position > 3">
+            <h1 style="color: white; font-size: 100px;text-align: center;padding-top: 12%"> <span>{{player_position}}</span>th Place!</h1>
+            <h1 style="color: white;text-align: center;padding-top: 5%">Better Luck Next Time!</h1>
+          </div>
+    <div style="text-align: center">
+      <button
+        style="text-align: center;margin-right: 5%;margin-top: 5%; background-color: red; border-color: red;font-size: 30px"
+        class=" btn btn-primary" (click)="routeToJoin()">Play Again</button>
+      <button style="text-align: center;margin-left: 5%;margin-top: 5%;font-size: 30px" class="btn btn-primary" (click)="routeToHome()">Go
+        Back</button>
+    </div>
+  </div>
+</div>

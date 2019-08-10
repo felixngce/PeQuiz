@@ -140,7 +140,7 @@ const routes: Routes = [
       {
         path: 'play', component: PlayComponent,
         children: [
-          {path: 'player-award', component: PlayerAwardComponent},
+          {path: 'player-award/:id', component: PlayerAwardComponent},
           {path: 'podium/:id', component: PodiumComponent},{
             path: 'host-cycle', component: HostCycleComponent, children: [
               {path: 'host-answers', component: HostAnswersComponent, children: [

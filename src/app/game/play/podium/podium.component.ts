@@ -12,6 +12,8 @@ export class PodiumComponent implements OnInit {
   public game_pin;
   public user_id = this.authService.getSecureToken();
   public current_session_data;
+  public scoreboard_array = [];
+
 
   sessionDataPlaceHolder =
   {
@@ -34,6 +36,12 @@ export class PodiumComponent implements OnInit {
     this.webSocketService.currentSessionData.subscribe(data => {
       console.log(data)
       this.current_session_data = data;
+      for(var i = 0; i < this.current_session_data.player.length ; i++){
+        if(i < 5){
+          this.scoreboard_array.push(this.current_session_data.player[i])
+        }
+      }
+      console.log(this.scoreboard_array)
     })
   }
 
