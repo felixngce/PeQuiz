@@ -84,10 +84,14 @@
         </form>
       </div>
       <div class="modal-footer">
+        <div *ngIf="usernameEmpty" style="margin-right: 17%">
+          <p style="color:red;float:left;">Please fill in a username!</p>
+        </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <form (ngSubmit)="onUpdateUsername()">
           <button type="button submit" class="btn btn-primary">Save changes</button>
         </form>
+
       </div>
     </div>
   </div>
@@ -113,6 +117,9 @@
         </form>
       </div>
       <div class="modal-footer">
+        <div *ngIf="emailEmpty" style="margin-right: 17%">
+          <p style="color:red;float:left;">Please fill in an email!</p>
+        </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <form (ngSubmit)="onUpdateEmail()">
           <button type="button submit" class="btn btn-primary">Save changes</button>
@@ -175,6 +182,21 @@
         </form>
       </div>
       <div class="modal-footer">
+        <div *ngIf="passwordEmpty" style="margin-right: 17%">
+          <p style="color:red;float:left;">Please fill in a password!</p>
+        </div>
+        <div *ngIf="newPasswordEmpty" style="margin-right: 14%">
+          <p style="color:red;float:left;">Please fill in new password!</p>
+        </div>
+        <div *ngIf="reTypeEmpty" style="margin-right: 10%">
+          <p style="color:red;float:left;">Please fill in re-type password!</p>
+        </div>
+        <div *ngIf="newPasswordChar">
+          <p style="color:red;float:left;">Your new password must be at least 8 characters!</p>
+        </div>
+        <div *ngIf="pwNoMatch" style="margin-right: 17%">
+          <p style="color:red;float:left;">Your passwords do not match!</p>
+        </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <form (ngSubmit)="onUpdatePassword()">
           <button type="button submit" class="btn btn-primary">Save changes</button>

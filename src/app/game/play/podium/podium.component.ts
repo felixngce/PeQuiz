@@ -35,10 +35,7 @@ export class PodiumComponent implements OnInit {
 
 
     this.game_pin = this.route.snapshot.paramMap.get('id');
-    this.yeet = 'yo' + 1 + 'its me'
-    this.trial = {};
-    this.trial[this.yeet] = 'yohh';
-    console.log(this.trial)
+
     this.webSocketService.currentSessionData.subscribe(data => {
       this.current_session_data = data;
       this.webSocketService.emit('update-quiz-plays', this.current_session_data);

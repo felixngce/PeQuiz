@@ -210,6 +210,7 @@ router.route('/usersPw/:id').put(function (req, res) {
                 if (err || res == false) {
 
                     console.log("This isn't your old password!!")
+                    return err;
                 } else {
                     bcrypt.hash(new_password, BCRYPT_SALT_ROUNDS, function (err, hash) {
                         new_password = hash;
@@ -227,6 +228,7 @@ router.route('/usersPw/:id').put(function (req, res) {
                             (err, results) => {
                                 if (err) return console.log(err);
                                 console.log('saved password to database');
+                                return results
 
 
                             }
@@ -236,6 +238,10 @@ router.route('/usersPw/:id').put(function (req, res) {
             });
         }, (err, results) => {
             if (err) return console.log(err);
+            if(err) return err;
+            
+                return results
+            
         }
 
     )

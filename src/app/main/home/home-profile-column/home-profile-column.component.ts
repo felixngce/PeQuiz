@@ -31,13 +31,9 @@ export class HomeProfileColumnComponent implements OnInit {
       this.user_data = data;
       this.user_id = this.authService.getSecureToken()
 
-      console.log(this.user_data);
       this.pfpSrc = "data:image/png;base64," + this.user_data[0].profile_picture;
-      console.log(this.user_data[0])
       if (this.isLooped && this.counter == 0) {
-        console.log(this.user_data[0].quiz_created.length)
         for (var i = 0; i < this.user_data[0].quiz_created.length; i++) {
-          console.log('hi')
           if (this.user_data[0].quiz_created[i]) {
             this.totalQuizPlays += this.user_data[0].quiz_created[i].no_of_plays;
           }

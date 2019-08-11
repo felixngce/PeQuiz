@@ -26,15 +26,9 @@
       </a>
 
     </form>
-
-
-    <div style="text-align: center;margin-top:2%">
-      <a [routerLink]="'/authentication/forget-password'">
-        Forgot your password?
-      </a>
+    <div *ngIf="loginFailed">
+      <p style="text-align: center;margin-top:20px">Login failed</p>
     </div>
-
-
 
   </div>
 </div>

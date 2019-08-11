@@ -99,6 +99,13 @@
       Go Back
     </button>
   </form>
+
+  <div *ngIf="over_time_limit">
+    <p style="text-align: center;color: white;font-size: 20px"> That time limit is too long!</p>
+  </div>
+  <div *ngIf="invalid_right_answer">
+      <p style="text-align: center;color: white;font-size: 20px"> The correct answer is not valid!</p>
+    </div>
   </div>
 
 

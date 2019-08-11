@@ -33,6 +33,16 @@ export class ProfileColumnComponent implements OnInit {
   public selectedFile: File;
   public pfpSrc;
   public pulledData;
+  public usernameEmpty: Boolean = false;
+  public emailEmpty: Boolean = false;
+  public passwordEmpty: Boolean = false;
+  public passwordWrong: Boolean = false;
+  public newPasswordEmpty: Boolean = false;
+  public newPasswordChar: Boolean = false;
+  public reTypeEmpty: Boolean = false;
+  public pwNoMatch: Boolean = false;
+
+
 
 
   public afterFindingUser;
@@ -124,8 +134,11 @@ export class ProfileColumnComponent implements OnInit {
 
 
   onUpdateUsername() {
-    
-
+    this.usernameEmpty = false;
+    if(this.usernameForm.value.new_username.length == 0){
+      this.usernameEmpty = true;
+    }
+    else{
     this.userGetService.updateUser(this.user_id, this.usernameForm.value.new_username, this.user_data[0].email, this.user_data[0].quiz_privacy
     ).subscribe(results => {
       this.findUserById()
@@ -133,12 +146,16 @@ export class ProfileColumnComponent implements OnInit {
     });
     this.updateUserDone = true;
 
-
+  }
   }
 
   onUpdateEmail() {
     
-
+    this.emailEmpty = false;
+    if(this.emailForm.value.new_email.length == 0){
+      this.emailEmpty = true;
+    }
+    else{
     this.userGetService.updateUser(this.user_id, this.user_data[0].username, this.emailForm.value.new_email, this.user_data[0].quiz_privacy
     )
     .subscribe(results => {
@@ -146,6 +163,7 @@ export class ProfileColumnComponent implements OnInit {
 
     });
     this.updateUserDone = true;
+  }
 
   }
 
@@ -164,11 +182,32 @@ export class ProfileColumnComponent implements OnInit {
   }
 
   onUpdatePassword() {
+    this.passwordEmpty = false;
+    this.newPasswordEmpty = false;
+    this.newPasswordChar = false;
+    this.reTypeEmpty = false;
+    this.pwNoMatch = false;
 
+    if(this.passwordForm.value.old_password == 0){
+      this.passwordEmpty = true;
+    }
+    else if(this.passwordForm.value.new_password == 0){
+      this.newPasswordEmpty = true;
+    }
+    else if(this.passwordForm.value.new_retype_password == 0){
+      this.reTypeEmpty = true;
+    }
+    else if(this.passwordForm.value.new_password.length < 8){
+      this.newPasswordChar = true;
+    }
+    else if(this.passwordForm.value.new_password != this.passwordForm.value.new_retype_password){
+      this.pwNoMatch = true;
+    }else{
+
+    
     this.userGetService.updateUserPw(this.user_id, this.passwordForm.value.old_password, this.passwordForm.value.new_password
     )
     .subscribe(results => {
-
 
     });
     setTimeout(() => {
@@ -178,6 +217,7 @@ export class ProfileColumnComponent implements OnInit {
 
 
     this.updateUserDone = true;
+  }
   }
 
   onDeleteUser() {

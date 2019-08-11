@@ -16,6 +16,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   results: any = false;
+  loginFailed: Boolean = false;
 
 
 
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    
+    this.loginFailed = false;
     this.authService.authUser(this.loginForm.value.username_or_email,
       this.loginForm.value.password).subscribe(data => {
         this.results = data;
@@ -42,6 +43,8 @@ export class LoginComponent implements OnInit {
           this.authService.setSecureToken(this.results[1].obj_id);
           var user_id = this.results[1].obj_id;
           this.router.navigate(['/main/home', user_id]);
+        } else{
+          this.loginFailed = true;
         }
       });
   }
