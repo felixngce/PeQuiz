@@ -125,7 +125,6 @@ router.route('/authuser/').post(function (req, res2) {
             _id: 1
 
         }, function (err, result) {
-
             if (result == null) {
                 res2.send([{ "auth": false }]
                 );
@@ -299,7 +298,7 @@ router.route('/newQuiz/').post(function (req, res) {
 
 //delete quiz from array
 router.route('/deleteQuiz/:id').put(function (req,res){
-    
+
 db.collection('User').updateOne({_id : ObjectId(req.params["id"])}, 
     {$set:{ 
         "quiz_created": req.body.quiz_array

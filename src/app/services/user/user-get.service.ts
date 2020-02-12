@@ -82,6 +82,8 @@ export class UserGetService {
 
     });
 
+
+
   }
 
   deleteQuiz(id, quiz_array){
