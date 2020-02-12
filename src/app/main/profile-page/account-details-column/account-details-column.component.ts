@@ -26,7 +26,7 @@ export class AccountDetailsColumnComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('id');
 
     this.user_id = id;
-
+    // Whenever any components change the service data with changeData(), it will auto update this.user_data
     this.userGetService.currentUserData.subscribe(data => {
       this.user_data = data;
       this.pw_date = this.datepipe.transform(this.user_data[0].last_pw_change,'dd-MM-yy hh:mm')
@@ -37,6 +37,7 @@ export class AccountDetailsColumnComponent implements OnInit {
 
   }
   findUserById(){
+    // Change service data under some condition
     this.userGetService.getUserById(this.user_id).subscribe(data => {
 
         this.userGetService.changeData(data)
