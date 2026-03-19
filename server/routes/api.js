@@ -42,8 +42,9 @@ router.get('/', (req, res) => {
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
 var db;
-MongoClient.connect('mongodb+srv://Pelix-Ng:tB776773@pequizcluster-ndlzr.mongodb.net/test?retryWrites=true&w=majority', {
-    useNewUrlParser: true
+MongoClient.connect('mongodb://localhost:27017/PeQuizDB', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 }, (err, database) => {
     if (err) return console.log(err);
     db = database.db('PeQuizDB');
