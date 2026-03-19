@@ -55,6 +55,7 @@ server.listen(port, () => console.log(`API running on localhost:${port}`));
 
 
 var io = socketIO(server);
+const hostSocketMap = {}; // maps socket.id -> host_id for crash cleanup
 
 io.on('connection', (socket) => {
 
@@ -66,22 +67,21 @@ io.on('connection', (socket) => {
         data["game_pin"] = gamePin;
 
 
-        db.collection('Session').insertOne(data, (err, results) => {
+        // Delete any stale sessions for this host before creating a new one
+        db.collection('Session').deleteMany({ 'host_id': data.host_id }, (err) => {
             if (err) return console.log(err);
 
-            db.collection('Session').findOne({ 'host_id': data.host_id },
-                function (err, result) {
-                    socket.join(result.game_pin)
-                    
+            db.collection('Session').insertOne(data, (err, results) => {
+                if (err) return console.log(err);
 
-
-                    io.to(result.game_pin).emit("getSessionData", result)
-            
-                })
+                db.collection('Session').findOne({ 'host_id': data.host_id },
+                    function (err, result) {
+                        hostSocketMap[socket.id] = data.host_id;
+                        socket.join(result.game_pin)
+                        io.to(result.game_pin).emit('getSessionData', result)
+                    })
+            });
         });
-
-
-
     })
 
 
@@ -107,7 +107,15 @@ io.on('connection', (socket) => {
     });
 
 
-    socket.on('disconnect', function (data) {
+    socket.on('disconnect', function () {
+        const host_id = hostSocketMap[socket.id];
+        if (host_id) {
+            db.collection('Session').deleteMany({ 'host_id': host_id }, (err) => {
+                if (err) return console.log(err);
+                console.log('Cleaned up orphaned session for host:', host_id);
+            });
+            delete hostSocketMap[socket.id];
+        }
     })
 
     socket.on('game-starting', function (data) {
@@ -116,6 +124,7 @@ io.on('connection', (socket) => {
 
     socket.on('host-disconnect', function (data) {
         console.log('host is disconnecting')
+        delete hostSocketMap[socket.id];
         socket.leave(data.game_pin)
         //delete this data off the db
         db.collection('Session').deleteMany(
@@ -267,9 +276,9 @@ io.on('connection', (socket) => {
     })
 
     socket.on('update-quiz-plays', function(data){
-        user_quiz_field = 'quiz_created.' + data.quiz_id + '.no_of_plays'
-        new_quiz_id = data.quiz_data.no_of_plays + 1;
-        new_user_quiz_field = {};
+        const user_quiz_field = 'quiz_created.' + data.quiz_id + '.no_of_plays'
+        const new_quiz_id = data.quiz_data.no_of_plays + 1;
+        const new_user_quiz_field = {};
         new_user_quiz_field[user_quiz_field] = new_quiz_id;
         console.log(user_quiz_field)
         console.log(new_quiz_id)
